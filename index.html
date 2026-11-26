@@ -6,15 +6,15 @@
 <meta name="description" content="Sanco Group — Sanco Environmental Services and Sanco Facilities Management. F&B specialists in kitchen exhaust, cooling and MEP across the UAE.">
 <link rel="icon" href="media/leaf.png">
 <style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
-<title>Sanco Group</title>
+<title>Sanco Facilities Management</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&family=DM+Mono:wght@400;500&display=swap">
 <style>
-/* Layout: one vertical story on the phone. Group first, then a pinned FM scene where a level stack and a 3D clip change service by service. */
+/* Layout: a pinned "problem → fix" story opens the page, then a pinned six-service scene; everything else slides in from the sides as you scroll and slides back out when you scroll away. */
 :root{
   --bg:#F3F5F0; --surface:#FFFFFF; --ink:#14231B; --muted:#5B6A62; --line:#DCE3D8;
-  --g:#2E9A47; --gs:#E2F1E2; --lime:#94C23A; --b:#2B7DB5; --bs:#DDEBF6; --a:#C47A22; --as:#F7E7CF; --red:#C0452F; --rs:#F8E1DB;
+  --g:#2E9A47; --gs:#E2F1E2; --lime:#94C23A; --b:#2B7DB5; --bs:#DDEBF6; --a:#C47A22; --as:#F7E7CF; --red:#C8402B; --rs:#F9E0DA;
   --tint:var(--bg);
   --f:'DM Sans',system-ui,-apple-system,'Segoe UI',Roboto,Arial,sans-serif;
   --m:'DM Mono',ui-monospace,'SF Mono',Menlo,Consolas,monospace;
@@ -26,113 +26,124 @@
   --bg:#0E1611; --surface:#16211A; --ink:#E6EEE8; --muted:#9BAAA1; --line:#26352C;
   --g:#5CC170; --gs:#183323; --lime:#A9D45A; --b:#5FA8DD; --bs:#152A3A; --a:#E0A257; --as:#332614; --red:#E2735C; --rs:#3A1E18; color-scheme:dark}
 *{box-sizing:border-box}
-html{scroll-behavior:smooth}
+main{overflow-x:clip}
 body{background:var(--tint);color:var(--ink);font-family:var(--f);font-size:16px;line-height:1.55;transition:background-color .6s ease;-webkit-font-smoothing:antialiased;overflow-x:hidden}
 body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:30;background:var(--surface)}
 .wrap{max-width:560px;margin:0 auto;padding-left:max(20px,env(safe-area-inset-left,0px));padding-right:max(20px,env(safe-area-inset-right,0px))}
 h1,h2,h3{text-wrap:balance;margin:0;font-weight:600;letter-spacing:-.02em}
-h2{font-size:clamp(28px,7.6vw,38px);line-height:1.08}
+h2{font-size:clamp(28px,7.4vw,36px);line-height:1.08}
 h2 b{font-weight:700;color:var(--g)}
 p{margin:0}
 .lab{font-family:var(--m);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
-.lead{color:var(--muted);font-size:16.5px;max-width:34em}
-section{padding-block:68px}
+.lead{color:var(--muted);font-size:16px;max-width:34em}
+section{padding-block:44px}
 .ico{width:26px;height:26px;border-radius:7px;display:inline-grid;place-items:center;flex:none}
 .ico svg{width:16px;height:16px}
-.logo-card{background:#fff;border-radius:10px;padding:8px 12px;display:inline-flex;align-items:center}
-.logo-card img{height:38px;width:auto;display:block}
 /* bar */
-.bar{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:color-mix(in srgb,var(--surface) 88%,transparent);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
-.bar .wrap{display:flex;align-items:center;justify-content:space-between;height:58px}
-.bar .brand{display:flex;align-items:center;gap:8px;font:600 15px var(--f);letter-spacing:-.01em}
-.bar .brand i{width:22px;height:30px;display:block}
-.prog{position:absolute;left:0;bottom:-1px;height:2px;width:100%;transform-origin:0 50%;transform:scaleX(var(--p,0));background:linear-gradient(90deg,var(--g),var(--lime) 33%,var(--b) 50%,var(--b) 66%,var(--a))}
+.bar{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:color-mix(in srgb,var(--surface) 90%,transparent);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.bar .wrap{display:flex;align-items:center;justify-content:space-between;height:56px}
+.bar img{height:32px;width:auto;display:block}
 .btn{display:inline-flex;align-items:center;gap:8px;font:600 14px var(--f);padding:10px 16px;border-radius:999px;text-decoration:none;border:0;cursor:pointer}
 .btn.pri{background:var(--g);color:#fff}
 .btn.sec{background:var(--surface);color:var(--ink);border:1px solid var(--line)}
 .btn:focus-visible,button:focus-visible{outline:2px solid var(--b);outline-offset:2px}
-/* reveal */
-.rv{transition:opacity .8s cubic-bezier(.2,.7,.2,1),transform .8s cubic-bezier(.2,.7,.2,1)}
-.js .rv.pre{opacity:.06;transform:translateY(28px)}
-/* hero */
-.hero{padding-top:30px;padding-bottom:24px}
-.hero h1{font-size:clamp(38px,11vw,56px);line-height:1.02;letter-spacing:-.035em;font-weight:300}
-.hero h1 b{font-weight:700}
-.chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:18px}
-.chip{font:500 12px var(--m);letter-spacing:.04em;border-radius:999px;padding:5px 11px;background:var(--surface);border:1px solid var(--line)}
-.chip.g{background:var(--gs);border-color:transparent;color:var(--g)}
-.hero .cta{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px}
-.tree{margin-top:30px;position:relative}
-.tree .root{display:flex;justify-content:center}
-.tree .root span{font:600 13px var(--m);letter-spacing:.14em;background:var(--ink);color:var(--surface);padding:8px 14px;border-radius:8px}
-.tree svg.lines{display:block;width:100%;height:36px}
-.tree .kids{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.tree .kid{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:12px;display:grid;gap:8px;justify-items:start}
-.tree .kid img{height:34px;width:auto}
-.tree .kid small{font-size:12.5px;color:var(--muted);line-height:1.4}
-/* group companies */
-.co{background:var(--surface);border:1px solid var(--line);border-radius:16px;overflow:hidden;margin-top:18px}
-.co .clip{aspect-ratio:16/10;background:#E9ECE6;position:relative}
-.co .clip video,.co .clip img{width:100%;height:100%;object-fit:cover;display:block}
-.co .body{padding:18px;display:grid;gap:12px}
-.co .head{display:flex;align-items:center;justify-content:space-between;gap:10px}
-.co .head img{height:36px;width:auto}
-.svc{display:grid;grid-template-columns:1fr 1fr;gap:8px 12px}
-.svc div{display:flex;align-items:center;gap:8px;font-size:13.5px;line-height:1.25}
-.tag{font:500 10.5px var(--m);letter-spacing:.1em;padding:3px 8px;border-radius:5px}
-/* F&B */
-.fb{background:var(--ink);color:var(--surface);border-radius:18px;padding:24px;margin-top:20px}
-.fb h3{font-size:24px;line-height:1.15}
-.fb ul{list-style:none;margin:16px 0 0;padding:0;display:grid;gap:10px}
-.fb li{display:grid;grid-template-columns:26px minmax(0,1fr);gap:10px;font-size:14.5px;opacity:.92}
-.fb li b{color:var(--lime);font:600 12px var(--m);padding-top:3px}
-.stats{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line);border:1px solid var(--line);border-radius:12px;overflow:hidden;margin-top:16px}
-.stats div{background:var(--surface);padding:16px}
-.stats strong{display:block;font-size:30px;font-weight:600;letter-spacing:-.03em;font-variant-numeric:tabular-nums}
-.stats span{font-size:12.5px;color:var(--muted)}
+/* global scroll rail */
+.rail{position:fixed;right:max(6px,env(safe-area-inset-right,0px));top:calc(env(safe-area-inset-top,0px) + 76px);bottom:calc(env(safe-area-inset-bottom,0px) + 90px);width:4px;border-radius:2px;background:color-mix(in srgb,var(--ink) 10%,transparent);z-index:15}
+.rail i{position:absolute;left:0;right:0;top:0;height:calc(var(--p,0)*100%);border-radius:2px;background:linear-gradient(var(--red),var(--a),var(--g))}
+.hint{position:fixed;left:50%;bottom:calc(env(safe-area-inset-bottom,0px) + 22px);transform:translateX(-50%);z-index:26;display:flex;align-items:center;gap:8px;background:var(--ink);color:var(--surface);font:600 13px var(--f);padding:9px 16px;border-radius:999px;transition:opacity .4s,transform .4s;box-shadow:0 10px 30px -10px rgba(0,0,0,.4)}
+.hint.hide{opacity:0;transform:translate(-50%,20px);pointer-events:none}
+.hint svg{width:14px;height:14px;animation:bob 1.2s ease-in-out infinite}
+@keyframes bob{50%{transform:translateY(4px)}}
+/* reveal: slides in from a side, slides back out when it leaves the screen */
+.rv{transition:opacity .7s cubic-bezier(.2,.7,.2,1),transform .7s cubic-bezier(.2,.7,.2,1)}
+.js .rv.out{opacity:0}
+.js .rv.out[data-d="l"]{transform:translateX(-60px)}
+.js .rv.out[data-d="r"]{transform:translateX(60px)}
+.js .rv.out[data-d="u"]{transform:translateY(-40px)}
+.js .rv.out[data-d="d"]{transform:translateY(46px)}
+.js .rv.out[data-d="z"]{transform:scale(.86)}
 /* pinned scenes */
 .scene{position:relative}
-.pin{position:sticky;top:calc(env(safe-area-inset-top,0px) + 58px);height:calc(100svh - 58px - env(safe-area-inset-top,0px));display:flex;flex-direction:column;justify-content:center;overflow:hidden}
-.pin .wrap{width:100%;display:grid;gap:10px}
-.stage{display:grid;grid-template-columns:118px minmax(0,1fr);gap:12px;align-items:center}
-.stack svg{width:100%;height:auto;display:block}
-.stack .s{transition:transform .55s cubic-bezier(.2,.8,.2,1),opacity .45s}
-.stack .s.off{opacity:.3}
+.pin{position:sticky;top:calc(env(safe-area-inset-top,0px) + 56px);height:calc(100svh - 56px - env(safe-area-inset-top,0px));overflow:hidden;display:flex;flex-direction:column}
+.pin .wrap{width:100%;display:flex;flex-direction:column;gap:10px;padding-top:14px;padding-bottom:calc(env(safe-area-inset-bottom,0px) + 74px);height:100%}
+.steps{display:flex;align-items:center;gap:10px}
+.steps .count{font:600 13px var(--m);white-space:nowrap;font-variant-numeric:tabular-nums}
+.steps .bars{display:flex;gap:4px;flex:1}
+.steps .bars span{height:5px;flex:1;border-radius:3px;background:var(--line);overflow:hidden;position:relative}
+.steps .bars span i{position:absolute;inset:0;transform-origin:0 50%;transform:scaleX(var(--f,0));background:var(--c,var(--g))}
+.more{flex:none;font:500 11.5px var(--m);letter-spacing:.08em;color:var(--muted);display:flex;align-items:center;gap:6px;transition:opacity .3s}
+.more svg{width:12px;height:12px;animation:bob 1.2s ease-in-out infinite}
 .vid{position:relative;aspect-ratio:16/10;border-radius:14px;overflow:hidden;background:#E9ECE6;border:1px solid var(--line)}
-.vid > *{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:opacity .6s}
-.vid > :not(.on){opacity:0}
-.vtag{position:absolute;left:10px;top:10px;z-index:2;font:500 10.5px var(--m);letter-spacing:.1em;background:rgba(255,255,255,.92);color:#14231B;padding:4px 8px;border-radius:5px;opacity:1}
-.txt{position:relative;min-height:210px}
+.vid > video,.vid > img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:opacity .5s, transform .6s}
+.vid > video:not(.on),.vid > img:not(.on){opacity:0;transform:scale(1.06)}
+.vtag{position:absolute;left:10px;top:10px;z-index:2;font:600 10.5px var(--m);letter-spacing:.1em;padding:5px 9px;border-radius:6px;color:#fff;transition:background .4s}
+.wash{position:absolute;inset:0;pointer-events:none;transition:background .5s;z-index:1}
+.txt{position:relative;flex:1 1 auto;min-height:150px}
 .it{position:absolute;inset:0 0 auto;transition:opacity .45s,transform .45s}
-.it:not(.on){opacity:0;transform:translateY(16px);pointer-events:none}
-.it h3{font-size:24px;margin:8px 0 6px;line-height:1.15}
+.it:not(.on){opacity:0;transform:translateY(18px);pointer-events:none}
+.it h3{font-size:clamp(22px,6.2vw,27px);line-height:1.12;margin:6px 0 8px}
 .it p{color:var(--muted);font-size:15px}
 .it ul{margin:10px 0 0;padding:0;list-style:none;display:flex;flex-wrap:wrap;gap:6px}
 .it li{font-size:12.5px;border:1px solid var(--line);background:var(--surface);border-radius:999px;padding:4px 10px}
-.dots{display:flex;gap:5px}
-.dots span{height:4px;flex:1;border-radius:2px;background:var(--line);transition:background .4s}
-/* amc meter */
-.meter{display:flex;gap:4px;margin-top:12px;max-width:220px}
-.meter i{flex:1;height:7px;border-radius:4px;background:var(--line)}
-.meter i.f{background:var(--b)}
+.it.bad li{border-color:color-mix(in srgb,var(--red) 35%,transparent);background:var(--rs)}
+.it.good li{border-color:color-mix(in srgb,var(--g) 35%,transparent);background:var(--gs)}
+.it .k{font:600 11px var(--m);letter-spacing:.12em}
+.brand-end{display:grid;gap:10px;justify-items:start}
+.brand-end img{height:46px;width:auto}
+/* FM stack */
+.stage{display:grid;grid-template-columns:104px minmax(0,1fr);gap:10px;align-items:center}
+.stack svg{width:100%;height:auto;display:block;overflow:visible}
+.stack .s polygon{transition:fill .45s,stroke .45s,stroke-width .3s}
+.stack .s text{transition:fill .45s;font-family:var(--m)}
+/* cards */
+.card{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:18px}
+.svc{display:grid;grid-template-columns:1fr 1fr;gap:9px 12px;margin-top:14px}
+.svc div{display:flex;align-items:center;gap:8px;font-size:13.5px;line-height:1.25}
+.stats{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line);border:1px solid var(--line);border-radius:12px;overflow:hidden;margin-top:14px}
+.stats div{background:var(--surface);padding:14px 16px}
+.stats strong{display:block;font-size:28px;font-weight:600;letter-spacing:-.03em;font-variant-numeric:tabular-nums}
+.stats span{font-size:12.5px;color:var(--muted)}
 .note{font-size:12.5px;color:var(--muted);margin-top:10px}
+.fb{background:var(--ink);color:var(--surface);border-radius:18px;padding:22px;margin-top:16px}
+.fb h3{font-size:22px;line-height:1.18}
+.fb ul{list-style:none;margin:14px 0 0;padding:0;display:grid;gap:10px}
+.fb li{display:grid;grid-template-columns:26px minmax(0,1fr);gap:10px;font-size:14.5px;opacity:.92}
+.fb li b{color:var(--lime);font:600 12px var(--m);padding-top:3px}
+/* fire */
+.fire{display:grid;gap:8px;margin-top:16px}
+.fire div{display:grid;grid-template-columns:30px minmax(0,1fr);gap:10px;align-items:start;background:var(--surface);border:1px solid var(--line);border-left:4px solid var(--red);border-radius:10px;padding:12px 14px;font-size:14px}
+.fire b{font:600 12px var(--m);color:var(--red);padding-top:2px}
+.fire strong{display:block;font-size:15px}
+.fire span{color:var(--muted)}
+.duct{margin-top:16px}
+.duct svg{width:100%;height:auto;display:block}
+/* amc */
+.amc{display:grid;gap:12px;margin-top:18px}
+.amc .card{display:grid;gap:8px;position:relative;overflow:hidden}
+.amc .card::before{content:"";position:absolute;left:0;top:0;bottom:0;width:5px;background:var(--c)}
+.amc h3{font-size:19px}
+.amc .lv{font:600 11px var(--m);letter-spacing:.12em;color:var(--c)}
+.meter{display:flex;gap:4px;max-width:200px}
+.meter i{flex:1;height:7px;border-radius:4px;background:var(--line)}
+.meter i.f{background:var(--c)}
 /* energy */
-.ab-tog{display:inline-flex;background:var(--surface);border:1px solid var(--line);border-radius:999px;padding:4px;margin-top:20px}
-.ab-tog button{font:600 13px var(--f);border:0;background:none;color:var(--muted);padding:8px 14px;border-radius:999px;cursor:pointer}
-.ab-tog button[aria-pressed="true"]{background:var(--ink);color:var(--surface)}
-.bars{display:grid;gap:12px;margin-top:16px}
-.bars .lab{display:flex;justify-content:space-between}
-.track{height:30px;background:var(--line);border-radius:6px;overflow:hidden;margin-top:6px}
-.fill{height:100%;border-radius:6px;transition:width 1s cubic-bezier(.2,.8,.2,1);display:flex;align-items:center;padding-left:10px;color:#fff;font:500 12px var(--m);white-space:nowrap}
-.save{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:16px}
-.save .card{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:14px}
-.big{font-size:32px;font-weight:600;letter-spacing:-.03em;line-height:1;font-variant-numeric:tabular-nums}
-.save small{display:block;color:var(--muted);font-size:12.5px;margin-top:6px;line-height:1.4}
-.drain{display:grid;gap:6px;margin-top:16px}
-.drain div{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:10px;background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:11px 14px;font-size:14px}
-.drain span{font:500 12.5px var(--m);color:var(--red);white-space:nowrap}
+.ebox{display:grid;gap:12px}
+.tog{display:inline-flex;background:var(--surface);border:1px solid var(--line);border-radius:999px;padding:4px;justify-self:start}
+.tog button{font:600 13px var(--f);border:0;background:none;color:var(--muted);padding:8px 14px;border-radius:999px;cursor:pointer;transition:background .3s,color .3s}
+.tog button[aria-pressed="true"]{background:var(--ink);color:var(--surface)}
+.ebar .lab{display:flex;justify-content:space-between}
+.track{height:34px;background:var(--line);border-radius:8px;overflow:hidden;margin-top:6px}
+.fill{height:100%;border-radius:8px;transition:width .9s cubic-bezier(.2,.8,.2,1),background .6s;display:flex;align-items:center;padding-left:12px;color:#fff;font:600 13px var(--m);white-space:nowrap}
+.esave{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.esave .card{padding:14px}
+.big{font-size:30px;font-weight:600;letter-spacing:-.03em;line-height:1;font-variant-numeric:tabular-nums}
+.esave small{display:block;color:var(--muted);font-size:12.5px;margin-top:6px;line-height:1.4}
+.drain{display:grid;gap:6px}
+.drain div{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:10px;background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:10px 14px;font-size:13.5px;transition:opacity .5s}
+.drain span{font:600 12.5px var(--m);color:var(--red);white-space:nowrap}
+.ebox[data-s="1"] .drain div{opacity:.35}
 /* portal */
-.devices{position:relative;margin-top:26px;height:300px}
+.devices{position:relative;margin-top:22px;height:290px}
 .laptop{position:absolute;left:0;right:46px;top:0}
 .laptop .scr{border:8px solid var(--ink);border-bottom-width:12px;border-radius:12px 12px 4px 4px;background:var(--surface);aspect-ratio:16/10;overflow:hidden;font-size:9.5px}
 .laptop .base{height:10px;background:color-mix(in srgb,var(--ink) 80%,#888);border-radius:0 0 10px 10px;margin:0 -16px}
@@ -145,88 +156,82 @@ section{padding-block:68px}
 .ui-r i{width:6px;height:6px;border-radius:50%}
 .ui-r em{font-style:normal;font-family:var(--m);color:var(--muted)}
 .ui-ph{width:100%;height:42px;border-radius:5px;background:linear-gradient(135deg,#cfd8cf,#e9ede8)}
-.two{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:18px}
-.two .card{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:14px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:16px}
+.two .card{padding:14px}
 .two h3{font-size:16px;margin:6px 0 8px}
 .two ul{margin:0;padding-left:16px;font-size:13px;color:var(--muted);display:grid;gap:4px}
 /* projects */
-.plist{margin-top:20px;border-top:1px solid var(--line)}
-.plist div{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:10px;align-items:center;padding:12px 0;border-bottom:1px solid var(--line)}
-.plist h3{font-size:15.5px}
+.plist{margin-top:16px;border-top:1px solid var(--line)}
+.plist div{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:10px;align-items:center;padding:11px 0;border-bottom:1px solid var(--line)}
+.plist h3{font-size:15px}
 .plist small{display:block;color:var(--muted);font-size:12.5px}
 .plist .ics{display:flex;gap:3px}
 .plist .ico{width:22px;height:22px;border-radius:6px}
 .plist .ico svg{width:13px;height:13px}
 /* clients */
 .clients{overflow:hidden}
-.crow{margin-top:22px}
-.crow .lab{padding-left:max(20px,env(safe-area-inset-left,0px));padding-right:max(20px,env(safe-area-inset-right,0px));max-width:560px;margin:0 auto 10px}
-.ctrack{display:flex;gap:10px;width:max-content;will-change:transform}
-.ctrack div{flex:none;width:132px;height:70px;background:#fff;border:1px solid var(--line);border-radius:12px;display:grid;place-items:center;padding:10px}
-.ctrack img{max-width:100%;max-height:44px;width:auto;height:auto;display:block}
+.cat{max-width:560px;margin:18px auto 8px;padding-left:max(20px,env(safe-area-inset-left,0px));padding-right:max(20px,env(safe-area-inset-right,0px));display:flex;justify-content:space-between;align-items:baseline}
+.ctrack{display:flex;gap:8px;width:max-content;will-change:transform;margin-bottom:8px}
+.ctrack div{flex:none;width:104px;height:58px;background:#fff;border:1px solid var(--line);border-radius:10px;display:grid;place-items:center;padding:8px}
+.ctrack img{max-width:100%;max-height:38px;width:auto;height:auto;display:block}
+.ccount{display:flex;align-items:baseline;gap:10px;margin-top:12px}
 /* contact */
 .contact{padding-bottom:140px}
-.ct{display:grid;gap:1px;background:var(--line);border:1px solid var(--line);border-radius:12px;overflow:hidden;margin-top:22px}
+.ct{display:grid;gap:1px;background:var(--line);border:1px solid var(--line);border-radius:12px;overflow:hidden;margin-top:18px}
 .ct div{background:var(--surface);padding:13px 16px;display:grid;grid-template-columns:92px minmax(0,1fr);gap:10px;align-items:baseline}
 .ct a{color:var(--ink);font-weight:500;text-decoration:none}
 .dock{position:fixed;left:0;right:0;bottom:0;z-index:25;padding:10px max(14px,env(safe-area-inset-right,0px)) calc(10px + env(safe-area-inset-bottom,0px)) max(14px,env(safe-area-inset-left,0px));background:color-mix(in srgb,var(--surface) 92%,transparent);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-top:1px solid var(--line);transform:translateY(110%);transition:transform .4s}
 .dock.show{transform:none}
 .dock .wrap{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;padding:0;align-items:center}
 .dock a{justify-content:center;padding:0 6px;height:44px;font-size:13.5px}
-.foot{font-size:12px;color:var(--muted);margin-top:28px}
-@media (min-width:760px){.stage{grid-template-columns:160px minmax(0,1fr)}}
-@media (prefers-reduced-motion:reduce){*,*::before,*::after{transition:none!important;animation:none!important}.js .rv.pre{opacity:1;transform:none}}
+.foot{font-size:12px;color:var(--muted);margin-top:24px}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{transition:none!important;animation:none!important}.js .rv.out{opacity:1;transform:none}}
 </style>
 </head>
 <body>
 
 
 <header class="bar"><div class="wrap">
-  <span class="brand"><i aria-hidden="true"><img src="media/leaf.png" alt="" style="height:30px;width:auto;display:block"></i>Sanco Group</span>
+  <img src="media/sanco-fm.png" alt="Sanco Facilities Management">
   <a class="btn pri" href="tel:+971503264583">Call 24/7</a>
-</div><div class="prog" id="prog"></div></header>
+</div></header>
+<div class="rail" aria-hidden="true"><i id="railFill"></i></div>
+<div class="hint" id="hint" aria-hidden="true">Scroll to explore <svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
 
 <main>
-<!-- HERO -->
-<section class="hero" data-tint="bg"><div class="wrap">
-  <p class="lab">Sanco Group · UAE</p>
-  <h1 style="margin-top:12px">Kitchens, cooling and MEP — <b>kept running.</b></h1>
-  <p class="lead" style="margin-top:14px">Two specialist companies under one group. Kitchen exhaust and environmental services from Sanco Environmental, and technical maintenance, retrofits and fit-out from Sanco Facilities Management.</p>
-  <div class="chips"><span class="chip g">F&amp;B specialists</span><span class="chip">24/7 response</span><span class="chip">All over the UAE</span></div>
-  <div class="cta"><a class="btn pri" href="https://wa.me/971503264583">WhatsApp us</a><a class="btn sec" href="#group">Our companies</a></div>
-  <div class="tree" id="tree">
-    <div class="root"><span>SANCO GROUP</span></div>
-    <svg class="lines" viewBox="0 0 300 36" preserveAspectRatio="none" aria-hidden="true"><path d="M150 0V14M75 14H225M75 14V36M225 14V36" fill="none" stroke="var(--line)" stroke-width="2"/></svg>
-    <div class="kids">
-      <div class="kid"><img src="media/sanco-enviro.png" alt="Sanco Environmental Services"><small>Kitchen exhaust, grease traps, drains, tanks</small></div>
-      <div class="kid"><img src="media/sanco-fm.png" alt="Sanco Facilities Management"><small>KES and AC maintenance, MEP, retrofits, fit-out</small></div>
+<!-- STORY: problem → fix -->
+<section class="scene" id="story" style="padding:0" data-tint="bg">
+  <div class="pin"><div class="wrap">
+    <div class="steps"><span class="count" id="stCount">01 / 07</span><span class="bars" id="stBars"></span></div>
+    <div class="vid" id="stVid">
+      <div class="wash" id="stWash"></div>
+      <span class="vtag" id="stTag" style="background:var(--red)">FIRE HAZARD</span>
+      <video class="on" data-k="fire" data-src="media/fire.mp4" poster="media/fire.jpg" muted playsinline loop preload="none" aria-label="Animation: flames in a kitchen hood and greasy duct, a broken exhaust fan belt, a restaurant manager holding his head"></video>
+      <video data-k="kes" data-src="media/kes.mp4" poster="media/kes.jpg" muted playsinline loop preload="none" aria-label="Animation: Sanco technicians repairing a kitchen exhaust fan"></video>
+      <video data-k="leak" data-src="media/leak.mp4" poster="media/leak.jpg" muted playsinline loop preload="none" aria-label="Animation: water dripping from a wall AC at home while a wife scolds her husband"></video>
+      <video data-k="ac" data-src="media/ac.mp4" poster="media/ac.jpg" muted playsinline loop preload="none" aria-label="Animation: Sanco technicians servicing a ceiling AC unit"></video>
+      <video data-k="elec" data-src="media/elec.mp4" poster="media/elec.jpg" muted playsinline loop preload="none" aria-label="Animation: sparks from a distribution board, a technician thinking"></video>
+      <video data-k="vfd" data-src="media/vfd.mp4" poster="media/vfd.jpg" muted playsinline loop preload="none" aria-label="Animation: Sanco technician working on an electrical panel"></video>
+      <img data-k="end" src="media/fitout.jpg" alt="">
     </div>
+    <div class="txt" id="stTxt"></div>
+    <div class="more" id="stMore">KEEP SCROLLING <svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg></div>
+  </div></div>
+</section>
+
+<!-- ABOUT FM -->
+<section data-tint="gs"><div class="wrap">
+  <p class="lab rv">Sanco Facilities Management</p>
+  <h2 class="rv" style="margin-top:10px">Technical maintenance for <b>kitchens, cooling and MEP.</b></h2>
+  <p class="lead rv" style="margin-top:12px">Our own technicians maintain, repair and upgrade the systems your business runs on — with spare parts in stock and 24/7 call-outs across the UAE.</p>
+  <div class="card rv"><div class="svc" id="svcFm" style="margin-top:0"></div></div>
+  <div class="stats rv">
+    <div><strong data-count="15" data-suf="+">15+</strong><span>years in the UAE</span></div>
+    <div><strong data-count="200" data-suf="+">200+</strong><span>professionals</span></div>
+    <div><strong data-count="4000" data-suf="+">4,000+</strong><span>clients served</span></div>
+    <div><strong>24/7</strong><span>emergency response</span></div>
   </div>
-</div></section>
-
-<!-- GROUP -->
-<section id="group" data-tint="gs"><div class="wrap">
-  <p class="lab rv">Sanco Group</p>
-  <h2 class="rv" style="margin-top:10px">One group. <b>Two specialist companies.</b></h2>
-  <p class="lead rv" style="margin-top:14px">Each company has its own team and contract, working to one group standard — often on the same kitchen.</p>
-
-  <article class="co rv">
-    <div class="clip"><video data-src="media/enviro.mp4" poster="media/enviro.jpg" muted playsinline loop preload="none" aria-label="3D animation: technicians cleaning a kitchen hood and washing grease filters"></video></div>
-    <div class="body">
-      <div class="head"><img src="media/sanco-enviro.png" alt="Sanco Environmental Services"><span class="tag" style="background:var(--gs);color:var(--g)">CLEAN</span></div>
-      <p style="color:var(--muted);font-size:14.5px">Dubai Municipality-approved environmental services since 2012, with a dedicated team in Abu Dhabi.</p>
-      <div class="svc" id="svcEnv"></div>
-    </div>
-  </article>
-
-  <article class="co rv">
-    <div class="clip"><video data-src="media/kes.mp4" poster="media/kes.jpg" muted playsinline loop preload="none" aria-label="3D animation: Sanco FM technician replacing parts on a kitchen exhaust fan"></video></div>
-    <div class="body">
-      <div class="head"><img src="media/sanco-fm.png" alt="Sanco Facilities Management"><span class="tag" style="background:var(--bs);color:var(--b)">MAINTAIN · BUILD</span></div>
-      <p style="color:var(--muted);font-size:14.5px">Technical maintenance, energy retrofits and fit-out for kitchens, cooling and MEP.</p>
-      <div class="svc" id="svcFm"></div>
-    </div>
-  </article>
+  <p class="note">Figures across Sanco Group.</p>
 </div></section>
 
 <!-- F&B -->
@@ -234,89 +239,107 @@ section{padding-block:68px}
   <p class="lab rv">F&amp;B specialists</p>
   <h2 class="rv" style="margin-top:10px">We know <b>commercial kitchens.</b></h2>
   <div class="fb rv">
-    <h3>Hood, duct, fan, fresh air and cooling — one group looks after all of it.</h3>
+    <h3>Hood, ESP, fans, fresh air and cooling — one team looks after all of it.</h3>
     <ul>
-      <li><b>01</b><span>Kitchen exhaust cleaned by Sanco Environmental, and its fans, ESPs and VFDs maintained by Sanco FM.</span></li>
-      <li><b>02</b><span>We balance exhaust and treated fresh air, so kitchens stay cool and smoke stays out of the dining room.</span></li>
+      <li><b>01</b><span>Kitchen exhaust fans, motors, belts, bearings, VFDs and ESPs maintained on monthly or quarterly visits.</span></li>
+      <li><b>02</b><span>Exhaust and treated fresh air kept in balance, so kitchens stay cool and smoke stays out of the dining room.</span></li>
       <li><b>03</b><span>Work planned around service: nights, early mornings and closed days.</span></li>
-      <li><b>04</b><span>24/7 call-outs, with common spare parts carried on every vehicle.</span></li>
+      <li><b>04</b><span>Fire-risk items reported in writing the same day, so nothing is left unsaid.</span></li>
     </ul>
   </div>
-  <div class="stats rv">
-    <div><strong data-count="15" data-suf="+">15+</strong><span>years in the UAE</span></div>
-    <div><strong data-count="200" data-suf="+">200+</strong><span>professionals</span></div>
-    <div><strong data-count="4000" data-suf="+">4,000+</strong><span>clients served</span></div>
-    <div><strong>24/7</strong><span>emergency response</span></div>
-  </div>
-  <p class="note">Figures across all Sanco Group companies.</p>
 </div></section>
 
-<!-- FM SCENE -->
+<!-- FM SERVICES SCENE -->
 <section class="scene" id="fm" data-tint="bs" style="padding:0">
   <div class="pin"><div class="wrap">
-    <p class="lab">Sanco Facilities Management · services</p>
+    <p class="lab">Our six services</p>
+    <div class="steps"><span class="count" id="fmCount">01 / 06</span><span class="bars" id="fmBars"></span></div>
     <div class="stage">
-      <div class="stack" aria-hidden="true"><svg viewBox="0 0 160 220"><g id="fmStack"></g></svg></div>
+      <div class="stack" aria-hidden="true"><svg viewBox="0 0 120 214"><g id="fmStack"></g></svg></div>
       <div class="vid" id="fmVid">
-        <span class="vtag" id="fmTag">KES MAINTENANCE</span>
+        <span class="vtag" id="fmTag" style="background:var(--b)">LEVEL 01</span>
         <video class="on" data-k="kes" data-src="media/kes.mp4" poster="media/kes.jpg" muted playsinline loop preload="none" aria-hidden="true"></video>
         <video data-k="ac" data-src="media/ac.mp4" poster="media/ac.jpg" muted playsinline loop preload="none" aria-hidden="true"></video>
-        <img data-k="fit" src="media/fitout.jpg" alt="" loading="lazy">
+        <video data-k="duct" data-src="media/duct.mp4" poster="media/duct.jpg" muted playsinline loop preload="none" aria-hidden="true"></video>
+        <video data-k="fahu" data-src="media/fahu.mp4" poster="media/fahu.jpg" muted playsinline loop preload="none" aria-hidden="true"></video>
+        <video data-k="vfd" data-src="media/vfd.mp4" poster="media/vfd.jpg" muted playsinline loop preload="none" aria-hidden="true"></video>
+        <video data-k="fit" data-src="media/fit.mp4" poster="media/fit.jpg" muted playsinline loop preload="none" aria-hidden="true"></video>
       </div>
     </div>
-    <div class="dots" id="fmDots"></div>
     <div class="txt" id="fmTxt"></div>
+    <div class="more" id="fmMore">KEEP SCROLLING <svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg></div>
   </div></div>
 </section>
 
-<!-- AMC TYPES SCENE -->
-<section class="scene" id="amc" data-tint="bg" style="padding:0">
-  <div class="pin"><div class="wrap">
-    <p class="lab">AC &amp; MEP maintenance contracts</p>
-    <h2 style="font-size:clamp(26px,7vw,34px)">Three levels of cover. <b>You choose.</b></h2>
-    <p class="note" style="margin-top:0">All include planned visits and 24/7 call-outs. Common parts are fitted on the spot and invoiced later.</p>
-    <div class="stack" aria-hidden="true" style="width:150px"><svg viewBox="0 0 160 170"><g id="amcStack"></g></svg></div>
-    <div class="txt" id="amcTxt" style="min-height:215px"></div>
-    <div class="dots" id="amcDots"></div>
-  </div></div>
-</section>
-
-<!-- ENERGY -->
-<section data-tint="as"><div class="wrap">
-  <p class="lab rv">Energy savings</p>
-  <h2 class="rv" style="margin-top:10px">Maintenance that <b>pays for itself.</b></h2>
-  <p class="lead rv" style="margin-top:14px">A typical 150 m² restaurant in Dubai, the same AC system, one year with and without a proper maintenance contract.</p>
-  <div class="ab-tog rv" role="group" aria-label="Compare"><button id="eB" aria-pressed="true">Without AMC</button><button id="eA" aria-pressed="false">With Sanco AMC</button></div>
-  <div class="bars">
-    <div><div class="lab"><span>Electricity for cooling</span><span id="ekwh">≈ 121,000 kWh</span></div><div class="track"><div class="fill" id="ebar" style="width:100%;background:var(--red)">AED 53,000 / year</div></div></div>
+<!-- FIRE HAZARD -->
+<section data-tint="rs"><div class="wrap">
+  <p class="lab rv" style="color:var(--red)">Kitchen exhaust fire hazard</p>
+  <h2 class="rv" style="margin-top:10px">Grease, heat and a stopped fan — <b style="color:var(--red)">how kitchen fires start.</b></h2>
+  <p class="lead rv" style="margin-top:12px">Cooking sends fat, oil and grease (FOG) into the exhaust. When any part of the system stops doing its job, that grease collects in the duct — and the duct becomes fuel.</p>
+  <div class="duct rv" data-d="z"><svg viewBox="0 0 340 150" role="img" aria-label="Duct cross-section filling with grease when the system is not maintained">
+    <rect x="10" y="40" width="320" height="70" rx="6" fill="var(--surface)" stroke="var(--ink)" stroke-width="1.5"/>
+    <rect id="fog" x="12" y="92" width="316" height="16" rx="3" fill="#7A5A2C"/>
+    <g id="flm" opacity="0"><path d="M150 92c-8-16 6-22 2-36 14 10 18 22 10 36z" fill="#FF6A1A"/><path d="M190 92c-6-12 4-18 1-28 11 8 14 18 8 28z" fill="#FFB020"/><path d="M230 92c-7-14 5-20 2-32 12 9 16 20 9 32z" fill="#FF6A1A"/></g>
+    <text x="14" y="30" font-family="DM Mono, monospace" font-size="10" fill="var(--muted)">GREASE DUCT · SECTION</text>
+    <text id="fogT" x="14" y="135" font-family="DM Mono, monospace" font-size="11" fill="var(--red)">FOG LAYER · 2 mm</text>
+  </svg></div>
+  <div class="fire">
+    <div class="rv"><b>01</b><span><strong>Exhaust fan switched off or broken</strong>Heat can't escape from the hood and duct. A snapped belt or seized bearing is enough.</span></div>
+    <div class="rv"><b>02</b><span><strong>ESP not working</strong>The electrostatic precipitator stops trapping grease and smoke, so it goes straight into the duct.</span></div>
+    <div class="rv"><b>03</b><span><strong>Water-mist hood not working</strong>No wash cycle means grease bakes onto the hood plenum.</span></div>
+    <div class="rv"><b>04</b><span><strong>Duct not cleaned on time</strong>FOG builds up layer by layer inside the duct.</span></div>
+    <div class="rv"><b>05</b><span><strong>Filters missing or clogged</strong>Grease bypasses the filters, or airflow drops and heat stays in the kitchen.</span></div>
   </div>
-  <div class="save">
-    <div class="card rv"><span class="big" style="color:var(--g)" data-count="12" data-pre="AED " data-suf="k">AED 12k</span><small>saved every year on one restaurant</small></div>
-    <div class="card rv"><span class="big" data-count="28" data-pre="≈ " data-suf="k">≈ 28k</span><small>kWh less electricity a year</small></div>
-  </div>
-  <p class="lab rv" style="margin-top:26px">Where the extra power goes</p>
-  <div class="drain">
-    <div class="rv">Dirty filters and coils — units run longer<span>+10–15%</span></div>
-    <div class="rv">Fresh air unit not maintained — hot, humid air pulled in<span>+5–10%</span></div>
-    <div class="rv">Actuators bypassed — units never switch off<span>+5–10%</span></div>
-    <div class="rv">Worn parts, low refrigerant — less capacity<span>+3–5%</span></div>
-  </div>
-  <p class="note">Indicative example: 20 TR installed, 14 h a day, AED 0.44/kWh. Actual savings are confirmed after a site survey. We also add VFDs on exhaust fans and treated fresh air where they pay back.</p>
+  <div class="card rv" style="margin-top:12px;border-color:var(--g)"><span class="lab" style="color:var(--g)">What Sanco FM does</span>
+    <p style="margin-top:8px;font-size:14.5px">Monthly or quarterly KES technical visits, spare belts, bearings and motors on every van, ESP and water-mist checks — and a written fire safety notice the same day when a fire-risk item is found.</p></div>
 </div></section>
+
+<!-- AMC -->
+<section data-tint="bg"><div class="wrap">
+  <p class="lab rv">AC &amp; MEP maintenance contracts</p>
+  <h2 class="rv" style="margin-top:10px">Three levels of cover. <b>You choose.</b></h2>
+  <p class="lead rv" style="margin-top:10px">All include planned visits and 24/7 call-outs. Common parts are fitted on the spot and invoiced later.</p>
+  <div class="amc">
+    <div class="card rv" data-d="l" style="--c:#7FAFD3"><span class="lv">LEVEL 01</span><h3>Spare parts billed separately</h3><p style="color:var(--muted);font-size:14px">Visits, labour and call-outs included. Parts are quoted and billed when needed.</p><div class="meter"><i class="f"></i><i></i><i></i></div></div>
+    <div class="card rv" data-d="r" style="--c:#4E95C6"><span class="lv">LEVEL 02</span><h3>Spare parts included up to a threshold</h3><p style="color:var(--muted);font-size:14px">Parts included up to an agreed limit per item — for example AED 1,000. Spares for your units kept in our store.</p><div class="meter"><i class="f"></i><i class="f"></i><i></i></div></div>
+    <div class="card rv" data-d="l" style="--c:var(--b)"><span class="lv">LEVEL 03</span><h3>Full coverage of all spare parts</h3><p style="color:var(--muted);font-size:14px">One fixed yearly cost: visits, labour, call-outs and all spare parts.</p><div class="meter"><i class="f"></i><i class="f"></i><i class="f"></i></div></div>
+  </div>
+</div></section>
+
+<!-- ENERGY (auto by scroll) -->
+<section class="scene" id="energy" data-tint="as" style="padding:0">
+  <div class="pin"><div class="wrap">
+    <p class="lab">Energy savings</p>
+    <h2 style="font-size:clamp(26px,7vw,34px)">Maintenance that <b>pays for itself.</b></h2>
+    <p class="lead" style="font-size:14.5px">One 150 m² restaurant in Dubai. The same AC, one year without and with a Sanco AMC.</p>
+    <div class="steps"><span class="count" id="enCount">01 / 02</span><span class="bars" id="enBars"></span></div>
+    <div class="ebox" id="ebox" data-s="0">
+      <div class="tog" role="group" aria-label="Compare"><button id="eB" aria-pressed="true">Without AMC</button><button id="eA" aria-pressed="false">With Sanco AMC</button></div>
+      <div class="ebar"><div class="lab"><span>Electricity for cooling a year</span><span id="ekwh">≈ 121,000 kWh</span></div><div class="track"><div class="fill" id="ebar" style="width:100%;background:var(--red)">AED 53,000</div></div></div>
+      <div class="esave"><div class="card"><span class="big" id="eSave" style="color:var(--red)">+30%</span><small id="eSaveT">more power than needed</small></div><div class="card"><span class="big" id="eKw">≈ 28k</span><small id="eKwT">kWh wasted every year</small></div></div>
+      <div class="drain">
+        <div>Dirty filters and coils<span>+10–15%</span></div>
+        <div>Fresh air unit not maintained<span>+5–10%</span></div>
+        <div>Actuators bypassed, units never off<span>+5–10%</span></div>
+      </div>
+    </div>
+    <div class="more" id="enMore">KEEP SCROLLING <svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg></div>
+  </div></div>
+</section>
 
 <!-- PORTAL -->
 <section data-tint="bg"><div class="wrap">
   <p class="lab rv">Sanco FM portal · phone and PC</p>
   <h2 class="rv" style="margin-top:10px">Every asset tracked. <b>Open to you.</b></h2>
-  <p class="lead rv" style="margin-top:14px">Our teams run every contract on the Sanco FM portal. You get access too, on your phone or computer.</p>
-  <div class="devices rv" id="devices">
+  <p class="lead rv" style="margin-top:10px">Our teams run every contract on the Sanco FM portal. You get access too, on your phone or computer.</p>
+  <div class="devices rv" data-d="z">
     <div class="laptop"><div class="scr">
       <div class="ui-h"><span>Sanco FM · Asset register</span><span class="lab" style="font-size:8px">PC</span></div>
       <div class="ui-g"><div><b>42</b>units</div><div><b>100%</b>PPM on time</div><div><b>3</b>open items</div><div><b>186</b>reports</div></div>
       <div class="ui-r"><i style="background:var(--g)"></i><span>CHW FCU 02 · Dining</span><em>PPM done</em></div>
       <div class="ui-r"><i style="background:var(--b)"></i><span>KES fan 1 · Roof</span><em>Belt replaced</em></div>
       <div class="ui-r"><i style="background:var(--a)"></i><span>FAHU 01 · Roof</span><em>Due 05 Dec</em></div>
-      <div class="ui-r"><i style="background:var(--b)"></i><span>Split 07 · Office</span><em>Quoted</em></div>
+      <div class="ui-r"><i style="background:var(--red)"></i><span>Hood ESP · Kitchen</span><em>Fire notice sent</em></div>
     </div><div class="base"></div></div>
     <div class="phone">
       <div class="ui-h"><span>CHW FCU 02</span></div>
@@ -329,8 +352,8 @@ section{padding-block:68px}
     </div>
   </div>
   <div class="two">
-    <div class="card rv"><span class="lab" style="color:var(--g)">For you</span><h3>Your sites at a glance</h3><ul><li>Asset list for every site</li><li>Full history of each unit</li><li>Photos before and after</li><li>Quotations and prices</li><li>Reports to share</li></ul></div>
-    <div class="card rv"><span class="lab" style="color:var(--b)">For our teams</span><h3>Nothing left open</h3><ul><li>PPM calendar per unit</li><li>Technician check-ins on site</li><li>Spare parts in stock</li><li>Every job closed with a report</li><li>24/7 call log</li></ul></div>
+    <div class="card rv" data-d="l"><span class="lab" style="color:var(--g)">For you</span><h3>Your sites at a glance</h3><ul><li>Asset list per site</li><li>Full history of each unit</li><li>Before and after photos</li><li>Quotations and prices</li><li>Reports to share</li></ul></div>
+    <div class="card rv" data-d="r"><span class="lab" style="color:var(--b)">For our teams</span><h3>Nothing left open</h3><ul><li>PPM calendar per unit</li><li>Technician check-ins</li><li>Spare parts in stock</li><li>Every job closed with a report</li><li>24/7 call log</li></ul></div>
   </div>
 </div></section>
 
@@ -344,7 +367,8 @@ section{padding-block:68px}
 
 <!-- CLIENTS -->
 <section class="clients" data-tint="bg" id="clients">
-  <div class="wrap"><p class="lab rv">Our clients</p><h2 class="rv" style="margin-top:10px">Trusted across <b>the UAE.</b></h2></div>
+  <div class="wrap"><p class="lab rv">Our clients</p><h2 class="rv" style="margin-top:10px">Trusted across <b>the UAE.</b></h2>
+  <div class="ccount rv"><span class="big" data-count="4000" data-suf="+">4,000+</span><span class="lead" style="font-size:14px">clients served by Sanco Group. A few of them:</span></div></div>
   <div id="crows"></div>
 </section>
 
@@ -352,15 +376,15 @@ section{padding-block:68px}
 <section class="contact" data-tint="gs" id="contact"><div class="wrap">
   <p class="lab rv">Contact</p>
   <h2 class="rv" style="margin-top:10px">Let's keep your <b>facility running.</b></h2>
-  <p class="lead rv" style="margin-top:14px">Ask for a site survey, a maintenance contract proposal or a KES inspection. You get a clear, itemised proposal.</p>
-  <div class="ct rv">
+  <p class="lead rv" style="margin-top:12px">Ask for a site survey, a maintenance contract proposal or a KES inspection. You get a clear, itemised proposal.</p>
+  <div class="ct rv" data-d="z">
     <div><span class="lab">Call</span><span><a href="tel:+97142637073">+971 4 263 7073</a><br><a href="tel:+971503264583">+971 50 326 4583</a></span></div>
     <div><span class="lab">WhatsApp</span><a href="https://wa.me/971503264583">+971 50 326 4583</a></div>
     <div><span class="lab">Email</span><a href="mailto:fm@sancouae.com">fm@sancouae.com</a></div>
     <div><span class="lab">Web</span><a href="https://www.sancouae.com">www.sancouae.com</a></div>
     <div><span class="lab">Office</span><span>Office 402, Al Qusais Plaza, Damascus Street, Al Qusais Industrial Area 2, Dubai</span></div>
   </div>
-  <p class="foot">Sanco Facilities Management FZE · part of Sanco Group</p>
+  <p class="foot">Sanco Facilities Management FZE · Dubai, UAE</p>
 </div></section>
 </main>
 
@@ -379,120 +403,153 @@ const IC={"phone": "M6.5 3.5h3l1.5 4-2 1.3a10 10 0 0 0 6.2 6.2l1.3-2 4 1.5v3a2 2
 ;
 const ico=(k,c)=>`<span class="ico" style="background:${c}"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="${IC[k]}" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>`;
 const esc=t=>t.replace(/&/g,'&amp;');
-const G='#3F8A2A',B='#2B7DB5',A='#C9822B';
-const ENV=[['kes-clean','Kitchen exhaust cleaning'],['ecology','Ecology unit cleaning'],['gt-clean','Grease trap cleaning'],['gt-supply','Grease trap supply & install'],['gt-treat','Grease trap treatment'],['coffee','Coffee catcher supply'],['jetting','Drain line jetting'],['water-tank','Water tank cleaning'],['sewage','Sewage tank & sump pits'],['waste-oil','Waste cooking oil collection'],['tanker','Tanker service'],['garbage','Garbage hood cleaning'],['laundry','Laundry duct cleaning'],['pest','Pest control'],['cctv','CCTV drain surveys']];
-const FMS=[['kes-maint','KES maintenance',B],['ac-amc','AC & MEP AMC',B],['duct','AC duct cleaning',B],['retrofit','Retrofits & energy upgrades',A],['projects','Fit-out & civil works',A]];
-document.getElementById('svcEnv').innerHTML=ENV.map(([k,l])=>`<div>${ico(k,G)}<span>${esc(l)}</span></div>`).join('');
-document.getElementById('svcFm').innerHTML=FMS.map(([k,l,c])=>`<div>${ico(k,c)}<span>${esc(l)}</span></div>`).join('');
+const G='#3F8A2A',B='#2B7DB5',A='#C9822B',RED='#C8402B',GRN='#2E9A47';
+document.getElementById('svcFm').innerHTML=[['kes-maint','KES maintenance',B],['ac-amc','AC & MEP AMC',B],['duct','AC duct cleaning',B],['ecology','Fresh air & FAHU',B],['retrofit','Retrofits & energy',A],['projects','Fit-out & civil',A]].map(([k,l,c])=>`<div>${ico(k,c)}<span>${esc(l)}</span></div>`).join('');
 
-// iso slab
-function slab(cx,y,w,h,t,top,s1,s2,st){const p=a=>a.map(q=>q.join(',')).join(' ');
-  return `<polygon points="${p([[cx-w,y],[cx,y+h],[cx,y+h+t],[cx-w,y+t]])}" fill="${s1}" stroke="${st}" stroke-width=".8"/><polygon points="${p([[cx,y+h],[cx+w,y],[cx+w,y+t],[cx,y+h+t]])}" fill="${s2}" stroke="${st}" stroke-width=".8"/><polygon points="${p([[cx,y-h],[cx+w,y],[cx,y+h],[cx-w,y]])}" fill="${top}" stroke="${st}" stroke-width=".8"/>`;}
-const mix=(a,b,f)=>`color-mix(in srgb, ${a} ${f}%, ${b})`;
-function stack(id,items,gap,base){const g=document.getElementById(id),ink=css('--ink'),sf=css('--surface');let s='';
-  items.forEach((it,i)=>{const c=it.c,y=base-i*gap;s+=`<g class="s" data-i="${i}">`+slab(80,y,62,24,8,mix(c,sf,35),mix(c,sf,72),mix(c,'#000',85),ink)+`<text x="80" y="${y+4}" text-anchor="middle" font-family="DM Mono, monospace" font-size="10" fill="${ink}">${it.n}</text></g>`;});
-  g.innerHTML=s;}
-// FM services scene
-const FM=[
- {n:'01',c:B,k:'kes',tag:'KES MAINTENANCE',t:'KES maintenance & upgrades',d:'The technical side of your kitchen exhaust: fans, motors, bearings, belts, VFDs and ESP repairs — on monthly or quarterly visits, so the exhaust never stops during service.',i:['Bearings & shafts','Belts & pulleys','Motors & VFDs','ESP repairs','Spare parts in stock']},
- {n:'02',c:B,k:'ac',tag:'AC & MEP AMC',t:'AC & MEP maintenance',d:'Planned maintenance and 24/7 reactive works for split, ducted, VRF and chilled water systems, plus electrical, plumbing and pumps.',i:['PPM visits','24/7 call-outs','CHW FCUs & AHUs','Electrical','Plumbing & pumps']},
- {n:'03',c:B,k:'ac',tag:'AC DUCT CLEANING',t:'AC duct cleaning',d:'Dust and mould inside supply ducts are blown into the room every time the AC runs. We clean with rotary brushes and HEPA negative air, and sanitise.',i:['Every 6 months for F&B','Yearly for homes','Before & after photos','HEPA containment']},
- {n:'04',c:B,k:'kes',tag:'FRESH AIR',t:'Fresh air & FAHU care',d:'Kitchen exhaust takes air out; the fresh air unit must put most of it back, treated. We keep that balance right so kitchens stay cool and dry.',i:['FAHU & AHU service','Filters & belts','Dampers & actuators','Air balance checks']},
- {n:'05',c:A,k:'kes',tag:'RETROFITS',t:'Retrofits & energy upgrades',d:'Repair or replace — with the figures. Right-sized units, working actuators, VFDs on exhaust fans and treated fresh air that pay back in running cost.',i:['Repair or replace','Actuators & valves','VFDs on fans','Treated fresh air']},
- {n:'06',c:A,k:'fit',tag:'FIT-OUT',t:'Design, fit-out & civil works',d:'From cooling load and hood selection to approvals, installation and handover — with our own civil team for foundations, openings and making good.',i:['Load calculations','Ducting & hoods','AHU & FAHU','In-house civil works']}
+// ---------- shared pinned-scene engine ----------
+function bars(id,n,col){const el=document.getElementById(id); el.innerHTML=Array.from({length:n},()=>`<span><i></i></span>`).join(''); return [...el.children].map((s,i)=>{s.style.setProperty('--c',col(i)); return s;});}
+const p01=el=>{const r=el.getBoundingClientRect(),span=r.height-innerHeight;return Math.max(0,Math.min(1,-r.top/Math.max(1,span)));};
+function playIn(box,k,visible){box.querySelectorAll('[data-k]').forEach(v=>{const on=v.dataset.k===k; v.classList.toggle('on',on); if(v.tagName==='VIDEO'){ if(on&&visible){ if(!v.src&&v.dataset.src) v.src=v.dataset.src; v.play().catch(()=>{}); } else v.pause(); }});}
+
+// ---------- STORY ----------
+const ST=[
+ {k:'fire',tag:'FIRE HAZARD',bad:1,h:'Kitchen exhaust fire hazard.',p:'The exhaust fan stops, heat stays in the duct, and grease that has built up for months catches fire.',i:['Exhaust fan switched off','Broken belt or bearing','ESP not working','Water-mist hood off','Duct not cleaned','Filters clogged']},
+ {k:'kes',tag:'SANCO FM · KES',bad:0,h:'Kept running, kept safe.',p:'Monthly KES technical visits, spare belts and bearings on every van, and a written fire safety notice the same day if we find a risk.',i:['Fans, belts, bearings','ESP & water-mist checks','24/7 call-outs','Fire notice same day']},
+ {k:'leak',tag:'AC PROBLEM',bad:1,h:'Water leaking from the AC — again.',p:'A blocked drain line or a failed drain pump, and the floor, the ceiling and the mood at home all take the hit.',i:['Blocked drain line','Dirty filters & coil','Drain pump failed','Low refrigerant']},
+ {k:'ac',tag:'SANCO FM · AC',bad:0,h:'Planned AC maintenance.',p:'Filters, coils and drain lines cleaned and flushed on schedule, so the leak never starts. 24/7 call-outs if it does.',i:['PPM visits','Drain flushing','Coil cleaning','24/7 call-outs']},
+ {k:'elec',tag:'ELECTRICAL RISK',bad:1,h:'Sparks from the DB.',p:'Loose connections, overloaded circuits and ageing breakers overheat quietly — until they don’t.',i:['Loose terminals','Overloaded circuits','Aged breakers','No thermal checks']},
+ {k:'vfd',tag:'SANCO FM · ELECTRICAL',bad:0,h:'Checked, tightened, tested.',p:'Our electricians check DBs, tighten terminals, replace failing breakers and balance loads as part of your MEP contract.',i:['DB inspections','Thermal checks','Breaker replacement','Load balancing']},
+ {k:'end',tag:'SANCO FACILITIES MANAGEMENT',bad:0,end:1}
 ];
-const AMC=[
- {n:'01',c:'#8FB7D6',t:'Spare parts billed separately',d:'Planned visits, labour and 24/7 call-outs included. Spare parts are quoted and billed when needed.',m:1},
- {n:'02',c:'#4E95C6',t:'Spare parts included up to a threshold',d:'Everything in level 01, plus spare parts included up to an agreed limit per item — for example AED 1,000. Spares for your units kept in our store.',m:2},
- {n:'03',c:B,t:'Full coverage of all spare parts',d:'One fixed yearly cost: visits, labour, call-outs and all spare parts included. Spares for your units kept in our store, ready to fit.',m:3}
-];
-function scene(cfg){
-  const txt=document.getElementById(cfg.txt),dots=document.getElementById(cfg.dots);
-  txt.innerHTML=cfg.items.map((it,i)=>`<div class="it" data-i="${i}"><span class="lab" style="color:${it.c}">Level ${it.n}</span><h3>${esc(it.t)}</h3><p>${esc(it.d)}</p>${it.i?`<ul>${it.i.map(x=>`<li>${esc(x)}</li>`).join('')}</ul>`:''}${it.m?`<div class="meter">${[1,2,3].map(k=>`<i class="${k<=it.m?'f':''}"></i>`).join('')}</div><p class="note" style="margin-top:6px">Budget certainty</p>`:''}</div>`).join('');
-  dots.innerHTML=cfg.items.map(()=>'<span></span>').join('');
-  let cur=-1;
-  function draw(){stack(cfg.stack,cfg.items,cfg.gap,cfg.base); const c=cur; cur=-1; set(Math.max(0,c));}
-  function set(i){ if(i===cur) return; cur=i;
-    document.querySelectorAll('#'+cfg.stack+' .s').forEach(s=>{const k=+s.dataset.i; s.classList.toggle('off',k>i); s.style.transform=k===i?'translate(14px,-6px)':'';});
-    txt.querySelectorAll('.it').forEach(e=>e.classList.toggle('on',+e.dataset.i===i));
-    dots.querySelectorAll('span').forEach((d,k)=>d.style.background=k<=i?cfg.items[k].c:'');
-    cfg.on&&cfg.on(cfg.items[i]);
-  }
-  draw(); return {set,draw,el:document.getElementById(cfg.el),n:cfg.items.length};
+const stTxt=document.getElementById('stTxt');
+stTxt.innerHTML=ST.map((s,i)=>s.end?`<div class="it" data-i="${i}"><div class="brand-end"><img src="media/sanco-fm.png" alt="Sanco Facilities Management"><h3 style="font-size:clamp(28px,8vw,40px)">Kitchens, cooling and MEP — <span style="color:var(--g)">kept running.</span></h3><p>F&amp;B specialists · 24/7 · all over the UAE</p><a class="btn pri" href="https://wa.me/971503264583">WhatsApp us</a></div></div>`:
+ `<div class="it ${s.bad?'bad':'good'}" data-i="${i}"><span class="k" style="color:${s.bad?'var(--red)':'var(--g)'}">${s.bad?'THE PROBLEM':'HOW WE FIX IT'}</span><h3>${esc(s.h)}</h3><p>${esc(s.p)}</p><ul>${s.i.map(x=>`<li>${esc(x)}</li>`).join('')}</ul></div>`).join('');
+const stBars=bars('stBars',ST.length,i=>ST[i].bad?RED:GRN);
+const story=document.getElementById('story'), stVid=document.getElementById('stVid'), stWash=document.getElementById('stWash'), stTag=document.getElementById('stTag');
+story.style.height=`calc(${ST.length} * 75svh + 100svh)`;
+let stCur=-1, stIn=false;
+function stSet(p){
+  const f=p*ST.length, i=Math.min(ST.length-1,Math.floor(f));
+  stBars.forEach((b,k)=>b.style.setProperty('--f',k<i?1:k===i?Math.min(1,f-i):0));
+  if(i===stCur) return; stCur=i; const s=ST[i];
+  document.getElementById('stCount').textContent=String(i+1).padStart(2,'0')+' / '+String(ST.length).padStart(2,'0');
+  stTxt.querySelectorAll('.it').forEach(e=>e.classList.toggle('on',+e.dataset.i===i));
+  stTag.textContent=s.tag; stTag.style.background=s.bad?'var(--red)':'var(--g)';
+  stWash.style.background=s.bad?'linear-gradient(180deg,rgba(200,64,43,.0) 55%,rgba(200,64,43,.28))':'linear-gradient(180deg,rgba(46,154,71,0) 60%,rgba(46,154,71,.18))';
+  document.body.style.setProperty('--tint',s.bad?'var(--rs)':(s.end?'var(--bg)':'var(--gs)'));
+  document.getElementById('stMore').style.opacity=i===ST.length-1?0:1;
+  playIn(stVid,s.k,stIn);
 }
-function load(v){ if(!v.src && v.dataset.src){ v.src=v.dataset.src; } }
-let fmIn=false;
-const vid=document.getElementById('fmVid'), tagEl=document.getElementById('fmTag');
-const fmS=scene({el:'fm',txt:'fmTxt',dots:'fmDots',stack:'fmStack',items:FM,gap:30,base:190,on:it=>{
-  tagEl.textContent=it.tag;
-  vid.querySelectorAll('[data-k]').forEach(v=>{const on=v.dataset.k===it.k; v.classList.toggle('on',on); if(v.tagName==='VIDEO'){ if(on&&fmIn){load(v);v.play().catch(()=>{});} else v.pause(); }});
-}});
-const amcS=scene({el:'amc',txt:'amcTxt',dots:'amcDots',stack:'amcStack',items:AMC,gap:36,base:130});
-document.getElementById('fm').style.height=`calc(${FM.length} * 70svh + 100svh)`;
-document.getElementById('amc').style.height=`calc(${AMC.length} * 70svh + 100svh)`;
-matchMedia('(prefers-color-scheme: dark)').addEventListener?.('change',()=>{fmS.draw();amcS.draw();});
-new MutationObserver(()=>{fmS.draw();amcS.draw();}).observe(R,{attributes:true,attributeFilter:['data-theme']});
 
-// videos: load and play only when visible
-const vio=new IntersectionObserver(es=>es.forEach(e=>{const v=e.target;
-  if(v.closest('#fmVid')){ fmIn=e.isIntersecting; const a=vid.querySelector('video.on'); if(a){ if(fmIn){load(a);a.play().catch(()=>{});} else a.pause(); } return; }
-  if(e.isIntersecting){load(v);v.play().catch(()=>{});} else v.pause();}),{threshold:.25});
-document.querySelectorAll('.co video').forEach(v=>vio.observe(v)); vio.observe(vid);
+// ---------- FM services ----------
+const FM=[
+ {k:'kes',c:B,t:'KES maintenance & upgrades',d:'The technical side of your kitchen exhaust: fans, motors, bearings, belts, VFDs and ESP repairs — so the exhaust never stops during service.',i:['Bearings & shafts','Belts & pulleys','Motors & VFDs','ESP repairs']},
+ {k:'ac',c:B,t:'AC & MEP maintenance',d:'Planned maintenance and 24/7 reactive works for split, ducted, VRF and chilled water systems, plus electrical, plumbing and pumps.',i:['PPM visits','24/7 call-outs','Electrical','Plumbing & pumps']},
+ {k:'duct',c:B,t:'AC duct cleaning',d:'Dust and mould in supply ducts are blown into the room every time the AC runs. Rotary brushes, HEPA negative air and sanitising.',i:['Every 6 months for F&B','Yearly for homes','Before & after photos']},
+ {k:'fahu',c:B,t:'Fresh air & FAHU care',d:'The fresh air unit must replace what the kitchen exhaust takes out — treated and dry. We change filters on schedule and keep the balance right.',i:['Bag filters monthly','Carbon filters 6-monthly','Belts yearly']},
+ {k:'vfd',c:A,t:'Retrofits & energy upgrades',d:'Repair or replace — with the figures. VFDs on exhaust fans, working actuators and right-sized units that pay back in running cost.',i:['VFDs on fans','Actuators & valves','Repair or replace']},
+ {k:'fit',c:A,t:'Design, fit-out & civil works',d:'From cooling load and hood selection to approvals, installation and handover — with our own civil team for foundations, openings and making good.',i:['Load calculations','Ducting & hoods','In-house civil works']}
+];
+const fmTxt=document.getElementById('fmTxt');
+fmTxt.innerHTML=FM.map((s,i)=>`<div class="it" data-i="${i}"><span class="k" style="color:${s.c}">LEVEL ${String(i+1).padStart(2,'0')}</span><h3>${esc(s.t)}</h3><p>${esc(s.d)}</p><ul>${s.i.map(x=>`<li>${esc(x)}</li>`).join('')}</ul></div>`).join('');
+const fmBars=bars('fmBars',FM.length,i=>FM[i].c);
+function slab(cx,y,w,h,t){const P=a=>a.map(q=>q.join(',')).join(' ');return {top:P([[cx,y-h],[cx+w,y],[cx,y+h],[cx-w,y]]),l:P([[cx-w,y],[cx,y+h],[cx,y+h+t],[cx-w,y+t]]),r:P([[cx,y+h],[cx+w,y],[cx+w,y+t],[cx,y+h+t]])};}
+function drawStack(){const g=document.getElementById('fmStack');let s='';
+  FM.forEach((it,i)=>{const y=184-i*32,q=slab(58,y,46,18,9);
+    s+=`<g class="s" data-i="${i}"><polygon class="l" points="${q.l}"/><polygon class="r" points="${q.r}"/><polygon class="t" points="${q.top}"/><text x="58" y="${y+4}" text-anchor="middle" font-size="10">L${String(i+1).padStart(2,'0')}</text></g>`;});
+  g.innerHTML=s;}
+drawStack();
+function paintStack(a){const ink=css('--ink'),sf=css('--surface'),ln=css('--line');
+  document.querySelectorAll('#fmStack .s').forEach(g=>{const i=+g.dataset.i,c=FM[i].c,on=i===a,done=i<a;
+    const top=on?c:(done?`color-mix(in srgb, ${c} 45%, ${sf})`:`color-mix(in srgb, ${c} 14%, ${sf})`);
+    g.querySelector('.t').setAttribute('fill',top); g.querySelector('.l').setAttribute('fill',`color-mix(in srgb, ${c} ${on?60:22}%, ${sf})`); g.querySelector('.r').setAttribute('fill',`color-mix(in srgb, ${c} ${on?80:35}%, #000)`);
+    g.querySelectorAll('polygon').forEach(p=>{p.setAttribute('stroke',on?ink:ln);p.setAttribute('stroke-width',on?1.4:.8);});
+    g.querySelector('text').setAttribute('fill',on?'#fff':css('--muted'));});}
+const fm=document.getElementById('fm'), fmVid=document.getElementById('fmVid');
+fm.style.height=`calc(${FM.length} * 70svh + 100svh)`;
+let fmCur=-1, fmIn=false;
+function fmSet(p){const f=p*FM.length,i=Math.min(FM.length-1,Math.floor(f));
+  fmBars.forEach((b,k)=>b.style.setProperty('--f',k<i?1:k===i?Math.min(1,f-i):0));
+  if(i===fmCur) return; fmCur=i;
+  document.getElementById('fmCount').textContent=String(i+1).padStart(2,'0')+' / 06';
+  fmTxt.querySelectorAll('.it').forEach(e=>e.classList.toggle('on',+e.dataset.i===i));
+  const tag=document.getElementById('fmTag'); tag.textContent='LEVEL '+String(i+1).padStart(2,'0'); tag.style.background=FM[i].c;
+  paintStack(i); document.getElementById('fmMore').style.opacity=i===FM.length-1?0:1;
+  playIn(fmVid,FM[i].k,fmIn);}
 
-// projects (fit-out only)
+// ---------- energy (auto by scroll) ----------
+const enBars=bars('enBars',2,i=>i?GRN:RED), energy=document.getElementById('energy'), ebox=document.getElementById('ebox');
+energy.style.height='calc(2 * 70svh + 100svh)';
+let enCur=-1;
+function enState(w){ if(w===enCur) return; enCur=w;
+  document.getElementById('eB').setAttribute('aria-pressed',!w); document.getElementById('eA').setAttribute('aria-pressed',!!w); ebox.dataset.s=w;
+  document.getElementById('enCount').textContent=(w?'02':'01')+' / 02';
+  document.getElementById('ekwh').textContent=w?'≈ 93,000 kWh':'≈ 121,000 kWh';
+  const eb=document.getElementById('ebar'); eb.style.width=w?'77%':'100%'; eb.style.background=w?'var(--g)':'var(--red)'; eb.textContent=w?'AED 41,000':'AED 53,000';
+  const s=document.getElementById('eSave'); s.textContent=w?'AED 12k':'+30%'; s.style.color=w?'var(--g)':'var(--red)';
+  document.getElementById('eSaveT').textContent=w?'saved every year':'more power than needed';
+  document.getElementById('eKw').textContent=w?'≈ 28k':'≈ 28k'; document.getElementById('eKwT').textContent=w?'kWh less electricity a year':'kWh wasted every year';
+  document.getElementById('enMore').style.opacity=w?0:1;}
+let enManual=null;
+document.getElementById('eB').onclick=()=>{enManual=0;enState(0)}; document.getElementById('eA').onclick=()=>{enManual=1;enState(1)};
+function enSet(p){enBars.forEach((b,k)=>b.style.setProperty('--f',Math.max(0,Math.min(1,p*2-k)))); enState(p>=0.5?1:0);}
+
+// visibility for videos
+function vis(box,set){new IntersectionObserver(es=>es.forEach(e=>{set(e.isIntersecting); const v=box.querySelector('video.on'); if(v){ if(e.isIntersecting){ if(!v.src)v.src=v.dataset.src; v.play().catch(()=>{});} else v.pause(); }}),{threshold:.2}).observe(box);}
+vis(stVid,x=>stIn=x); vis(fmVid,x=>fmIn=x);
+
+// ---------- projects ----------
 const PJ=[['Rawabi Al Sham, Al Barsha','Full MEP fit-out, 500 m² restaurant',['ac-amc','retrofit','projects','kes-maint']],['Allo Beirut, Al Hessa','Treated fresh air unit and kitchen air balance',['ac-amc','kes-maint']],['Cummins head office, JAFZA','35 ducted and decorative split units, ducting and civil',['ac-amc','duct','projects']],['Labour accommodation, DMC','CHW FCUs and ecology units with ducting',['ac-amc','kes-maint']],['Night to Night supermarket, Mirdif','20 CHW FCUs with toilet and pantry exhaust',['ac-amc','duct']],['Rawabi Al Sham butchery, Mirdif','CHW AHU, CHW FAHU, DX unit and DX FAHU',['ac-amc']],['Central kitchen, Al Quoz','DX units with power upgrade',['ac-amc','retrofit']],['%Arabica roastery, AD Hub','Exhaust fan, ecology units and duct changes',['kes-maint','duct']],['Rivas restaurant, Jumeirah','Water-mist hood, ecology unit, exhaust fan, civil',['kes-maint','projects']],['Kuku Pao, Nad Al Sheba','Ecology unit with ESP, exhaust and fresh-air fans',['kes-maint']]];
 const PC={'ac-amc':B,'duct':B,'kes-maint':G,'retrofit':A,'projects':A};
-document.getElementById('plist').innerHTML=PJ.map(p=>`<div class="rv"><span><h3>${esc(p[0])}</h3><small>${esc(p[1])}</small></span><span class="ics">${p[2].map(k=>ico(k,PC[k])).join('')}</span></div>`).join('');
+document.getElementById('plist').innerHTML=PJ.map((p,i)=>`<div class="rv" data-d="${i%2?'r':'l'}"><span><h3>${esc(p[0])}</h3><small>${esc(p[1])}</small></span><span class="ics">${p[2].map(k=>ico(k,PC[k])).join('')}</span></div>`).join('');
 
-// clients marquee
-const CL={"Restaurants, cafés & F&B": [["Nando's", "logos/nando-s.png"], ["%Arabica", "logos/arabica.png"], ["The Coffee Club", "logos/the-coffee-club.png"], ["Hurricane's Grill", "logos/hurricane-s-grill.png"], ["Sarabeth's", "logos/sarabeth-s.png"], ["Za'Za", "logos/za-za.png"], ["Bombay Bungalow", "logos/bombay-bungalow.png"], ["Pitfire", "logos/pitfire.png"], ["Rawabi Al Sham", "logos/rawabi-al-sham.png"], ["Saddle", "logos/saddle.png"], ["Allo Beirut", "logos/allo-beirut.png"], ["Cafe de Paris", "logos/cafe-de-paris.png"], ["Da Michele", "logos/da-michele.png"], ["Calo", "logos/calo.png"], ["Rebel Foods", "logos/rebel-foods.png"], ["Scalini", "logos/scalini.png"]], "Developers, malls & retail": [["Emaar", "logos/emaar.png"], ["Nakheel", "logos/nakheel.png"], ["Dubai Holding", "logos/dubai-holding.png"], ["Omniyat", "logos/omniyat.png"], ["Binghatti", "logos/binghatti.png"], ["Al Habtoor", "logos/al-habtoor.png"], ["Al Ghurair Centre", "logos/al-ghurair-centre.png"], ["J3 Mall", "logos/j3-mall.png"], ["Géant", "logos/g-ant.png"], ["Aswaaq", "logos/aswaaq.png"]], "Hotels & leisure": [["Marriott Bonvoy", "logos/marriott-bonvoy.png"], ["Rove Hotels", "logos/rove-hotels.png"], ["Wyndham", "logos/wyndham.png"], ["Four Points by Sheraton", "logos/four-points-by-sheraton.png"], ["Swissôtel", "logos/swiss-tel.png"], ["Millennium Hotels", "logos/millennium-hotels.png"], ["Dorchester Collection", "logos/dorchester-collection.png"], ["Leo & Loona", "logos/leo-loona.png"]], "Offices, healthcare & corporate": [["Emirates", "logos/emirates.png"], ["Emirates Engineering", "logos/emirates-engineering.png"], ["Gargash", "logos/gargash.png"], ["GMG", "logos/gmg.png"], ["Al Gurg Group", "logos/al-gurg-group.png"], ["Zulekha Hospital", "logos/zulekha-hospital.png"], ["MedCare", "logos/medcare.png"], ["AGMC", "logos/agmc.png"]], "Facilities management partners": [["Imdaad", "logos/imdaad.png"], ["Farnek", "logos/farnek.png"], ["Emrill", "logos/emrill.png"], ["Khidmah", "logos/khidmah.png"], ["ServeU", "logos/serveu.png"], ["Enova", "logos/enova.png"], ["Idama", "logos/idama.png"], ["Isnaad", "logos/isnaad.png"], ["Dulsco Group", "logos/dulsco-group.png"], ["Ejadah", "logos/ejadah.png"]]};
+// ---------- clients: many rows, opposite directions ----------
+const CL={"Restaurants, cafés & F&B": [["Tresaj", "logos/tresaj.png"], ["Mezzanine", "logos/mezzanine.png"], ["Ibn Albahr", "logos/ibn-albahr.png"], ["Bombay Bungalow", "logos/bombay-bungalow.png"], ["Za'Za", "logos/za-za.png"], ["Hurricane's Grill", "logos/hurricane-s-grill.png"], ["Sarabeth's", "logos/sarabeth-s.png"], ["Shawarma Jeddo", "logos/shawarma-jeddo.png"], ["Chapati Rashid", "logos/chapati-rashid.png"], ["Off the Hook", "logos/off-the-hook.png"], ["Rollo Bollo", "logos/rollo-bollo.png"], ["Potato Corner", "logos/potato-corner.png"], ["Trouvaille", "logos/trouvaille.png"], ["Abu Ali", "logos/abu-ali.png"], ["Grani Marmo Classic", "logos/grani-marmo-classic.png"], ["Zutto Suki", "logos/zutto-suki.png"], ["Arabica Coffee House", "logos/arabica-coffee-house.png"], ["Pili Pili", "logos/pili-pili.png"], ["Fynd", "logos/fynd.png"], ["JJ Chicken", "logos/jj-chicken.png"], ["Yann Couvreur", "logos/yann-couvreur.png"], ["Ichikura", "logos/ichikura.png"], ["Rebel Foods", "logos/rebel-foods.png"], ["Artisan Bakers", "logos/artisan-bakers.png"], ["Feels", "logos/feels.png"], ["KitchenPark", "logos/kitchenpark.png"], ["Joud Coffee", "logos/joud-coffee.png"], ["Sirene", "logos/sirene.png"], ["Origami Sushi", "logos/origami-sushi.png"], ["Express Kitchens", "logos/express-kitchens.png"], ["Gaia", "logos/gaia.png"], ["INA", "logos/ina.png"], ["Roasters", "logos/roasters.png"], ["Mama'esh", "logos/mama-esh.png"], ["Kaak Al Manara", "logos/kaak-al-manara.png"], ["Pitfire", "logos/pitfire.png"], ["Nando's", "logos/nando-s.png"], ["Eathos", "logos/eathos.png"], ["Cafe de Paris", "logos/cafe-de-paris.png"], ["Da Michele", "logos/da-michele.png"], ["Al Sultan", "logos/al-sultan.png"], ["Calo", "logos/calo.png"], ["Bulldozer Group", "logos/bulldozer-group.png"], ["Scalini", "logos/scalini.png"], ["%Arabica", "logos/arabica.png"], ["The Coffee Club", "logos/the-coffee-club.png"], ["Chocomelt", "logos/chocomelt.png"], ["The Lighthouse", "logos/the-lighthouse.png"], ["Malgudi", "logos/malgudi.png"], ["Matter Mind", "logos/matter-mind.png"], ["Boon Coffee", "logos/boon-coffee.png"], ["Rawabi Al Sham", "logos/rawabi-al-sham.png"], ["Saddle", "logos/saddle.png"], ["Vietnamese Foodies", "logos/vietnamese-foodies.png"], ["Allo Beirut", "logos/allo-beirut.png"]], "Hotels & leisure": [["Marriott Bonvoy", "logos/marriott-bonvoy.png"], ["Rove Hotels", "logos/rove-hotels.png"], ["Wyndham", "logos/wyndham.png"], ["Four Points by Sheraton", "logos/four-points-by-sheraton.png"], ["Swissôtel", "logos/swiss-tel.png"], ["Millennium Hotels", "logos/millennium-hotels.png"], ["Montreal Barsha Hotel", "logos/montreal-barsha-hotel.png"], ["Dorchester Collection", "logos/dorchester-collection.png"], ["Ajman Hotel", "logos/ajman-hotel.png"], ["Mehzala", "logos/mehzala.png"], ["Leo & Loona", "logos/leo-loona.png"]], "Developers, malls & retail": [["Emaar", "logos/emaar.png"], ["Nakheel", "logos/nakheel.png"], ["Dubai Holding", "logos/dubai-holding.png"], ["Omniyat", "logos/omniyat.png"], ["Binghatti", "logos/binghatti.png"], ["Al Habtoor", "logos/al-habtoor.png"], ["Al Ghurair Centre", "logos/al-ghurair-centre.png"], ["J3 Mall", "logos/j3-mall.png"], ["Géant", "logos/g-ant.png"], ["Aswaaq", "logos/aswaaq.png"]], "Offices, healthcare & corporate": [["Zulekha Hospital", "logos/zulekha-hospital.png"], ["Iranian Hospital", "logos/iranian-hospital.png"], ["MedCare", "logos/medcare.png"], ["Emirates", "logos/emirates.png"], ["Emirates Engineering", "logos/emirates-engineering.png"], ["AGMC", "logos/agmc.png"], ["Mair", "logos/mair.png"], ["Gargash", "logos/gargash.png"], ["MeRex Investment", "logos/merex-investment.png"], ["Merittik", "logos/merittik.png"], ["GMG", "logos/gmg.png"], ["Al Gurg Group", "logos/al-gurg-group.png"]], "Facilities management partners": [["Idama", "logos/idama.png"], ["Ejadah", "logos/ejadah.png"], ["Imdaad", "logos/imdaad.png"], ["Farnek", "logos/farnek.png"], ["Enova", "logos/enova.png"], ["Emrill", "logos/emrill.png"], ["Isnaad", "logos/isnaad.png"], ["Kemos FM", "logos/kemos-fm.png"], ["BKA Facilities Management", "logos/bka-facilities-management.png"], ["Al Ghurair FM", "logos/al-ghurair-fm.png"], ["Al Bonian FM", "logos/al-bonian-fm.png"], ["Clarity Community Mgmt.", "logos/clarity-community-mgmt.png"], ["Khidmah", "logos/khidmah.png"], ["ServeU", "logos/serveu.png"], ["Dulsco Group", "logos/dulsco-group.png"], ["Iskaan", "logos/iskaan.png"], ["We Shape Kitchens", "logos/we-shape-kitchens.png"], ["Hydro Technologies", "logos/hydro-technologies.png"], ["Mepteq", "logos/mepteq.png"], ["Karmastaji Group", "logos/karmastaji-group.png"], ["Saleh Constructions", "logos/saleh-constructions.png"], ["Righteous Group", "logos/righteous-group.png"]]};
 const crows=document.getElementById('crows'); let ri=0;
 for(const [cat,list] of Object.entries(CL)){
-  const items=list.map(([n,src])=>`<div><img src="${src}" alt="${n.replace(/"/g,'&quot;')}" loading="lazy"></div>`).join('');
-  crows.insertAdjacentHTML('beforeend',`<div class="crow"><p class="lab">${esc(cat)}</p><div class="ctrack" data-dir="${ri%2?1:-1}">${items}${items}${items}</div></div>`); ri++;
+  const perRow=list.length>30?Math.ceil(list.length/3):list.length>16?Math.ceil(list.length/2):list.length;
+  crows.insertAdjacentHTML('beforeend',`<div class="cat"><span class="lab">${esc(cat)}</span><span class="lab">${list.length}</span></div>`);
+  for(let s=0;s<list.length;s+=perRow){
+    const part=list.slice(s,s+perRow); const items=part.map(([n,src])=>`<div><img src="${src}" alt="${n.replace(/"/g,'&quot;')}" loading="lazy"></div>`).join('');
+    const rep=Math.max(2,Math.ceil(900/(part.length*112))+1);
+    crows.insertAdjacentHTML('beforeend',`<div class="ctrack" data-rep="${rep}" data-dir="${ri%2?1:-1}" data-sp="${0.8+((ri*37)%5)/10}">${items.repeat(rep)}</div>`); ri++;
+  }
 }
-const tracks=[...document.querySelectorAll('.ctrack')]; let drift=0;
+const tracks=[...document.querySelectorAll('.ctrack')]; let drift=0; const clients=document.getElementById('clients');
 
-// counters
+// ---------- reveal both ways ----------
+const dirs=['l','r','d','l','r','u'];
+document.querySelectorAll('.rv').forEach((e,i)=>{ if(!e.dataset.d) e.dataset.d=dirs[i%dirs.length]; e.classList.add('out'); });
 function countUp(el){const to=+el.dataset.count,pre=el.dataset.pre||'',suf=el.dataset.suf||''; if(reduce)return; const t0=performance.now();
-  (function f(t){const k=Math.min(1,(t-t0)/1400),e=1-Math.pow(1-k,3); el.textContent=pre+Math.round(to*e).toLocaleString('en-US')+suf; if(k<1)requestAnimationFrame(f);})(t0);}
-// reveal + tint
-const vh=innerHeight;
-document.querySelectorAll('.rv').forEach(e=>{ if(e.getBoundingClientRect().top>vh*0.95) e.classList.add('pre'); });
-const io=new IntersectionObserver(es=>es.forEach(e=>{ if(!e.isIntersecting)return; const t=e.target; t.classList.remove('pre'); t.classList.add('in');
-  t.querySelectorAll?.('[data-count]').forEach(countUp); if(t.dataset.count)countUp(t); io.unobserve(t); }),{threshold:.2,rootMargin:'0px 0px -8% 0px'});
+  (function f(t){const k=Math.min(1,(t-t0)/1300),e=1-Math.pow(1-k,3); el.textContent=pre+Math.round(to*e).toLocaleString('en-US')+suf; if(k<1)requestAnimationFrame(f);})(t0);}
+const io=new IntersectionObserver(es=>es.forEach(e=>{const t=e.target;
+  if(e.isIntersecting){ if(t.classList.contains('out')){ t.classList.remove('out'); t.querySelectorAll?.('[data-count]').forEach(countUp); if(t.dataset.count)countUp(t);} }
+  else t.classList.add('out'); }),{threshold:0,rootMargin:'-6% 0px -10% 0px'});
 document.querySelectorAll('.rv').forEach(e=>io.observe(e));
-const tio=new IntersectionObserver(es=>es.forEach(e=>{ if(e.isIntersecting) document.body.style.setProperty('--tint','var(--'+e.target.dataset.tint+')'); }),{rootMargin:'-45% 0px -50% 0px'});
+// first screen visible immediately
+requestAnimationFrame(()=>document.querySelectorAll('.rv').forEach(e=>{const r=e.getBoundingClientRect(); if(r.top<innerHeight*0.9&&r.bottom>0) e.classList.remove('out');}));
+const tio=new IntersectionObserver(es=>es.forEach(e=>{ if(e.isIntersecting && e.target.id!=='story') document.body.style.setProperty('--tint','var(--'+e.target.dataset.tint+')'); }),{rootMargin:'-45% 0px -50% 0px'});
 document.querySelectorAll('[data-tint]').forEach(s=>tio.observe(s));
 
-// energy toggle
-const ek=document.getElementById('ekwh'),eb=document.getElementById('ebar');
-function en(w){document.getElementById('eB').setAttribute('aria-pressed',!w);document.getElementById('eA').setAttribute('aria-pressed',w);
-  ek.textContent=w?'≈ 93,000 kWh':'≈ 121,000 kWh'; eb.style.width=w?'77%':'100%'; eb.style.background=w?'var(--g)':'var(--red)'; eb.textContent=w?'AED 41,000 / year':'AED 53,000 / year';}
-document.getElementById('eB').onclick=()=>en(false); document.getElementById('eA').onclick=()=>en(true);
+// fire diagram: grease grows as it scrolls into view
+const fog=document.getElementById('fog'),fogT=document.getElementById('fogT'),flm=document.getElementById('flm'),fireSec=fog.closest('section');
 
-// scroll-driven
-const prog=document.getElementById('prog'),dock=document.getElementById('dock'),clients=document.getElementById('clients');
-const p01=el=>{const r=el.getBoundingClientRect(),span=r.height-innerHeight;return Math.max(0,Math.min(1,-r.top/Math.max(1,span)));};
+// ---------- scroll loop ----------
+const rail=document.getElementById('railFill'),dock=document.getElementById('dock'),hint=document.getElementById('hint');
 let tick=false;
 function onScroll(){tick=false;
-  const max=document.documentElement.scrollHeight-innerHeight; prog.style.setProperty('--p',(scrollY/Math.max(1,max)).toFixed(4));
-  fmS.set(Math.min(fmS.n-1,Math.floor(p01(fmS.el)*fmS.n*1.02)));
-  amcS.set(Math.min(amcS.n-1,Math.floor(p01(amcS.el)*amcS.n*1.02)));
-  dock.classList.toggle('show',scrollY>innerHeight*0.6);
+  const max=document.documentElement.scrollHeight-innerHeight; rail.parentElement.style.setProperty('--p',(scrollY/Math.max(1,max)).toFixed(4));
+  stSet(p01(story)); fmSet(p01(fm)); enSet(p01(energy));
+  const r=fireSec.getBoundingClientRect(); const fp=Math.max(0,Math.min(1,(innerHeight-r.top)/(r.height*0.7)));
+  const h=4+fp*40; fog.setAttribute('y',108-h); fog.setAttribute('height',h); fogT.textContent='FOG LAYER · '+Math.round(2+fp*28)+' mm'; flm.setAttribute('opacity',fp>0.75?(fp-0.75)*4:0);
+  dock.classList.toggle('show',scrollY>innerHeight*0.4); hint.classList.toggle('hide',scrollY>60);
 }
 addEventListener('scroll',()=>{if(!tick){tick=true;requestAnimationFrame(onScroll);}},{passive:true});
 addEventListener('resize',onScroll); onScroll();
-// marquee: scroll position + gentle drift
-function marquee(){
-  const r=clients.getBoundingClientRect();
-  if(r.bottom>0&&r.top<innerHeight){
-    if(!reduce) drift+=0.25;
-    const sp=(innerHeight-r.top)*0.35;
-    tracks.forEach(t=>{const w=t.scrollWidth/3; let x=((sp+drift)%w+w)%w; t.style.transform=`translateX(${t.dataset.dir==='1'?-(w-x):-x}px)`;});
-  }
-  requestAnimationFrame(marquee);
-}
+function marquee(){const r=clients.getBoundingClientRect();
+  if(r.bottom>0&&r.top<innerHeight){ if(!reduce) drift+=0.3; const sp=(innerHeight-r.top)*0.45;
+    tracks.forEach(t=>{const loop=t.scrollWidth/(+t.dataset.rep||2); const d=(sp+drift)*(+t.dataset.sp); let x=((d%loop)+loop)%loop; t.style.transform=`translateX(${t.dataset.dir==='1'?-(loop-x):-x}px)`;});}
+  requestAnimationFrame(marquee);}
 requestAnimationFrame(marquee);
 })();
 </script>
