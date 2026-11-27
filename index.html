@@ -89,22 +89,18 @@ section.alt{background:var(--alt)}
 .it h3{font-size:clamp(22px,6.2vw,27px);line-height:1.12;margin:6px 0 8px}
 .it p{color:var(--muted);font-size:15px}
 .it .k{font:600 11px var(--m);letter-spacing:.12em}
-/* group tree */
-.tree{position:relative;margin-top:22px;padding-left:26px;display:grid;gap:14px}
-.spine{position:absolute;left:8px;top:24px;bottom:60px;width:2px;background:var(--line);overflow:hidden}
-.spine::after{content:"";position:absolute;inset:0;background:var(--g);transform-origin:top;transform:scaleY(var(--s,0))}
-.gnode{margin-left:-26px;justify-self:start;background:var(--ink);color:var(--surface);border-radius:14px;padding:12px 16px;display:flex;align-items:center;gap:10px}
-.gnode img{height:30px;width:auto}
-.gnode strong{display:block;font-size:18px;line-height:1.1}
-.gnode span{font:500 10.5px var(--m);letter-spacing:.08em;opacity:.75}
-.gcard{position:relative;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:14px;display:grid;grid-template-columns:120px minmax(0,1fr);gap:4px 14px;align-items:center}
-.gcard::before{content:"";position:absolute;left:-18px;top:50%;width:18px;height:2px;background:var(--g)}
-.gcard .lg{grid-row:span 2;background:#fff;border-radius:8px;padding:6px;display:grid;place-items:center;height:64px}
-.gcard .lg img{max-height:46px;width:auto;max-width:100%}
-.gcard p{font-size:15px;font-weight:600;line-height:1.25}
-.gcard small{font-size:13px;color:var(--muted);line-height:1.4}
-.gcard.fm{border-color:var(--g);box-shadow:0 0 0 1px var(--g)}
-.you{position:absolute;right:12px;top:-10px;background:var(--g);color:#fff;font:600 10px var(--m);letter-spacing:.1em;padding:3px 8px;border-radius:5px}
+/* group */
+.grp{margin-top:22px;background:var(--surface);border:1px solid var(--line);border-radius:18px;overflow:hidden}
+.ghead{background:var(--ink);color:var(--surface);padding:14px 16px;display:flex;align-items:center;gap:12px}
+.ghead img{height:30px;width:auto}
+.ghead strong{display:block;font-size:18px;line-height:1.1}
+.ghead span{font:500 10.5px var(--m);letter-spacing:.08em;opacity:.75}
+.gtwo{display:grid;grid-template-columns:1fr 1fr}
+.gco{padding:16px 14px;display:grid;gap:10px;align-content:start}
+.gco+.gco{border-left:1px solid var(--line)}
+.gco .lg{background:#fff;border-radius:8px;height:58px;display:grid;place-items:center;padding:4px}
+.gco .lg img{max-height:48px;max-width:100%;width:auto}
+.gco p{font-size:13px;line-height:1.45;color:var(--muted)}
 /* services overview */
 .divs{display:grid;gap:12px;margin-top:20px}
 .dv{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:16px;display:grid;gap:10px}
@@ -316,11 +312,12 @@ section.alt{background:var(--alt)}
 <section id="grp"><div class="wrap">
   <p class="lab rv">Sanco Group</p>
   <h2 class="rv" style="margin-top:10px">One group. <b>Two specialist companies.</b></h2>
-  <div class="tree" id="tree">
-    <i class="spine" id="spine"></i>
-    <div class="gnode rv" data-d="z"><img src="media/leaf.png" alt=""><div><strong>Sanco Group</strong><span>15+ YEARS IN THE UAE</span></div></div>
-    <div class="gcard rv" data-d="r"><div class="lg"><img src="media/sanco-enviro.png" alt="Sanco Environmental Services"></div><p>Kitchen exhaust and environmental cleaning</p><small>Hood, duct, ESP and fan cleaning, grease traps, drain jetting, water tanks and waste disposal.</small></div>
-    <div class="gcard fm rv" data-d="r"><span class="you">THIS PAGE</span><div class="lg"><img src="media/sanco-fm.png" alt="Sanco Facilities Management"></div><p>Technical maintenance for kitchens, cooling and MEP</p><small>Kitchen exhaust maintenance, AC and MEP contracts, duct cleaning, fresh air, retrofits and fit-out. Everything on the rest of this page.</small></div>
+  <div class="grp rv" data-d="z">
+    <div class="ghead"><img src="media/leaf.png" alt=""><div><strong>Sanco Group</strong><span>15+ YEARS IN THE UAE · 200+ PEOPLE</span></div></div>
+    <div class="gtwo">
+      <div class="gco rv" data-d="l"><div class="lg"><img src="media/sanco-enviro.png" alt="Sanco Environmental Services"></div><p>Kitchen exhaust cleaning, grease traps, drain jetting, water tanks and waste disposal.</p></div>
+      <div class="gco rv" data-d="r"><div class="lg"><img src="media/sanco-fm.png" alt="Sanco Facilities Management"></div><p>Kitchen exhaust maintenance, AC and MEP contracts, duct cleaning, fresh air, retrofits and fit-out.</p></div>
+    </div>
   </div>
 </div></section>
 
@@ -825,7 +822,7 @@ const SC=[[fm,'Keep scrolling: next level',null],[story,'Keep scrolling to see t
 let tickF=false;
 function onScroll(){tickF=false;
   const max=document.documentElement.scrollHeight-innerHeight; rail.parentElement.style.setProperty('--p',(scrollY/Math.max(1,max)).toFixed(4));
-  {const r=$('tree').getBoundingClientRect(); $('spine').style.setProperty('--s',clamp((innerHeight*0.8-r.top)/r.height).toFixed(3));}
+  
   const r={}; r.fm=fmSet(p01(fm)); r.st=stSet(p01(story)); r.kx=kxSet(p01(kx)); r.en=enSet(p01(energy)); r.fa=faSet(p01(fa));
   const fr=fireSec.getBoundingClientRect(); const fp=clamp((innerHeight-fr.top)/(fr.height*0.7));
   const h=4+fp*40; fog.setAttribute('y',108-h); fog.setAttribute('height',h); fogT.textContent='FOG LAYER · '+Math.round(2+fp*28)+' mm'; flm.setAttribute('opacity',fp>0.75?(fp-0.75)*4:0);
