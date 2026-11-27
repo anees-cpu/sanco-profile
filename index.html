@@ -227,19 +227,40 @@ section.alt{background:var(--alt)}
 .cfig strong{display:block;white-space:nowrap;font-size:21px;font-weight:600;letter-spacing:-.02em;color:var(--lime);font-variant-numeric:tabular-nums}
 .cfig span{font-size:12px;opacity:.8}
 /* portal */
-.devices{position:relative;margin-top:22px;height:290px}
-.laptop{position:absolute;left:0;right:46px;top:0}
-.laptop .scr{border:8px solid var(--ink);border-bottom-width:12px;border-radius:12px 12px 4px 4px;background:var(--surface);aspect-ratio:16/10;overflow:hidden;font-size:9.5px}
-.laptop .base{height:10px;background:color-mix(in srgb,var(--ink) 80%,#888);border-radius:0 0 10px 10px;margin:0 -16px}
-.phone{position:absolute;right:0;bottom:0;width:126px;border:6px solid var(--ink);border-radius:20px;background:var(--surface);aspect-ratio:9/18.5;overflow:hidden;font-size:9px;box-shadow:0 20px 40px -20px rgba(0,0,0,.4)}
-.ui-h{display:flex;justify-content:space-between;align-items:center;padding:6px 8px;border-bottom:1px solid var(--line);font-weight:600}
-.ui-g{display:grid;grid-template-columns:repeat(4,1fr);gap:5px;padding:7px}
-.ui-g div{border:1px solid var(--line);border-radius:5px;padding:5px}
-.ui-g b{display:block;font-size:13px}
-.ui-r{display:grid;grid-template-columns:auto 1fr auto;gap:6px;align-items:center;padding:5px 8px;border-bottom:1px solid var(--line)}
-.ui-r i{width:6px;height:6px;border-radius:50%}
-.ui-r em{font-style:normal;font-family:var(--m);color:var(--muted)}
-.ui-ph{width:100%;height:42px;border-radius:5px;background:linear-gradient(135deg,#cfd8cf,#e9ede8)}
+.devices{position:relative;margin-top:24px;height:320px}
+.lap{position:absolute;left:0;right:30px;top:0}
+.lid{background:#1d1f21;border-radius:12px 12px 0 0;padding:9px 9px 12px;position:relative;box-shadow:0 0 0 1px #3a3d40 inset}
+.lid .cam{position:absolute;left:50%;top:3px;width:4px;height:4px;margin-left:-2px;border-radius:50%;background:#4a4f53}
+.scr{aspect-ratio:16/10;background:#F4F5F3;border-radius:2px;overflow:hidden;font:7.5px/1.25 var(--f);color:#1B2A2F}
+.base{height:11px;margin:0 -18px;background:linear-gradient(#d9dcde,#a9adb1);border-radius:0 0 12px 12px;position:relative;box-shadow:0 14px 26px -12px rgba(0,0,0,.45)}
+.base i{position:absolute;left:50%;top:0;width:52px;height:4px;margin-left:-26px;background:#b9bcbf;border-radius:0 0 5px 5px}
+.pt{display:grid;grid-template-columns:23% 1fr;height:100%}
+.pt aside{background:#fff;border-right:1px solid #e3e6e2;padding:6px 5px;display:flex;flex-direction:column;gap:2px}
+.plogo{display:flex;align-items:center;gap:3px;margin-bottom:5px}.plogo img{height:10px}.plogo b{font-size:8px}
+.pt aside span{padding:3px 4px;border-radius:3px;color:#5B6A62}
+.pt aside span.on{background:#E2F1E2;color:#0E7A3F;font-weight:600}
+.pm{padding:5px 7px;display:flex;flex-direction:column;gap:4px;min-width:0}
+.ph{display:flex;justify-content:space-between;align-items:center}
+.srch{background:#fff;border:1px solid #e3e6e2;border-radius:4px;padding:2px 5px;color:#8a958f;width:62%;display:flex;justify-content:space-between}
+.srch em{font-style:normal;font-family:var(--m);font-size:6.5px}
+.av{width:12px;height:12px;border-radius:50%;background:#0E7A3F;color:#fff;font-size:5.5px;display:grid;place-items:center;font-weight:700}
+.ptl{font-size:10px;font-weight:600}.ptl small{font-weight:400;color:#8a958f;font-size:7px}
+.kp{display:grid;grid-template-columns:repeat(4,1fr);gap:4px}
+.kp div{background:#fff;border:1px solid #e3e6e2;border-radius:4px;padding:3px 4px;color:#5B6A62}
+.kp b{display:block;font-size:10px;color:#1B2A2F}
+.tb{background:#fff;border:1px solid #e3e6e2;border-radius:4px;overflow:hidden}
+.tb div{display:grid;grid-template-columns:1.2fr .9fr .9fr 1.3fr;padding:2.5px 5px;border-top:1px solid #eef0ed}
+.tb .th{border-top:0;background:#f7f8f6;color:#8a958f;font-weight:600}
+.tb i{display:inline-block;width:5px;height:5px;border-radius:50%;margin-right:3px;vertical-align:0}
+.phn{position:absolute;right:0;bottom:0;width:122px;aspect-ratio:9/19;background:#1d1f21;border-radius:22px;padding:5px;box-shadow:0 0 0 1.5px #55595d inset,0 22px 40px -18px rgba(0,0,0,.55)}
+.isl{position:absolute;left:50%;top:9px;width:34px;height:9px;margin-left:-17px;background:#000;border-radius:6px;z-index:2}
+.ps{background:#F4F5F3;border-radius:17px;height:100%;overflow:hidden;font:7px/1.3 var(--f);color:#1B2A2F;display:flex;flex-direction:column}
+.sb{display:flex;justify-content:space-between;padding:6px 10px 4px;font-weight:600;font-size:6.5px}
+.pnav{padding:2px 8px 4px;font-size:8.5px;color:#0E7A3F}.pnav b{color:#1B2A2F}
+.pph{margin:0 6px;height:52px;border-radius:6px;overflow:hidden}.pph img{width:100%;height:100%;object-fit:cover}
+.tl{display:grid;grid-template-columns:8px 1fr;gap:4px;padding:5px 8px 0}
+.tl i{width:5px;height:5px;border-radius:50%;margin-top:2px}.tl b{display:block;font-size:7px}.tl span{color:#6b7a72;font-size:6.5px}
+.pbtn{margin:auto 8px 10px;background:#0E7A3F;color:#fff;border-radius:6px;text-align:center;padding:5px;font-weight:600;font-size:7.5px}
 .two{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:16px}
 .two .card{padding:14px}
 .two h3{font-size:16px;margin:6px 0 8px}
@@ -259,9 +280,9 @@ section.alt{background:var(--alt)}
 /* clients */
 .clients{overflow:hidden}
 .cat{max-width:560px;margin:18px auto 8px;padding-left:max(20px,env(safe-area-inset-left,0px));padding-right:max(20px,env(safe-area-inset-right,0px));display:flex;justify-content:space-between;align-items:baseline}
-.ctrack{display:flex;gap:8px;width:max-content;will-change:transform;margin-bottom:8px}
-.ctrack div{flex:none;width:104px;height:58px;background:#fff;border:1px solid var(--line);border-radius:10px;display:grid;place-items:center;padding:8px}
-.ctrack img{max-width:100%;max-height:38px;width:auto;height:auto;display:block}
+.ctrack{display:flex;gap:6px;width:max-content;will-change:transform;margin-bottom:6px}
+.ctrack div{flex:none;width:84px;height:48px;background:#fff;border:1px solid var(--line);border-radius:10px;display:grid;place-items:center;padding:8px}
+.ctrack img{max-width:100%;max-height:32px;width:auto;height:auto;display:block}
 .ccount{display:grid;gap:4px;margin-top:14px}
 .ccount .big{font-size:44px}
 /* contact */
@@ -539,25 +560,42 @@ section.alt{background:var(--alt)}
   <p class="lab rv">Sanco FM portal · phone and PC</p>
   <h2 class="rv" style="margin-top:10px">Every asset tracked. <b>Open to you.</b></h2>
   <p class="lead rv" style="margin-top:10px">Our teams run every contract on the Sanco FM portal. You get access too, on your phone or computer.</p>
-  <div class="devices rv" data-d="z">
-    <div class="laptop"><div class="scr">
-      <div class="ui-h"><span>Sanco FM · Asset register</span><span class="lab" style="font-size:8px">PC</span></div>
-      <div class="ui-g"><div><b>42</b>units</div><div><b>100%</b>PPM on time</div><div><b>3</b>open items</div><div><b>186</b>reports</div></div>
-      <div class="ui-r"><i style="background:var(--g)"></i><span>CHW FCU 02 · Dining</span><em>PPM done</em></div>
-      <div class="ui-r"><i style="background:var(--b)"></i><span>KES fan 1 · Roof</span><em>Belt replaced</em></div>
-      <div class="ui-r"><i style="background:var(--a)"></i><span>FAHU 01 · Roof</span><em>Due 05 Dec</em></div>
-      <div class="ui-r"><i style="background:var(--red)"></i><span>Hood ESP · Kitchen</span><em>Fire notice sent</em></div>
-    </div><div class="base"></div></div>
-    <div class="phone">
-      <div class="ui-h"><span>CHW FCU 02</span></div>
-      <div style="padding:6px 8px;display:grid;gap:5px">
-        <div class="ui-ph"></div>
-        <div><b>12 Nov</b> · PPM visit<br><span style="color:var(--muted)">Coil and drain pan cleaned</span></div>
-        <div><b>28 Oct</b> · Repair<br><span style="color:var(--muted)">Condensate pump · AED 650</span></div>
-        <div><b>03 Jun</b> · Repair<br><span style="color:var(--muted)">Valve actuator · AED 1,180</span></div>
+  <div class="devices rv" data-d="z" aria-label="The Sanco FM portal on a laptop and a phone">
+    <div class="lap">
+      <div class="lid"><i class="cam"></i><div class="scr">
+        <div class="pt">
+          <aside><div class="plogo"><img src="media/leaf.png" alt=""><b>Sanco FM</b></div>
+            <span class="on">Dashboard</span><span>Asset register</span><span>PPM planner</span><span>Jobs</span><span>Quotations</span><span>Reports</span></aside>
+          <div class="pm">
+            <div class="ph"><span class="srch">Search pages, jobs, quotations…<em>Ctrl K</em></span><span class="av">AA</span></div>
+            <div class="ptl">Asset register <small>· Restaurant, Al Barsha</small></div>
+            <div class="kp"><div><b>42</b>units</div><div><b>100%</b>PPM on time</div><div><b>3</b>open items</div><div><b>186</b>reports</div></div>
+            <div class="tb">
+              <div class="th"><span>Unit</span><span>Area</span><span>Last visit</span><span>Status</span></div>
+              <div><span>CHW FCU 02</span><span>Dining</span><span>12 Nov</span><span><i style="background:#2E9A47"></i>Done</span></div>
+              <div><span>KES fan 1</span><span>Roof</span><span>08 Nov</span><span><i style="background:#2B7DB5"></i>Belt replaced</span></div>
+              <div><span>FAHU 01</span><span>Roof</span><span>05 Nov</span><span><i style="background:#C9822B"></i>Due 05 Dec</span></div>
+              <div><span>Hood ESP</span><span>Kitchen</span><span>02 Nov</span><span><i style="background:#C8402B"></i>Fire notice</span></div>
+              <div><span>DX split 04</span><span>Office</span><span>30 Oct</span><span><i style="background:#2E9A47"></i>Done</span></div>
+            </div>
+          </div>
+        </div>
+      </div></div>
+      <div class="base"><i></i></div>
+    </div>
+    <div class="phn"><div class="isl"></div>
+      <div class="ps">
+        <div class="sb"><span>9:41</span><span>●●● ▮</span></div>
+        <div class="pnav">‹ <b>CHW FCU 02</b></div>
+        <div class="pph"><img src="media/svc/acm.jpg" alt=""></div>
+        <div class="tl"><i style="background:#2B7DB5"></i><div><b>12 Nov · PPM visit</b><span>Coil and drain pan cleaned</span></div></div>
+        <div class="tl"><i style="background:#C9822B"></i><div><b>28 Oct · Repair</b><span>Condensate pump · AED 650</span></div></div>
+        <div class="tl"><i style="background:#C9822B"></i><div><b>03 Jun · Repair</b><span>Valve actuator · AED 1,180</span></div></div>
+        <div class="pbtn">Request a visit</div>
       </div>
     </div>
   </div>
+  <p class="note" style="margin-top:6px">Screens shown with example data.</p>
   <div class="two">
     <div class="card rv" data-d="l"><span class="lab" style="color:var(--g)">For you</span><h3>Your sites at a glance</h3><ul><li>Asset list per site</li><li>Full history of each unit</li><li>Before and after photos</li><li>Quotations and prices</li><li>Reports to share</li></ul></div>
     <div class="card rv" data-d="r"><span class="lab" style="color:var(--b)">For our teams</span><h3>Nothing left open</h3><ul><li>PPM calendar per unit</li><li>Technician check-ins</li><li>Spare parts in stock</li><li>Every job closed with a report</li><li>24/7 call log</li></ul></div>
@@ -789,11 +827,11 @@ $('plist').innerHTML=PJ.map((p,i)=>`<div class="rv" data-d="${i%2?'r':'l'}"><h3>
 const CL={"Restaurants, cafés & F&B": [["Nando's", "logos/nando-s.png"], ["%Arabica", "logos/arabica.png"], ["Cipriani", "logos/cipriani.png"], ["La Petite Maison", "logos/la-petite-maison.png"], ["Wagamama", "logos/wagamama.png"], ["The Coffee Club", "logos/the-coffee-club.png"], ["Hurricane's Grill", "logos/hurricane-s-grill.png"], ["Sarabeth's", "logos/sarabeth-s.png"], ["Gymkhana", "logos/gymkhana.png"], ["Shanghai Me", "logos/shanghai-me.png"], ["Kailash Parbat", "logos/kailash-parbat.png"], ["Chicking", "logos/chicking.png"], ["Dodo Pizza", "logos/dodo-pizza.png"], ["Drinkit", "logos/drinkit.png"], ["Rebel Foods", "logos/rebel-foods.png"], ["Calo", "logos/calo.png"], ["Bombay Bungalow", "logos/bombay-bungalow.png"], ["Za'Za", "logos/za-za.png"], ["Scalini", "logos/scalini.png"], ["Gaia", "logos/gaia.png"], ["Sirene", "logos/sirene.png"], ["Ichikura", "logos/ichikura.png"], ["INA", "logos/ina.png"], ["Yann Couvreur", "logos/yann-couvreur.png"], ["Cafe de Paris", "logos/cafe-de-paris.png"], ["Al Sultan", "logos/al-sultan.png"], ["Potato Corner", "logos/potato-corner.png"], ["Pitfire", "logos/pitfire.png"], ["Da Michele", "logos/da-michele.png"], ["Off the Hook", "logos/off-the-hook.png"], ["Bulldozer Group", "logos/bulldozer-group.png"], ["KitchenPark", "logos/kitchenpark.png"], ["Express Kitchens", "logos/express-kitchens.png"], ["Asian 5", "logos/asian-5.png"], ["Kulcha King", "logos/kulcha-king.png"], ["India Palace", "logos/india-palace.png"], ["Noon and Kabab", "logos/noon-and-kabab.png"], ["Poke & Co", "logos/poke-and-co.png"], ["Black Spoon", "logos/black-spoon.png"], ["Allo Beirut", "logos/allo-beirut.png"], ["Rawabi Al Sham", "logos/rawabi-al-sham.png"], ["Ibn Albahr", "logos/ibn-albahr.png"], ["Abu Ali", "logos/abu-ali.png"], ["Malgudi", "logos/malgudi.png"], ["Feels", "logos/feels.png"], ["Artisan Bakers", "logos/artisan-bakers.png"], ["Arabica Coffee House", "logos/arabica-coffee-house.png"], ["Joud Coffee", "logos/joud-coffee.png"], ["Mama'esh", "logos/mama-esh.png"], ["Kaak Al Manara", "logos/kaak-al-manara.png"], ["The Lighthouse", "logos/the-lighthouse.png"], ["Saddle", "logos/saddle.png"], ["Mezzanine", "logos/mezzanine.png"], ["Origami Sushi", "logos/origami-sushi.png"], ["Roasters", "logos/roasters.png"], ["Alabdalla", "logos/alabdalla.png"], ["Belgian Café", "logos/belgian-cafe.png"], ["Le Petit Belge", "logos/le-petit-belge.png"], ["Bakerist", "logos/bakerist.png"], ["Beirut Sea", "logos/beirut-sea.png"], ["Cupa Gahwa", "logos/cupa-gahwa.png"], ["Claw BBQ", "logos/claw-bbq.png"], ["Good Burger", "logos/good-burger.png"], ["Blu Pizzeria", "logos/blu-pizzeria.png"], ["CQ French Brasserie", "logos/cq-brasserie.png"], ["Falla", "logos/falla.png"], ["Adaline", "logos/adaline.png"], ["Alaya", "logos/alaya.png"], ["Ilios", "logos/ilios.png"], ["Kabila", "logos/kabila.png"], ["The Little Bali", "logos/the-little-bali.png"], ["Maison Mathis", "logos/maison-mathis.png"], ["Moshi", "logos/moshi.png"], ["Raju Omelette", "logos/raju-omelette.png"], ["Al Maro Hub", "logos/al-maro-hub.png"], ["Chapati Rashid", "logos/chapati-rashid.png"], ["Rollo Bollo", "logos/rollo-bollo.png"], ["Grani Marmo Classic", "logos/grani-marmo-classic.png"], ["Zutto Suki", "logos/zutto-suki.png"], ["Pili Pili", "logos/pili-pili.png"], ["Fynd", "logos/fynd.png"], ["JJ Chicken", "logos/jj-chicken.png"], ["Eathos", "logos/eathos.png"], ["Chocomelt", "logos/chocomelt.png"], ["Vietnamese Foodies", "logos/vietnamese-foodies.png"], ["Tresaj", "logos/tresaj.png"], ["Trouvaille", "logos/trouvaille.png"]], "Hotels & leisure": [["Marriott Bonvoy", "logos/marriott-bonvoy.png"], ["Dorchester Collection", "logos/dorchester-collection.png"], ["Anantara", "logos/anantara.png"], ["Sofitel The Palm", "logos/sofitel-the-palm.png"], ["Swissôtel", "logos/swiss-tel.png"], ["Four Points by Sheraton", "logos/four-points-by-sheraton.png"], ["Wyndham", "logos/wyndham.png"], ["Millennium Hotels", "logos/millennium-hotels.png"], ["Rove Hotels", "logos/rove-hotels.png"], ["Leo & Loona", "logos/leo-loona.png"], ["Hello Park", "logos/hello-park.png"], ["Montreal Barsha Hotel", "logos/montreal-barsha-hotel.png"], ["Ajman Hotel", "logos/ajman-hotel.png"]], "Developers, malls & retail": [["Emaar", "logos/emaar.png"], ["Nakheel", "logos/nakheel.png"], ["Dubai Holding", "logos/dubai-holding.png"], ["Al Habtoor", "logos/al-habtoor.png"], ["Omniyat", "logos/omniyat.png"], ["Binghatti", "logos/binghatti.png"], ["Al Ghurair Centre", "logos/al-ghurair-centre.png"], ["Géant", "logos/g-ant.png"], ["Monoprix", "logos/monoprix.png"], ["Franprix", "logos/franprix.png"], ["J3 Mall", "logos/j3-mall.png"], ["Aswaaq", "logos/aswaaq.png"], ["Prescott Real Estate", "logos/prescott.png"]], "Offices, healthcare & corporate": [["Gargash", "logos/gargash.png"], ["GMG", "logos/gmg.png"], ["Al Gurg Group", "logos/al-gurg-group.png"], ["MeRex Investment", "logos/merex-investment.png"], ["Merittik", "logos/merittik.png"], ["Emirates", "logos/emirates.png"], ["Emirates Engineering", "logos/emirates-engineering.png"], ["Cummins", "logos/cummins.png"], ["Everllence (MAN Energy)", "logos/everllence.png"], ["SAIF Zone", "logos/saif-zone.png"], ["Zulekha Hospital", "logos/zulekha-hospital.png"], ["MedCare", "logos/medcare.png"], ["AGMC", "logos/agmc.png"], ["Mair", "logos/mair.png"], ["PICO International", "logos/pico.png"]], "Facilities management partners": [["Transguard Group", "logos/transguard.png"], ["Dussmann Gulf", "logos/dussmann.png"], ["Emrill", "logos/emrill.png"], ["Farnek", "logos/farnek.png"], ["Imdaad", "logos/imdaad.png"], ["Khidmah", "logos/khidmah.png"], ["Enova", "logos/enova.png"], ["Dulsco Group", "logos/dulsco-group.png"], ["Ejadah", "logos/ejadah.png"], ["Idama", "logos/idama.png"], ["Al Ghurair FM", "logos/al-ghurair-fm.png"], ["ServeU", "logos/serveu.png"], ["Isnaad", "logos/isnaad.png"], ["Iskaan", "logos/iskaan.png"], ["Kemos FM", "logos/kemos-fm.png"], ["BKA Facilities Management", "logos/bka-facilities-management.png"], ["Al Bonian FM", "logos/al-bonian-fm.png"], ["Ontegra", "logos/ontegra.png"], ["Hydro Technologies", "logos/hydro-technologies.png"], ["Mepteq", "logos/mepteq.png"], ["Karmastaji Group", "logos/karmastaji-group.png"], ["Saleh Constructions", "logos/saleh-constructions.png"], ["Righteous Group", "logos/righteous-group.png"]]};
 const crows=$('crows'); let ri=0;
 for(const [cat,list] of Object.entries(CL)){
-  const perRow=list.length>30?Math.ceil(list.length/3):list.length>16?Math.ceil(list.length/2):list.length;
+  const perRow=Math.ceil(list.length/Math.max(1,Math.round(list.length/10)));
   crows.insertAdjacentHTML('beforeend',`<div class="cat"><span class="lab">${esc(cat)}</span><span class="lab">${list.length}</span></div>`);
   for(let s=0;s<list.length;s+=perRow){
     const part=list.slice(s,s+perRow); const items=part.map(([n,src])=>`<div><img src="${src}" alt="${n.replace(/"/g,'&quot;')}" loading="lazy"></div>`).join('');
-    const rep=Math.max(2,Math.ceil(900/(part.length*112))+1);
+    const rep=Math.max(2,Math.ceil(900/(part.length*90))+1);
     crows.insertAdjacentHTML('beforeend',`<div class="ctrack" data-rep="${rep}" data-dir="${ri%2?1:-1}" data-sp="${0.8+((ri*37)%5)/10}">${items.repeat(rep)}</div>`); ri++;
   }
 }
@@ -836,7 +874,7 @@ function onScroll(){tickF=false;
 addEventListener('scroll',()=>{if(!tickF){tickF=true;requestAnimationFrame(onScroll);}},{passive:true});
 addEventListener('resize',onScroll); onScroll();
 function marquee(){const r=clients.getBoundingClientRect();
-  if(r.bottom>0&&r.top<innerHeight){ if(!reduce) drift+=0.3; const sp=(innerHeight-r.top)*0.45;
+  if(r.bottom>0&&r.top<innerHeight){ if(!reduce) drift+=0.35; const sp=(innerHeight-r.top)*0.6;
     tracks.forEach(t=>{const loop=t.scrollWidth/(+t.dataset.rep||2); const d=(sp+drift)*(+t.dataset.sp); let x=((d%loop)+loop)%loop; t.style.transform=`translateX(${t.dataset.dir==='1'?-(loop-x):-x}px)`;});}
   requestAnimationFrame(marquee);}
 requestAnimationFrame(marquee);
