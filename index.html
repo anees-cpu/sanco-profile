@@ -117,7 +117,8 @@ section.alt{background:var(--alt)}
 .dv li{transition:opacity .5s,transform .5s}
 .dv.out li{opacity:0;transform:translateX(24px)}
 /* six levels */
-.stage{display:grid;grid-template-columns:96px minmax(0,1fr);gap:10px;align-items:center}
+.stage{display:block;margin:0 calc(-1*max(20px,env(safe-area-inset-left,0px)))}
+.stage .vid{border-radius:0;border-left:0;border-right:0;aspect-ratio:16/10}
 .stack svg{width:100%;height:auto;display:block;overflow:visible}
 .stack .s polygon{transition:fill .45s,stroke .45s,stroke-width .3s}
 .stack .s text{transition:fill .45s;font-family:var(--m)}
@@ -349,12 +350,11 @@ section.alt{background:var(--alt)}
 <!-- 5 SIX LEVELS -->
 <section class="scene alt" id="fm">
   <div class="pin"><div class="wrap">
-    <p class="lab">Our six core services, level by level</p>
+    <p class="lab">Our six core services</p>
     <div class="steps"><span class="count" id="fmCount">01 / 06</span><span class="bars" id="fmBars"></span></div>
     <div class="stage">
-      <div class="stack" aria-hidden="true"><svg viewBox="0 0 120 214"><g id="fmStack"></g></svg></div>
-      <div class="vid fade" id="fmVid">
-        <span class="vtag" id="fmTag" style="left:10px;background:var(--b)">LEVEL 01</span>
+            <div class="vid fade" id="fmVid">
+        <span class="vtag" id="fmTag" style="left:10px;background:var(--b)">SERVICE 01</span>
         <video class="on" data-k="kes" data-src="media/kes.mp4" poster="media/kes.jpg" muted playsinline loop preload="none" aria-hidden="true"></video>
         <video data-k="acwall" data-src="media/acwall.mp4" poster="media/acwall.jpg" muted playsinline loop preload="none" aria-hidden="true"></video>
         <video data-k="duct" data-src="media/duct.mp4" poster="media/duct.jpg" muted playsinline loop preload="none" aria-hidden="true"></video>
@@ -375,7 +375,7 @@ section.alt{background:var(--alt)}
     <div class="vid wipe" id="wVid">
       <span class="vtag" id="tB" style="left:10px;top:auto;bottom:10px;background:var(--red)">WITHOUT MAINTENANCE</span>
       <span class="vtag" id="tA" style="right:10px;top:auto;bottom:10px;background:var(--g)">WITH SANCO FM</span>
-      <div class="pair on" data-c="0"><video class="before" data-src="media/fire.mp4" poster="media/fire.jpg" muted playsinline loop preload="none" aria-label="Animation: flames in a kitchen hood and duct after the exhaust fan belt snaps"></video><video class="after" data-src="media/kes.mp4" poster="media/kes.jpg" muted playsinline loop preload="none" aria-label="Animation: Sanco technicians repairing the kitchen exhaust fan"></video></div>
+      <div class="pair on" data-c="0"><video class="before" data-src="media/fire.mp4" poster="media/fire.jpg" muted playsinline loop preload="none" aria-label="Animation: fire inside the kitchen exhaust duct"></video><video class="after" data-src="media/kes.mp4" poster="media/kes.jpg" muted playsinline loop preload="none" aria-label="Animation: Sanco technicians repairing the kitchen exhaust fan"></video></div>
       <div class="pair" data-c="1"><video class="before" data-src="media/leak.mp4" poster="media/leak.jpg" muted playsinline loop preload="none" aria-label="Animation: water dripping from a wall AC at home"></video><video class="after" data-src="media/acwall.mp4" poster="media/acwall.jpg" muted playsinline loop preload="none" aria-label="Animation: Sanco technician servicing a wall split AC from a ladder"></video></div>
       <div class="pair" data-c="2"><video class="before" data-src="media/elec.mp4" poster="media/elec.jpg" muted playsinline loop preload="none" aria-label="Animation: an overheating distribution board with breakers tripping"></video><video class="after" data-src="media/elecfix.mp4" poster="media/elecfix.jpg" muted playsinline loop preload="none" aria-label="Animation: Sanco electrician testing the distribution board"></video></div>
       <div class="wline" aria-hidden="true"></div>
@@ -450,7 +450,7 @@ section.alt{background:var(--alt)}
   <h2 class="rv" style="margin-top:10px">Three levels of cover. <b>You choose.</b></h2>
   <p class="lead rv" style="margin-top:10px">All include planned visits and 24/7 call-outs. Common parts are fitted on the spot and invoiced later.</p>
   <div class="amc">
-    <div class="card rv" data-d="l" style="--c:#7FAFD3"><span class="lv">LEVEL 01</span><h3>Spare parts billed separately</h3><p style="color:var(--muted);font-size:14px">Visits, labour and call-outs included. Parts are quoted and billed when needed.</p><div class="meter"><i class="f"></i><i></i><i></i></div></div>
+    <div class="card rv" data-d="l" style="--c:#7FAFD3"><span class="lv">SERVICE 01</span><h3>Spare parts billed separately</h3><p style="color:var(--muted);font-size:14px">Visits, labour and call-outs included. Parts are quoted and billed when needed.</p><div class="meter"><i class="f"></i><i></i><i></i></div></div>
     <div class="card rv" data-d="r" style="--c:#4E95C6"><span class="lv">LEVEL 02</span><h3>Spare parts included up to a threshold</h3><p style="color:var(--muted);font-size:14px">Parts included up to an agreed limit per item, for example AED 1,000. Spares for your units kept in our store.</p><div class="meter"><i class="f"></i><i class="f"></i><i></i></div></div>
     <div class="card rv" data-d="l" style="--c:var(--b)"><span class="lv">LEVEL 03</span><h3>Full coverage of all spare parts</h3><p style="color:var(--muted);font-size:14px">One fixed yearly cost: visits, labour, call-outs and all spare parts.</p><div class="meter"><i class="f"></i><i class="f"></i><i class="f"></i></div></div>
   </div>
@@ -661,12 +661,12 @@ const FM=[
  {k:'vfd',c:A,t:'Retrofits & energy upgrades',d:'Repair or replace, with the figures. VFDs on exhaust fans, working actuators and right-sized units that pay back in running cost.'},
  {k:'fit',c:A,t:'Design, fit-out & civil works',d:'From cooling load and hood selection to approvals, installation and handover, with our own civil team for blockwork, openings and making good.'}
 ];
-$('fmTxt').innerHTML=FM.map((s,i)=>`<div class="it" data-i="${i}"><span class="k" style="color:${s.c}">LEVEL ${String(i+1).padStart(2,'0')}</span><h3>${esc(s.t)}</h3><p>${esc(s.d)}</p></div>`).join('');
+$('fmTxt').innerHTML=FM.map((s,i)=>`<div class="it" data-i="${i}"><span class="k" style="color:${s.c}">SERVICE ${String(i+1).padStart(2,'0')}</span><h3>${esc(s.t)}</h3><p>${esc(s.d)}</p></div>`).join('');
 const fmBars=bars('fmBars',FM.length,i=>FM[i].c);
 function slab(cx,y,w,h,t){const P=a=>a.map(q=>q.join(',')).join(' ');return {top:P([[cx,y-h],[cx+w,y],[cx,y+h],[cx-w,y]]),l:P([[cx-w,y],[cx,y+h],[cx,y+h+t],[cx-w,y+t]]),r:P([[cx,y+h],[cx+w,y],[cx+w,y+t],[cx,y+h+t]])};}
-(function(){let s='';FM.forEach((it,i)=>{const y=184-i*32,q=slab(58,y,46,18,9);
+(function(){return;let s='';FM.forEach((it,i)=>{const y=184-i*32,q=slab(58,y,46,18,9);
   s+=`<g class="s" data-i="${i}"><polygon class="l" points="${q.l}"/><polygon class="r" points="${q.r}"/><polygon class="t" points="${q.top}"/><text x="58" y="${y+4}" text-anchor="middle" font-size="10">L${String(i+1).padStart(2,'0')}</text></g>`;}); $('fmStack').innerHTML=s;})();
-function paintStack(a){const ink=css('--ink'),sf=css('--surface'),ln=css('--line');
+function paintStack(a){return;const ink=css('--ink'),sf=css('--surface'),ln=css('--line');
   document.querySelectorAll('#fmStack .s').forEach(g=>{const i=+g.dataset.i,c=FM[i].c,on=i===a,done=i<a;
     g.querySelector('.t').setAttribute('fill',on?c:(done?`color-mix(in srgb, ${c} 45%, ${sf})`:`color-mix(in srgb, ${c} 14%, ${sf})`));
     g.querySelector('.l').setAttribute('fill',`color-mix(in srgb, ${c} ${on?60:22}%, ${sf})`); g.querySelector('.r').setAttribute('fill',`color-mix(in srgb, ${c} ${on?80:35}%, #000)`);
@@ -679,14 +679,14 @@ function fmSet(p){const f=p*FM.length,i=Math.min(FM.length-1,Math.floor(f)); fil
   if(i!==fmCur){fmCur=i;
     $('fmCount').textContent=String(i+1).padStart(2,'0')+' / 06';
     $('fmTxt').querySelectorAll('.it').forEach(e=>e.classList.toggle('on',+e.dataset.i===i));
-    const tag=$('fmTag'); tag.textContent='LEVEL '+String(i+1).padStart(2,'0'); tag.style.background=FM[i].c;
+    const tag=$('fmTag'); tag.textContent='SERVICE '+String(i+1).padStart(2,'0'); tag.style.background=FM[i].c;
     paintStack(i); fmVs.forEach(v=>v.classList.toggle('on',v.dataset.k===FM[i].k));}
   playSet(fmVs,fmIn?fmVs.filter(v=>v.dataset.k===FM[i].k):[]);
   return {i,n:FM.length};}
 
 // ---------- 6 problem / fix wipe ----------
 const CH=[
- {b:['Exhaust fan stops. Grease catches fire.','A snapped belt or seized bearing stops the fan. Heat is trapped in the hood and duct, and months of grease become fuel.'],
+ {b:['The water-mist hood stops working. The duct catches fire.','Without the water mist, sparks from the grill and burning grease go straight up into the duct, where months of grease build-up become fuel.'],
   a:['Fans kept running. Risks on record.','Monthly KES technical visits, spare belts and bearings on every van, water-mist and ESP checks, and a written fire safety notice the same day if we find a risk.']},
  {b:['Water dripping from the AC. Again.','A blocked drain line or a dirty coil, and the leak lands on the sofa, the floor and the evening.'],
   a:['Planned AC maintenance.','Filters, coils and drain lines cleaned and flushed on schedule, so the leak never starts. 24/7 call-outs if anything does.']},
@@ -818,7 +818,7 @@ new IntersectionObserver(es=>es.forEach(e=>{ stIn=e.isIntersecting; onScroll(); 
 const fog=$('fog'),fogT=$('fogT'),flm=$('flm'),fireSec=fog.closest('section');
 const rail=$('railFill'),guide=$('guide'),gTxt=$('gTxt'),gN=$('gN');
 const arrow=gN.innerHTML;
-const SC=[[fm,'Keep scrolling: next level',null],[story,'Keep scrolling to see the fix',null],[kx,'Keep scrolling to compare',null],[energy,'Keep scrolling: the bill drops',null],[fa,'Keep scrolling: see the target',null]];
+const SC=[[fm,'Keep scrolling: next service',null],[story,'Keep scrolling to see the fix',null],[kx,'Keep scrolling to compare',null],[energy,'Keep scrolling: the bill drops',null],[fa,'Keep scrolling: see the target',null]];
 let tickF=false;
 function onScroll(){tickF=false;
   const max=document.documentElement.scrollHeight-innerHeight; rail.parentElement.style.setProperty('--p',(scrollY/Math.max(1,max)).toFixed(4));
