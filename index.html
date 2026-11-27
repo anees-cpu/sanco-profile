@@ -11,35 +11,36 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&family=DM+Mono:wght@400;500&display=swap">
 <style>
-/* Layout: a pinned "problem → fix" story opens the page, then a pinned six-service scene; everything else slides in from the sides as you scroll and slides back out when you scroll away. */
+/* v4 order: who we are → Sanco Group splits in two → Sanco FM → all services → six levels → problem/fix wipe → fire: cleaned vs working → AMC → energy → portal → projects → clients → contact.
+   Pinned scenes are driven by scroll; the bottom dock always says when to keep scrolling. */
 :root{
-  --bg:#F3F5F0; --surface:#FFFFFF; --ink:#14231B; --muted:#5B6A62; --line:#DCE3D8;
+  --bg:#F3F5F0; --surface:#FFFFFF; --alt:#EAF0E6; --ink:#14231B; --muted:#5B6A62; --line:#DCE3D8;
   --g:#2E9A47; --gs:#E2F1E2; --lime:#94C23A; --b:#2B7DB5; --bs:#DDEBF6; --a:#C47A22; --as:#F7E7CF; --red:#C8402B; --rs:#F9E0DA;
-  --tint:var(--bg);
   --f:'DM Sans',system-ui,-apple-system,'Segoe UI',Roboto,Arial,sans-serif;
   --m:'DM Mono',ui-monospace,'SF Mono',Menlo,Consolas,monospace;
 }
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
-  --bg:#0E1611; --surface:#16211A; --ink:#E6EEE8; --muted:#9BAAA1; --line:#26352C;
+  --bg:#0E1611; --surface:#16211A; --alt:#121C15; --ink:#E6EEE8; --muted:#9BAAA1; --line:#26352C;
   --g:#5CC170; --gs:#183323; --lime:#A9D45A; --b:#5FA8DD; --bs:#152A3A; --a:#E0A257; --as:#332614; --red:#E2735C; --rs:#3A1E18; color-scheme:dark}}
 :root[data-theme="dark"]{
-  --bg:#0E1611; --surface:#16211A; --ink:#E6EEE8; --muted:#9BAAA1; --line:#26352C;
+  --bg:#0E1611; --surface:#16211A; --alt:#121C15; --ink:#E6EEE8; --muted:#9BAAA1; --line:#26352C;
   --g:#5CC170; --gs:#183323; --lime:#A9D45A; --b:#5FA8DD; --bs:#152A3A; --a:#E0A257; --as:#332614; --red:#E2735C; --rs:#3A1E18; color-scheme:dark}
 *{box-sizing:border-box}
 main{overflow-x:clip}
-body{background:var(--tint);color:var(--ink);font-family:var(--f);font-size:16px;line-height:1.55;transition:background-color .6s ease;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+body{background:var(--bg);color:var(--ink);font-family:var(--f);font-size:16px;line-height:1.55;-webkit-font-smoothing:antialiased;overflow-x:hidden}
 body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:30;background:var(--surface)}
 .wrap{max-width:560px;margin:0 auto;padding-left:max(20px,env(safe-area-inset-left,0px));padding-right:max(20px,env(safe-area-inset-right,0px))}
 h1,h2,h3{text-wrap:balance;margin:0;font-weight:600;letter-spacing:-.02em}
+h1{font-size:clamp(34px,9.6vw,48px);line-height:1.04}
 h2{font-size:clamp(28px,7.4vw,36px);line-height:1.08}
-h2 b{font-weight:700;color:var(--g)}
+h1 b,h2 b{font-weight:700;color:var(--g)}
 p{margin:0}
 .lab{font-family:var(--m);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
 .lead{color:var(--muted);font-size:16px;max-width:34em}
-section{padding-block:44px}
+section{padding-block:48px}
+section.alt{background:var(--alt)}
 .ico{width:26px;height:26px;border-radius:7px;display:inline-grid;place-items:center;flex:none}
 .ico svg{width:16px;height:16px}
-/* bar */
 .bar{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:color-mix(in srgb,var(--surface) 90%,transparent);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
 .bar .wrap{display:flex;align-items:center;justify-content:space-between;height:56px}
 .bar img{height:32px;width:auto;display:block}
@@ -47,14 +48,10 @@ section{padding-block:44px}
 .btn.pri{background:var(--g);color:#fff}
 .btn.sec{background:var(--surface);color:var(--ink);border:1px solid var(--line)}
 .btn:focus-visible,button:focus-visible{outline:2px solid var(--b);outline-offset:2px}
-/* global scroll rail */
-.rail{position:fixed;right:max(6px,env(safe-area-inset-right,0px));top:calc(env(safe-area-inset-top,0px) + 76px);bottom:calc(env(safe-area-inset-bottom,0px) + 90px);width:4px;border-radius:2px;background:color-mix(in srgb,var(--ink) 10%,transparent);z-index:15}
-.rail i{position:absolute;left:0;right:0;top:0;height:calc(var(--p,0)*100%);border-radius:2px;background:linear-gradient(var(--red),var(--a),var(--g))}
-.hint{position:fixed;left:50%;bottom:calc(env(safe-area-inset-bottom,0px) + 22px);transform:translateX(-50%);z-index:26;display:flex;align-items:center;gap:8px;background:var(--ink);color:var(--surface);font:600 13px var(--f);padding:9px 16px;border-radius:999px;transition:opacity .4s,transform .4s;box-shadow:0 10px 30px -10px rgba(0,0,0,.4)}
-.hint.hide{opacity:0;transform:translate(-50%,20px);pointer-events:none}
-.hint svg{width:14px;height:14px;animation:bob 1.2s ease-in-out infinite}
+.rail{position:fixed;right:max(5px,env(safe-area-inset-right,0px));top:calc(env(safe-area-inset-top,0px) + 76px);bottom:calc(env(safe-area-inset-bottom,0px) + 130px);width:4px;border-radius:2px;background:color-mix(in srgb,var(--ink) 10%,transparent);z-index:15}
+.rail i{position:absolute;left:0;right:0;top:0;height:calc(var(--p,0)*100%);border-radius:2px;background:var(--g)}
 @keyframes bob{50%{transform:translateY(4px)}}
-/* reveal: slides in from a side, slides back out when it leaves the screen */
+/* reveal both ways */
 .rv{transition:opacity .7s cubic-bezier(.2,.7,.2,1),transform .7s cubic-bezier(.2,.7,.2,1)}
 .js .rv.out{opacity:0}
 .js .rv.out[data-d="l"]{transform:translateX(-60px)}
@@ -62,54 +59,109 @@ section{padding-block:44px}
 .js .rv.out[data-d="u"]{transform:translateY(-40px)}
 .js .rv.out[data-d="d"]{transform:translateY(46px)}
 .js .rv.out[data-d="z"]{transform:scale(.86)}
+/* hero */
+.hero{padding-top:34px;padding-bottom:40px;min-height:calc(100svh - 56px - 120px);display:flex;flex-direction:column;justify-content:center}
+.hero .stats{margin-top:22px}
+.hero .cue{margin-top:20px}
+.cue{display:flex;align-items:center;gap:12px;margin-top:26px;font:600 14px var(--f)}
+.mouse{width:24px;height:38px;border:2px solid var(--ink);border-radius:12px;position:relative;flex:none}
+.mouse::after{content:"";position:absolute;left:50%;top:7px;width:4px;height:8px;margin-left:-2px;border-radius:2px;background:var(--g);animation:wheel 1.4s ease-in-out infinite}
+@keyframes wheel{0%{opacity:0;transform:translateY(-2px)}30%{opacity:1}100%{opacity:0;transform:translateY(12px)}}
 /* pinned scenes */
-.scene{position:relative}
+.scene{position:relative;padding:0}
 .pin{position:sticky;top:calc(env(safe-area-inset-top,0px) + 56px);height:calc(100svh - 56px - env(safe-area-inset-top,0px));overflow:hidden;display:flex;flex-direction:column}
-.pin .wrap{width:100%;display:flex;flex-direction:column;gap:10px;padding-top:14px;padding-bottom:calc(env(safe-area-inset-bottom,0px) + 74px);height:100%}
+.pin .wrap{width:100%;display:flex;flex-direction:column;gap:10px;padding-top:14px;padding-bottom:calc(env(safe-area-inset-bottom,0px) + 106px);height:100%}
 .steps{display:flex;align-items:center;gap:10px}
 .steps .count{font:600 13px var(--m);white-space:nowrap;font-variant-numeric:tabular-nums}
 .steps .bars{display:flex;gap:4px;flex:1}
 .steps .bars span{height:5px;flex:1;border-radius:3px;background:var(--line);overflow:hidden;position:relative}
 .steps .bars span i{position:absolute;inset:0;transform-origin:0 50%;transform:scaleX(var(--f,0));background:var(--c,var(--g))}
-.more{flex:none;font:500 11.5px var(--m);letter-spacing:.08em;color:var(--muted);display:flex;align-items:center;gap:6px;transition:opacity .3s}
-.more svg{width:12px;height:12px;animation:bob 1.2s ease-in-out infinite}
-.vid{position:relative;aspect-ratio:16/10;border-radius:14px;overflow:hidden;background:#E9ECE6;border:1px solid var(--line)}
-.vid > video,.vid > img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:opacity .5s, transform .6s}
-.vid > video:not(.on),.vid > img:not(.on){opacity:0;transform:scale(1.06)}
-.vtag{position:absolute;left:10px;top:10px;z-index:2;font:600 10.5px var(--m);letter-spacing:.1em;padding:5px 9px;border-radius:6px;color:#fff;transition:background .4s}
-.wash{position:absolute;inset:0;pointer-events:none;transition:background .5s;z-index:1}
-.txt{position:relative;flex:1 1 auto;min-height:150px}
+.vid{position:relative;aspect-ratio:16/10;border-radius:14px;overflow:hidden;background:#E9ECE6;border:1px solid var(--line);flex:none}
+.vid video,.vid img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.fade > video{transition:opacity .5s, transform .6s}
+.fade > video:not(.on){opacity:0;transform:scale(1.06)}
+.vtag{position:absolute;top:10px;z-index:3;font:600 10.5px var(--m);letter-spacing:.1em;padding:5px 9px;border-radius:6px;color:#fff;transition:opacity .3s}
+.txt{position:relative;flex:1 1 auto;min-height:130px}
 .it{position:absolute;inset:0 0 auto;transition:opacity .45s,transform .45s}
-.it:not(.on){opacity:0;transform:translateY(18px);pointer-events:none}
+.it:not(.on){opacity:0;transform:translateY(16px);pointer-events:none}
 .it h3{font-size:clamp(22px,6.2vw,27px);line-height:1.12;margin:6px 0 8px}
 .it p{color:var(--muted);font-size:15px}
-.it ul{margin:10px 0 0;padding:0;list-style:none;display:flex;flex-wrap:wrap;gap:6px}
-.it li{font-size:12.5px;border:1px solid var(--line);background:var(--surface);border-radius:999px;padding:4px 10px}
-.it.bad li{border-color:color-mix(in srgb,var(--red) 35%,transparent);background:var(--rs)}
-.it.good li{border-color:color-mix(in srgb,var(--g) 35%,transparent);background:var(--gs)}
 .it .k{font:600 11px var(--m);letter-spacing:.12em}
-.brand-end{display:grid;gap:10px;justify-items:start}
-.brand-end img{height:46px;width:auto}
-/* FM stack */
-.stage{display:grid;grid-template-columns:104px minmax(0,1fr);gap:10px;align-items:center}
+/* group split */
+.gstage{position:relative;flex:1 1 auto;min-height:330px}
+.gcore{position:absolute;left:50%;top:0;transform:translateX(-50%);z-index:3;background:var(--ink);color:var(--surface);border-radius:16px;padding:12px 18px;display:flex;align-items:center;gap:10px;white-space:nowrap;box-shadow:0 16px 40px -20px rgba(0,0,0,.5)}
+.gcore img{height:30px;width:auto}
+.gcore strong{display:block;font-size:18px;line-height:1.1}
+.gcore span{font:500 10.5px var(--m);letter-spacing:.08em;opacity:.75}
+.glines{position:absolute;left:0;top:0;width:100%;height:120px;z-index:1;overflow:visible}
+.glines path{fill:none;stroke:var(--muted);stroke-width:1.6;stroke-dasharray:4 4}
+.gcard{position:absolute;top:112px;width:calc(50% - 6px);background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:12px;z-index:2;display:grid;gap:8px;align-content:start;transition:opacity .4s,box-shadow .4s,border-color .4s}
+.gcard .lg{background:#fff;border-radius:8px;padding:6px;display:grid;place-items:center;height:52px}
+.gcard .lg img{max-height:40px;width:auto;max-width:100%}
+.gcard p{font-size:14px;font-weight:600;line-height:1.25}
+.gcard small{font-size:12.5px;color:var(--muted);line-height:1.4}
+.gcard.env{left:0}
+.gcard.fm{right:0}
+.gcard.fm.focus{border-color:var(--g);box-shadow:0 0 0 2px var(--g),0 20px 40px -24px rgba(0,0,0,.4)}
+.gcard.dim{opacity:.42}
+.you{position:absolute;right:10px;top:-11px;background:var(--g);color:#fff;font:600 10px var(--m);letter-spacing:.1em;padding:3px 7px;border-radius:5px;transition:opacity .4s}
+/* services overview */
+.divs{display:grid;gap:12px;margin-top:20px}
+.dv{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:16px;display:grid;gap:10px}
+.dv header{display:flex;align-items:center;gap:10px}
+.dv header .ico{width:34px;height:34px;border-radius:9px}
+.dv header .ico svg{width:19px;height:19px}
+.dv h3{font-size:18px;line-height:1.2}
+.dv header small{display:block;font:500 11px var(--m);letter-spacing:.08em;color:var(--muted)}
+.dv ol{list-style:none;margin:0;padding:0;display:grid;gap:0}
+.dv li{display:grid;grid-template-columns:minmax(0,1fr);padding:8px 0;border-top:1px solid var(--line);font-size:14.5px;line-height:1.3}
+.dv li span{color:var(--muted);font-size:12.5px;margin-top:2px}
+.dv li{transition:opacity .5s,transform .5s}
+.dv.out li{opacity:0;transform:translateX(24px)}
+/* six levels */
+.stage{display:grid;grid-template-columns:96px minmax(0,1fr);gap:10px;align-items:center}
 .stack svg{width:100%;height:auto;display:block;overflow:visible}
 .stack .s polygon{transition:fill .45s,stroke .45s,stroke-width .3s}
 .stack .s text{transition:fill .45s;font-family:var(--m)}
+/* wipe */
+.wipe .after{clip-path:inset(0 0 0 calc(var(--x,1)*100%))}
+.wline{position:absolute;top:0;bottom:0;left:calc(var(--x,1)*100%);width:3px;margin-left:-1.5px;background:#fff;z-index:2;box-shadow:0 0 0 1px rgba(0,0,0,.15)}
+.wline::after{content:"";position:absolute;top:50%;left:50%;width:34px;height:34px;margin:-17px 0 0 -17px;border-radius:50%;background:#fff;box-shadow:0 4px 14px rgba(0,0,0,.3);background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M9 7l-5 5 5 5M15 7l5 5-5 5' fill='none' stroke='%2314231B' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");background-size:20px;background-repeat:no-repeat;background-position:center}
+.pair{position:absolute;inset:0;transition:opacity .4s}
+.pair:not(.on){opacity:0}
+#wVid{touch-action:pan-y;cursor:ew-resize}
 /* cards */
 .card{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:18px}
-.svc{display:grid;grid-template-columns:1fr 1fr;gap:9px 12px;margin-top:14px}
-.svc div{display:flex;align-items:center;gap:8px;font-size:13.5px;line-height:1.25}
-.stats{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line);border:1px solid var(--line);border-radius:12px;overflow:hidden;margin-top:14px}
+.stats{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line);border:1px solid var(--line);border-radius:12px;overflow:hidden}
 .stats div{background:var(--surface);padding:14px 16px}
 .stats strong{display:block;font-size:28px;font-weight:600;letter-spacing:-.03em;font-variant-numeric:tabular-nums}
 .stats span{font-size:12.5px;color:var(--muted)}
 .note{font-size:12.5px;color:var(--muted);margin-top:10px}
-.fb{background:var(--ink);color:var(--surface);border-radius:18px;padding:22px;margin-top:16px}
-.fb h3{font-size:22px;line-height:1.18}
+.fb{background:var(--ink);color:var(--surface);border-radius:18px;padding:22px;margin-top:18px}
+.fb h3{font-size:21px;line-height:1.2}
 .fb ul{list-style:none;margin:14px 0 0;padding:0;display:grid;gap:10px}
 .fb li{display:grid;grid-template-columns:26px minmax(0,1fr);gap:10px;font-size:14.5px;opacity:.92}
 .fb li b{color:var(--lime);font:600 12px var(--m);padding-top:3px}
-/* fire */
+/* fire: cleaned vs working */
+.tog{display:inline-flex;background:var(--surface);border:1px solid var(--line);border-radius:999px;padding:4px;justify-self:start;align-self:flex-start}
+.tog button{font:600 12.5px var(--f);border:0;background:none;color:var(--muted);padding:8px 13px;border-radius:999px;cursor:pointer;transition:background .3s,color .3s}
+.tog button[aria-pressed="true"]{background:var(--ink);color:var(--surface)}
+.kx svg{width:100%;height:auto;max-height:22svh;display:block;margin:0 auto}
+.kx .bad,.kx .good{transition:opacity .4s}
+.kx[data-s="0"] .good,.kx[data-s="1"] .bad{opacity:0}
+.kx .spk{animation:spk 1.6s linear infinite}
+@keyframes spk{0%{transform:translate(0,0);opacity:0}10%{opacity:1}100%{transform:translate(var(--sx),var(--sy));opacity:0}}
+.kx .mist{animation:mist 1s linear infinite}
+@keyframes mist{0%{transform:translateY(0);opacity:.9}100%{transform:translateY(14px);opacity:0}}
+.kx .fan{transform-box:fill-box;transform-origin:center;animation:spin 1.2s linear infinite}
+.kx[data-s="0"] .fan{animation-duration:3.5s}
+@keyframes spin{to{transform:rotate(360deg)}}
+.chk{display:grid;gap:0;border-top:1px solid var(--line)}
+.chk div{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:10px;align-items:center;padding:5px 0;border-bottom:1px solid var(--line);font-size:13.5px;line-height:1.25}
+.chk em{font:600 11px var(--m);font-style:normal;letter-spacing:.04em;padding:3px 7px;border-radius:5px;white-space:nowrap;transition:background .3s,color .3s}
+.chk em.y{background:var(--gs);color:var(--g)}
+.chk em.n{background:var(--rs);color:var(--red)}
+.verdict{font-size:13.5px;line-height:1.45;border-left:4px solid var(--c,var(--red));padding:4px 0 4px 12px;transition:border-color .4s}
 .fire{display:grid;gap:8px;margin-top:16px}
 .fire div{display:grid;grid-template-columns:30px minmax(0,1fr);gap:10px;align-items:start;background:var(--surface);border:1px solid var(--line);border-left:4px solid var(--red);border-radius:10px;padding:12px 14px;font-size:14px}
 .fire b{font:600 12px var(--m);color:var(--red);padding-top:2px}
@@ -117,6 +169,16 @@ section{padding-block:44px}
 .fire span{color:var(--muted)}
 .duct{margin-top:16px}
 .duct svg{width:100%;height:auto;display:block}
+.fa svg{width:100%;height:auto;max-height:27svh;display:block;background:var(--surface);border:1px solid var(--line);border-radius:12px}
+.fa .flow{fill:none;stroke-linecap:round;stroke-dasharray:6 10;animation:flow .9s linear infinite;transition:stroke-width .5s,opacity .5s}
+@keyframes flow{to{stroke-dashoffset:-16}}
+.fa .smk{transition:opacity .5s}
+.fa .smk circle{animation:drift 3s linear infinite}
+@keyframes drift{0%{transform:translate(0,0);opacity:0}15%{opacity:.8}100%{transform:translate(150px,30px);opacity:0}}
+.fat{display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px}
+.fat div{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:8px 9px;border-top:3px solid var(--c,var(--red));transition:border-color .4s}
+.fat span{display:block;font:500 10px var(--m);letter-spacing:.08em;color:var(--muted)}
+.fat strong{display:block;font-size:13px;line-height:1.25;margin-top:3px}
 /* amc */
 .amc{display:grid;gap:12px;margin-top:18px}
 .amc .card{display:grid;gap:8px;position:relative;overflow:hidden}
@@ -127,21 +189,44 @@ section{padding-block:44px}
 .meter i{flex:1;height:7px;border-radius:4px;background:var(--line)}
 .meter i.f{background:var(--c)}
 /* energy */
-.ebox{display:grid;gap:12px}
-.tog{display:inline-flex;background:var(--surface);border:1px solid var(--line);border-radius:999px;padding:4px;justify-self:start}
-.tog button{font:600 13px var(--f);border:0;background:none;color:var(--muted);padding:8px 14px;border-radius:999px;cursor:pointer;transition:background .3s,color .3s}
-.tog button[aria-pressed="true"]{background:var(--ink);color:var(--surface)}
-.ebar .lab{display:flex;justify-content:space-between}
-.track{height:34px;background:var(--line);border-radius:8px;overflow:hidden;margin-top:6px}
-.fill{height:100%;border-radius:8px;transition:width .9s cubic-bezier(.2,.8,.2,1),background .6s;display:flex;align-items:center;padding-left:12px;color:#fff;font:600 13px var(--m);white-space:nowrap}
-.esave{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.esave .card{padding:14px}
 .big{font-size:30px;font-weight:600;letter-spacing:-.03em;line-height:1;font-variant-numeric:tabular-nums}
-.esave small{display:block;color:var(--muted);font-size:12.5px;margin-top:6px;line-height:1.4}
-.drain{display:grid;gap:6px}
-.drain div{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:10px;background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:10px 14px;font-size:13.5px;transition:opacity .5s}
-.drain span{font:600 12.5px var(--m);color:var(--red);white-space:nowrap}
-.ebox[data-s="1"] .drain div{opacity:.35}
+.ek{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px}
+.ek div{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:10px}
+.ek strong{display:block;white-space:nowrap;font-size:18px;font-weight:600;letter-spacing:-.02em;font-variant-numeric:tabular-nums;line-height:1.1;transition:color .4s}
+.ek span{font-size:11.5px;color:var(--muted);line-height:1.3;display:block;margin-top:4px}
+.chart{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:10px 10px 6px}
+.chart svg{width:100%;height:auto;display:block}
+.chart rect.w{transition:height .6s cubic-bezier(.2,.8,.2,1),y .6s cubic-bezier(.2,.8,.2,1)}
+.legend{display:flex;gap:14px;font-size:12px;color:var(--muted);margin-top:4px}
+.legend i{display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:5px;vertical-align:-1px}
+.fix{display:grid;gap:8px;margin-top:16px}
+.fix button{display:grid;grid-template-columns:24px minmax(0,1fr) auto;gap:10px;align-items:center;text-align:left;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:12px 14px;font:500 14px var(--f);color:var(--ink);cursor:pointer;transition:border-color .3s,background .3s}
+.fix button small{display:block;color:var(--muted);font-size:12px;font-weight:400}
+.fix button b{font:600 12.5px var(--m);color:var(--red);white-space:nowrap;transition:color .3s}
+.fix button .bx{width:22px;height:22px;border-radius:6px;border:2px solid var(--line);display:grid;place-items:center;transition:background .3s,border-color .3s}
+.fix button .bx svg{width:14px;height:14px;opacity:0;transition:opacity .3s}
+.fix button[aria-pressed="true"]{border-color:var(--g);background:var(--gs)}
+.fix button[aria-pressed="true"] b{color:var(--g)}
+.fix button[aria-pressed="true"] .bx{background:var(--g);border-color:var(--g)}
+.fix button[aria-pressed="true"] .bx svg{opacity:1}
+.tot{display:grid;grid-template-columns:1fr 1fr 1fr;gap:1px;background:var(--line);border:1px solid var(--line);border-radius:12px;overflow:hidden;margin-top:12px}
+.tot div{background:var(--surface);padding:12px}
+.tot strong{display:block;font-size:22px;font-weight:600;letter-spacing:-.02em;color:var(--g);font-variant-numeric:tabular-nums}
+.tot span{font-size:11.5px;color:var(--muted)}
+.case{background:var(--ink);color:var(--surface);border-radius:18px;padding:20px;margin-top:18px;display:grid;gap:14px}
+.case .lab{color:color-mix(in srgb,var(--surface) 70%,transparent)}
+.case h3{font-size:21px;line-height:1.2}
+.case p{font-size:14px;opacity:.85}
+.air{display:grid;gap:10px}
+.air .row{display:grid;gap:4px}
+.air .row > span{font:500 11px var(--m);letter-spacing:.08em;opacity:.8}
+.air .bars2{display:grid;gap:3px}
+.air .b2{height:20px;border-radius:5px;display:flex;align-items:center;padding-left:8px;font:600 11px var(--m);color:#fff;white-space:nowrap;transition:width 1s cubic-bezier(.2,.8,.2,1)}
+.case.out .b2{width:6%!important}
+.cfig{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:color-mix(in srgb,var(--surface) 18%,transparent);border-radius:12px;overflow:hidden}
+.cfig div{background:var(--ink);padding:12px}
+.cfig strong{display:block;white-space:nowrap;font-size:21px;font-weight:600;letter-spacing:-.02em;color:var(--lime);font-variant-numeric:tabular-nums}
+.cfig span{font-size:12px;opacity:.8}
 /* portal */
 .devices{position:relative;margin-top:22px;height:290px}
 .laptop{position:absolute;left:0;right:46px;top:0}
@@ -168,22 +253,32 @@ section{padding-block:44px}
 .plist .ics{display:flex;gap:3px}
 .plist .ico{width:22px;height:22px;border-radius:6px}
 .plist .ico svg{width:13px;height:13px}
+.ico.ol{background:var(--surface);box-shadow:inset 0 0 0 1px var(--line);color:var(--muted)}
 /* clients */
 .clients{overflow:hidden}
 .cat{max-width:560px;margin:18px auto 8px;padding-left:max(20px,env(safe-area-inset-left,0px));padding-right:max(20px,env(safe-area-inset-right,0px));display:flex;justify-content:space-between;align-items:baseline}
 .ctrack{display:flex;gap:8px;width:max-content;will-change:transform;margin-bottom:8px}
 .ctrack div{flex:none;width:104px;height:58px;background:#fff;border:1px solid var(--line);border-radius:10px;display:grid;place-items:center;padding:8px}
 .ctrack img{max-width:100%;max-height:38px;width:auto;height:auto;display:block}
-.ccount{display:flex;align-items:baseline;gap:10px;margin-top:12px}
+.ccount{display:grid;gap:4px;margin-top:14px}
+.ccount .big{font-size:44px}
 /* contact */
-.contact{padding-bottom:140px}
+.contact{padding-bottom:150px}
 .ct{display:grid;gap:1px;background:var(--line);border:1px solid var(--line);border-radius:12px;overflow:hidden;margin-top:18px}
 .ct div{background:var(--surface);padding:13px 16px;display:grid;grid-template-columns:92px minmax(0,1fr);gap:10px;align-items:baseline}
 .ct a{color:var(--ink);font-weight:500;text-decoration:none}
-.dock{position:fixed;left:0;right:0;bottom:0;z-index:25;padding:10px max(14px,env(safe-area-inset-right,0px)) calc(10px + env(safe-area-inset-bottom,0px)) max(14px,env(safe-area-inset-left,0px));background:color-mix(in srgb,var(--surface) 92%,transparent);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-top:1px solid var(--line);transform:translateY(110%);transition:transform .4s}
-.dock.show{transform:none}
-.dock .wrap{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;padding:0;align-items:center}
-.dock a{justify-content:center;padding:0 6px;height:44px;font-size:13.5px}
+/* dock with scroll guide */
+.dock{position:fixed;left:0;right:0;bottom:0;z-index:25;padding:8px max(14px,env(safe-area-inset-right,0px)) calc(10px + env(safe-area-inset-bottom,0px)) max(14px,env(safe-area-inset-left,0px));background:color-mix(in srgb,var(--surface) 94%,transparent);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-top:1px solid var(--line)}
+.dock .wrap{padding:0;display:grid;gap:8px}
+.guide{display:grid;grid-template-columns:auto minmax(0,1fr) auto;align-items:center;gap:10px;height:28px;background:var(--ink);color:var(--surface);border-radius:999px;padding:0 12px;font:600 12.5px var(--f);transition:opacity .35s,background .35s}
+.guide.off{opacity:0;pointer-events:none}
+.guide.done{background:var(--g)}
+.guide svg{width:15px;height:15px;animation:bob 1.1s ease-in-out infinite}
+.guide .gb{height:4px;border-radius:2px;background:color-mix(in srgb,var(--surface) 25%,transparent);overflow:hidden}
+.guide .gb i{display:block;height:100%;width:calc(var(--g,0)*100%);background:var(--lime)}
+.guide .gn{font:600 11.5px var(--m);font-variant-numeric:tabular-nums}
+.dbtn{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px}
+.dbtn a{justify-content:center;padding:0 6px;height:42px;font-size:13.5px}
 .foot{font-size:12px;color:var(--muted);margin-top:24px}
 @media (prefers-reduced-motion:reduce){*,*::before,*::after{transition:none!important;animation:none!important}.js .rv.out{opacity:1;transform:none}}
 </style>
@@ -196,70 +291,73 @@ section{padding-block:44px}
   <a class="btn pri" href="tel:+971503264583">Call 24/7</a>
 </div></header>
 <div class="rail" aria-hidden="true"><i id="railFill"></i></div>
-<div class="hint" id="hint" aria-hidden="true">Scroll to explore <svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
 
 <main>
-<!-- STORY: problem → fix -->
-<section class="scene" id="story" style="padding:0" data-tint="bg">
-  <div class="pin"><div class="wrap">
-    <div class="steps"><span class="count" id="stCount">01 / 07</span><span class="bars" id="stBars"></span></div>
-    <div class="vid" id="stVid">
-      <div class="wash" id="stWash"></div>
-      <span class="vtag" id="stTag" style="background:var(--red)">FIRE HAZARD</span>
-      <video class="on" data-k="fire" data-src="media/fire.mp4" poster="media/fire.jpg" muted playsinline loop preload="none" aria-label="Animation: flames in a kitchen hood and greasy duct, a broken exhaust fan belt, a restaurant manager holding his head"></video>
-      <video data-k="kes" data-src="media/kes.mp4" poster="media/kes.jpg" muted playsinline loop preload="none" aria-label="Animation: Sanco technicians repairing a kitchen exhaust fan"></video>
-      <video data-k="leak" data-src="media/leak.mp4" poster="media/leak.jpg" muted playsinline loop preload="none" aria-label="Animation: water dripping from a wall AC at home while a wife scolds her husband"></video>
-      <video data-k="ac" data-src="media/ac.mp4" poster="media/ac.jpg" muted playsinline loop preload="none" aria-label="Animation: Sanco technicians servicing a ceiling AC unit"></video>
-      <video data-k="elec" data-src="media/elec.mp4" poster="media/elec.jpg" muted playsinline loop preload="none" aria-label="Animation: sparks from a distribution board, a technician thinking"></video>
-      <video data-k="vfd" data-src="media/vfd.mp4" poster="media/vfd.jpg" muted playsinline loop preload="none" aria-label="Animation: Sanco technician working on an electrical panel"></video>
-      <img data-k="end" src="media/fitout.jpg" alt="">
-    </div>
-    <div class="txt" id="stTxt"></div>
-    <div class="more" id="stMore">KEEP SCROLLING <svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg></div>
-  </div></div>
-</section>
-
-<!-- ABOUT FM -->
-<section data-tint="gs"><div class="wrap">
-  <p class="lab rv">Sanco Facilities Management</p>
-  <h2 class="rv" style="margin-top:10px">Technical maintenance for <b>kitchens, cooling and MEP.</b></h2>
-  <p class="lead rv" style="margin-top:12px">Our own technicians maintain, repair and upgrade the systems your business runs on — with spare parts in stock and 24/7 call-outs across the UAE.</p>
-  <div class="card rv"><div class="svc" id="svcFm" style="margin-top:0"></div></div>
-  <div class="stats rv">
+<!-- 1 WHO WE ARE -->
+<section class="hero"><div class="wrap">
+  <p class="lab rv">Who we are</p>
+  <h1 class="rv" style="margin-top:12px">The team behind <b>kitchens, cooling and MEP</b> across the UAE.</h1>
+  <p class="lead rv" style="margin-top:14px">Sanco Group has looked after restaurants, hotels, offices and homes in the UAE for over 15 years: cleaning the kitchen exhaust, and keeping the systems a building runs on working.</p>
+  <div class="cue rv"><span class="mouse" aria-hidden="true"></span>Scroll down. The page moves as you go.</div>
+  <div class="stats rv" data-d="z">
     <div><strong data-count="15" data-suf="+">15+</strong><span>years in the UAE</span></div>
     <div><strong data-count="200" data-suf="+">200+</strong><span>professionals</span></div>
     <div><strong data-count="4000" data-suf="+">4,000+</strong><span>clients served</span></div>
     <div><strong>24/7</strong><span>emergency response</span></div>
   </div>
-  <p class="note">Figures across Sanco Group.</p>
 </div></section>
 
-<!-- F&B -->
-<section data-tint="bg"><div class="wrap">
-  <p class="lab rv">F&amp;B specialists</p>
-  <h2 class="rv" style="margin-top:10px">We know <b>commercial kitchens.</b></h2>
-  <div class="fb rv">
-    <h3>Hood, ESP, fans, fresh air and cooling — one team looks after all of it.</h3>
+<!-- 2 SANCO GROUP SPLIT -->
+<section class="scene" id="grp">
+  <div class="pin"><div class="wrap">
+    <p class="lab">Sanco Group</p>
+    <h2 id="gH" style="font-size:clamp(24px,6.6vw,32px)">One group. <b>Two specialist companies.</b></h2>
+    <div class="steps"><span class="count" id="gCount">01 / 02</span><span class="bars" id="gBars"></span></div>
+    <div class="gstage" id="gstage">
+      <div class="gcore" id="gcore"><img src="media/leaf.png" alt=""><div><strong>Sanco Group</strong><span>15+ YEARS IN THE UAE</span></div></div>
+      <svg class="glines" viewBox="0 0 100 120" preserveAspectRatio="none" aria-hidden="true"><path id="gl1" d="M50 50 C50 80 25 80 25 112" pathLength="1"/><path id="gl2" d="M50 50 C50 80 75 80 75 112" pathLength="1"/></svg>
+      <div class="gcard env" id="gEnv"><div class="lg"><img src="media/sanco-enviro.png" alt="Sanco Environmental Services"></div><p>Kitchen exhaust and environmental cleaning</p><small>Hood, duct, ESP and fan cleaning, grease traps, drain jetting, water tanks and waste disposal.</small></div>
+      <div class="gcard fm" id="gFm"><span class="you" id="gYou">THIS PAGE ↓</span><div class="lg"><img src="media/sanco-fm.png" alt="Sanco Facilities Management"></div><p>Technical maintenance for kitchens, cooling and MEP</p><small>KES maintenance, AC and MEP contracts, duct cleaning, fresh air, retrofits and fit-out.</small></div>
+    </div>
+  </div></div>
+</section>
+
+<!-- 3 SANCO FM -->
+<section class="alt"><div class="wrap">
+  <p class="lab rv">Sanco Facilities Management</p>
+  <h2 class="rv" style="margin-top:10px">Technical maintenance for <b>kitchens, cooling and MEP.</b></h2>
+  <p class="lead rv" style="margin-top:12px">Our own engineers and technicians design, install, maintain and repair the systems your business depends on: kitchen exhaust, air conditioning, fresh air, electrical, plumbing and pumps. Spare parts in stock, 24/7 call-outs, all over the UAE.</p>
+  <div class="fb rv" data-d="z">
+    <p class="lab" style="color:var(--lime)">F&amp;B specialists</p>
+    <h3 style="margin-top:8px">We know commercial kitchens. Hood, ESP, fans, fresh air and cooling: one team looks after all of it.</h3>
     <ul>
-      <li><b>01</b><span>Kitchen exhaust fans, motors, belts, bearings, VFDs and ESPs maintained on monthly or quarterly visits.</span></li>
+      <li><b>01</b><span>Exhaust fans, motors, belts, bearings, VFDs and ESPs maintained on monthly or quarterly visits.</span></li>
       <li><b>02</b><span>Exhaust and treated fresh air kept in balance, so kitchens stay cool and smoke stays out of the dining room.</span></li>
       <li><b>03</b><span>Work planned around service: nights, early mornings and closed days.</span></li>
-      <li><b>04</b><span>Fire-risk items reported in writing the same day, so nothing is left unsaid.</span></li>
+      <li><b>04</b><span>Fire-risk items reported in writing the same day.</span></li>
     </ul>
   </div>
 </div></section>
 
-<!-- FM SERVICES SCENE -->
-<section class="scene" id="fm" data-tint="bs" style="padding:0">
+<!-- 4 ALL SERVICES -->
+<section><div class="wrap">
+  <p class="lab rv">What we do</p>
+  <h2 class="rv" style="margin-top:10px">Five divisions. <b>Sixteen services.</b> One team.</h2>
+  <p class="lead rv" style="margin-top:10px">Planned maintenance, repairs, installation and engineering, under one contract if you want it.</p>
+  <div class="divs" id="divs"></div>
+</div></section>
+
+<!-- 5 SIX LEVELS -->
+<section class="scene alt" id="fm">
   <div class="pin"><div class="wrap">
-    <p class="lab">Our six services</p>
+    <p class="lab">Our six core services, level by level</p>
     <div class="steps"><span class="count" id="fmCount">01 / 06</span><span class="bars" id="fmBars"></span></div>
     <div class="stage">
       <div class="stack" aria-hidden="true"><svg viewBox="0 0 120 214"><g id="fmStack"></g></svg></div>
-      <div class="vid" id="fmVid">
-        <span class="vtag" id="fmTag" style="background:var(--b)">LEVEL 01</span>
+      <div class="vid fade" id="fmVid">
+        <span class="vtag" id="fmTag" style="left:10px;background:var(--b)">LEVEL 01</span>
         <video class="on" data-k="kes" data-src="media/kes.mp4" poster="media/kes.jpg" muted playsinline loop preload="none" aria-hidden="true"></video>
-        <video data-k="ac" data-src="media/ac.mp4" poster="media/ac.jpg" muted playsinline loop preload="none" aria-hidden="true"></video>
+        <video data-k="acwall" data-src="media/acwall.mp4" poster="media/acwall.jpg" muted playsinline loop preload="none" aria-hidden="true"></video>
         <video data-k="duct" data-src="media/duct.mp4" poster="media/duct.jpg" muted playsinline loop preload="none" aria-hidden="true"></video>
         <video data-k="fahu" data-src="media/fahu.mp4" poster="media/fahu.jpg" muted playsinline loop preload="none" aria-hidden="true"></video>
         <video data-k="vfd" data-src="media/vfd.mp4" poster="media/vfd.jpg" muted playsinline loop preload="none" aria-hidden="true"></video>
@@ -267,15 +365,70 @@ section{padding-block:44px}
       </div>
     </div>
     <div class="txt" id="fmTxt"></div>
-    <div class="more" id="fmMore">KEEP SCROLLING <svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg></div>
   </div></div>
 </section>
 
-<!-- FIRE HAZARD -->
-<section data-tint="rs"><div class="wrap">
-  <p class="lab rv" style="color:var(--red)">Kitchen exhaust fire hazard</p>
-  <h2 class="rv" style="margin-top:10px">Grease, heat and a stopped fan — <b style="color:var(--red)">how kitchen fires start.</b></h2>
-  <p class="lead rv" style="margin-top:12px">Cooking sends fat, oil and grease (FOG) into the exhaust. When any part of the system stops doing its job, that grease collects in the duct — and the duct becomes fuel.</p>
+<!-- 6 PROBLEM / FIX WIPE -->
+<section class="scene" id="story">
+  <div class="pin"><div class="wrap">
+    <p class="lab">What goes wrong, and how we fix it</p>
+    <div class="steps"><span class="count" id="stCount">01 / 03</span><span class="bars" id="stBars"></span></div>
+    <div class="vid wipe" id="wVid">
+      <span class="vtag" id="tB" style="left:10px;background:var(--red)">WITHOUT MAINTENANCE</span>
+      <span class="vtag" id="tA" style="right:10px;background:var(--g)">WITH SANCO FM</span>
+      <div class="pair on" data-c="0"><video class="before" data-src="media/fire.mp4" poster="media/fire.jpg" muted playsinline loop preload="none" aria-label="Animation: flames in a kitchen hood and duct after the exhaust fan belt snaps"></video><video class="after" data-src="media/kes.mp4" poster="media/kes.jpg" muted playsinline loop preload="none" aria-label="Animation: Sanco technicians repairing the kitchen exhaust fan"></video></div>
+      <div class="pair" data-c="1"><video class="before" data-src="media/leak.mp4" poster="media/leak.jpg" muted playsinline loop preload="none" aria-label="Animation: water dripping from a wall AC at home"></video><video class="after" data-src="media/acwall.mp4" poster="media/acwall.jpg" muted playsinline loop preload="none" aria-label="Animation: Sanco technician servicing a wall split AC from a ladder"></video></div>
+      <div class="pair" data-c="2"><video class="before" data-src="media/elec.mp4" poster="media/elec.jpg" muted playsinline loop preload="none" aria-label="Animation: sparks from a distribution board"></video><video class="after" data-src="media/elecfix.mp4" poster="media/elecfix.jpg" muted playsinline loop preload="none" aria-label="Animation: Sanco electrician testing the distribution board"></video></div>
+      <div class="wline" aria-hidden="true"></div>
+    </div>
+    <div class="txt" id="stTxt"></div>
+  </div></div>
+</section>
+
+<!-- 7 FIRE: CLEANED VS WORKING -->
+<section class="scene" id="kx">
+  <div class="pin"><div class="wrap" style="gap:8px">
+    <h2 style="font-size:clamp(23px,6.4vw,30px)">Clean is not the same as <b style="color:var(--red)" id="kxH">working.</b></h2>
+    <div class="tog" role="group" aria-label="Compare"><button id="kB" aria-pressed="true">Cleaning contractor</button><button id="kA" aria-pressed="false">Sanco</button></div>
+    <div class="kx" id="kxBox" data-s="0">
+      <svg viewBox="0 4 340 142" role="img" aria-label="Kitchen exhaust: hood with water mist over a charcoal grill, duct, ESP and ecology unit, exhaust fan">
+        <rect x="0" y="0" width="340" height="150" rx="10" fill="var(--surface)"/>
+        <!-- duct -->
+        <path d="M78 82 V34 H236" fill="none" stroke="var(--line)" stroke-width="18" stroke-linejoin="round"/>
+        <path d="M78 82 V34 H236" fill="none" stroke="#B7BEC2" stroke-width="14" stroke-linejoin="round"/>
+        <!-- ESP / ecology -->
+        <rect x="160" y="18" width="62" height="32" rx="4" fill="#8FA3AE"/><text x="191" y="38" text-anchor="middle" font-family="DM Mono, monospace" font-size="9" fill="#fff">ESP</text>
+        <!-- fan -->
+        <circle cx="258" cy="34" r="20" fill="#5C6970"/><g class="fan"><path d="M258 34 l0 -15 a6 6 0 0 1 6 6z M258 34 l15 0 a6 6 0 0 1 -6 6z M258 34 l0 15 a6 6 0 0 1 -6 -6z M258 34 l-15 0 a6 6 0 0 1 6 -6z" fill="#D9E0E3"/></g>
+        <path d="M282 26 h40" stroke="#B7BEC2" stroke-width="10" stroke-linecap="round"/>
+        <!-- hood -->
+        <path d="M28 82 H128 L144 112 H12 Z" fill="#C9CED1" stroke="#9AA3A8"/>
+        <g fill="#2B7DB5"><circle cx="40" cy="104" r="3"/><circle cx="62" cy="104" r="3"/><circle cx="84" cy="104" r="3"/><circle cx="106" cy="104" r="3"/><circle cx="126" cy="104" r="3"/></g>
+        <g class="good"><g fill="#6FB4E3"><circle class="mist" cx="40" cy="108" r="1.6"/><circle class="mist" cx="62" cy="108" r="1.6" style="animation-delay:.3s"/><circle class="mist" cx="84" cy="108" r="1.6" style="animation-delay:.6s"/><circle class="mist" cx="106" cy="108" r="1.6" style="animation-delay:.15s"/><circle class="mist" cx="126" cy="108" r="1.6" style="animation-delay:.45s"/></g></g>
+        <!-- grill -->
+        <rect x="34" y="128" width="88" height="12" rx="2" fill="#3A3F42"/><rect x="40" y="124" width="76" height="5" fill="#E0632B"/>
+        <!-- sparks: escape up the duct (contractor) / stopped at the mist (Sanco) -->
+        <g class="bad" fill="#FF8A1F"><circle class="spk" cx="60" cy="122" r="2" style="--sx:20px;--sy:-80px"/><circle class="spk" cx="80" cy="122" r="2" style="--sx:2px;--sy:-95px;animation-delay:.5s"/><circle class="spk" cx="96" cy="122" r="2" style="--sx:-14px;--sy:-70px;animation-delay:1s"/><circle class="spk" cx="70" cy="122" r="1.6" style="--sx:10px;--sy:-88px;animation-delay:1.3s"/></g>
+        <g class="good" fill="#FF8A1F"><circle class="spk" cx="60" cy="122" r="2" style="--sx:4px;--sy:-14px"/><circle class="spk" cx="90" cy="122" r="2" style="--sx:-3px;--sy:-14px;animation-delay:.6s"/></g>
+        <!-- grease building in duct (contractor) -->
+        <g class="bad"><rect x="71" y="40" width="4" height="40" fill="#7A5A2C" opacity=".7"/><rect x="84" y="40" width="152" height="4" fill="#7A5A2C" opacity=".7"/></g>
+        <!-- badges -->
+        <g font-family="DM Sans, sans-serif" font-size="11" font-weight="700" text-anchor="middle">
+          <g class="bad"><circle cx="150" cy="98" r="9" fill="var(--red)"/><text x="150" y="102" fill="#fff">?</text><circle cx="222" cy="16" r="9" fill="var(--red)"/><text x="222" y="20" fill="#fff">?</text><circle cx="276" cy="14" r="9" fill="var(--red)"/><text x="276" y="18" fill="#fff">?</text></g>
+          <g class="good"><circle cx="150" cy="98" r="9" fill="var(--g)"/><text x="150" y="102" fill="#fff">✓</text><circle cx="222" cy="16" r="9" fill="var(--g)"/><text x="222" y="20" fill="#fff">✓</text><circle cx="276" cy="14" r="9" fill="var(--g)"/><text x="276" y="18" fill="#fff">✓</text></g>
+        </g>
+        <g font-family="DM Mono, monospace" font-size="8.5" fill="var(--muted)"><text x="163" y="96">WATER-MIST</text><text x="163" y="106">HOOD</text><text x="236" y="68">EXHAUST FAN</text></g>
+      </svg>
+    </div>
+    <div class="chk" id="kxChk"></div>
+    <p class="verdict" id="kxV"></p>
+  </div></div>
+</section>
+
+<section class="alt"><div class="wrap">
+  <p class="lab rv" style="color:var(--red)">How kitchen exhaust fires start</p>
+  <h2 class="rv" style="margin-top:10px">Grease, heat and one part that stopped working.</h2>
+  <p class="lead rv" style="margin-top:12px">Cooking sends fat, oil and grease (FOG) into the exhaust. When any part of the system stops doing its job, that grease collects in the duct, and the duct becomes fuel.</p>
   <div class="duct rv" data-d="z"><svg viewBox="0 0 340 150" role="img" aria-label="Duct cross-section filling with grease when the system is not maintained">
     <rect x="10" y="40" width="320" height="70" rx="6" fill="var(--surface)" stroke="var(--ink)" stroke-width="1.5"/>
     <rect id="fog" x="12" y="92" width="316" height="16" rx="3" fill="#7A5A2C"/>
@@ -286,49 +439,104 @@ section{padding-block:44px}
   <div class="fire">
     <div class="rv"><b>01</b><span><strong>Exhaust fan switched off or broken</strong>Heat can't escape from the hood and duct. A snapped belt or seized bearing is enough.</span></div>
     <div class="rv"><b>02</b><span><strong>ESP not working</strong>The electrostatic precipitator stops trapping grease and smoke, so it goes straight into the duct.</span></div>
-    <div class="rv"><b>03</b><span><strong>Water-mist hood not working</strong>No wash cycle means grease bakes onto the hood plenum.</span></div>
+    <div class="rv"><b>03</b><span><strong>Water-mist hood not working</strong>The water mist keeps carbon and grease from building up inside the hood and stops sparks from charcoal grills reaching the exhaust duct. When it fails, both go straight in.</span></div>
     <div class="rv"><b>04</b><span><strong>Duct not cleaned on time</strong>FOG builds up layer by layer inside the duct.</span></div>
     <div class="rv"><b>05</b><span><strong>Filters missing or clogged</strong>Grease bypasses the filters, or airflow drops and heat stays in the kitchen.</span></div>
   </div>
-  <div class="card rv" style="margin-top:12px;border-color:var(--g)"><span class="lab" style="color:var(--g)">What Sanco FM does</span>
-    <p style="margin-top:8px;font-size:14.5px">Monthly or quarterly KES technical visits, spare belts, bearings and motors on every van, ESP and water-mist checks — and a written fire safety notice the same day when a fire-risk item is found.</p></div>
 </div></section>
 
-<!-- AMC -->
-<section data-tint="bg"><div class="wrap">
+<!-- 8 AMC -->
+<section><div class="wrap">
   <p class="lab rv">AC &amp; MEP maintenance contracts</p>
   <h2 class="rv" style="margin-top:10px">Three levels of cover. <b>You choose.</b></h2>
   <p class="lead rv" style="margin-top:10px">All include planned visits and 24/7 call-outs. Common parts are fitted on the spot and invoiced later.</p>
   <div class="amc">
     <div class="card rv" data-d="l" style="--c:#7FAFD3"><span class="lv">LEVEL 01</span><h3>Spare parts billed separately</h3><p style="color:var(--muted);font-size:14px">Visits, labour and call-outs included. Parts are quoted and billed when needed.</p><div class="meter"><i class="f"></i><i></i><i></i></div></div>
-    <div class="card rv" data-d="r" style="--c:#4E95C6"><span class="lv">LEVEL 02</span><h3>Spare parts included up to a threshold</h3><p style="color:var(--muted);font-size:14px">Parts included up to an agreed limit per item — for example AED 1,000. Spares for your units kept in our store.</p><div class="meter"><i class="f"></i><i class="f"></i><i></i></div></div>
+    <div class="card rv" data-d="r" style="--c:#4E95C6"><span class="lv">LEVEL 02</span><h3>Spare parts included up to a threshold</h3><p style="color:var(--muted);font-size:14px">Parts included up to an agreed limit per item, for example AED 1,000. Spares for your units kept in our store.</p><div class="meter"><i class="f"></i><i class="f"></i><i></i></div></div>
     <div class="card rv" data-d="l" style="--c:var(--b)"><span class="lv">LEVEL 03</span><h3>Full coverage of all spare parts</h3><p style="color:var(--muted);font-size:14px">One fixed yearly cost: visits, labour, call-outs and all spare parts.</p><div class="meter"><i class="f"></i><i class="f"></i><i class="f"></i></div></div>
   </div>
 </div></section>
 
-<!-- ENERGY (auto by scroll) -->
-<section class="scene" id="energy" data-tint="as" style="padding:0">
+<!-- 9 ENERGY GRAPH -->
+<section class="scene alt" id="energy">
   <div class="pin"><div class="wrap">
-    <p class="lab">Energy savings</p>
-    <h2 style="font-size:clamp(26px,7vw,34px)">Maintenance that <b>pays for itself.</b></h2>
-    <p class="lead" style="font-size:14.5px">One 150 m² restaurant in Dubai. The same AC, one year without and with a Sanco AMC.</p>
-    <div class="steps"><span class="count" id="enCount">01 / 02</span><span class="bars" id="enBars"></span></div>
-    <div class="ebox" id="ebox" data-s="0">
-      <div class="tog" role="group" aria-label="Compare"><button id="eB" aria-pressed="true">Without AMC</button><button id="eA" aria-pressed="false">With Sanco AMC</button></div>
-      <div class="ebar"><div class="lab"><span>Electricity for cooling a year</span><span id="ekwh">≈ 121,000 kWh</span></div><div class="track"><div class="fill" id="ebar" style="width:100%;background:var(--red)">AED 53,000</div></div></div>
-      <div class="esave"><div class="card"><span class="big" id="eSave" style="color:var(--red)">+30%</span><small id="eSaveT">more power than needed</small></div><div class="card"><span class="big" id="eKw">≈ 28k</span><small id="eKwT">kWh wasted every year</small></div></div>
-      <div class="drain">
-        <div>Dirty filters and coils<span>+10–15%</span></div>
-        <div>Fresh air unit not maintained<span>+5–10%</span></div>
-        <div>Actuators bypassed, units never off<span>+5–10%</span></div>
-      </div>
+    <p class="lab">Energy savings · 150 m² restaurant, Dubai</p>
+    <h2 style="font-size:clamp(24px,6.6vw,32px)">Watch the bill <b>come down.</b></h2>
+    <div class="steps"><span class="count" id="enCount">Without AMC</span><span class="bars" id="enBars"></span></div>
+    <div class="ek">
+      <div><strong id="eK">121,000</strong><span>kWh a year for cooling</span></div>
+      <div><strong id="eA">AED 53,000</strong><span>electricity a year</span></div>
+      <div><strong id="eS" style="color:var(--g)">AED 0</strong><span>saved so far</span></div>
     </div>
-    <div class="more" id="enMore">KEEP SCROLLING <svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg></div>
+    <div class="chart"><svg viewBox="0 0 340 170" id="eChart" role="img" aria-label="Monthly electricity for cooling, without and with a Sanco AMC"></svg>
+      <div class="legend"><span><i style="background:var(--g)"></i>Needed</span><span><i style="background:var(--red)"></i>Wasted without AMC</span></div></div>
+    <div class="tog" role="group" aria-label="Show"><button id="eBtn0" aria-pressed="true">Without AMC</button><button id="eBtn1" aria-pressed="false">With Sanco AMC</button></div>
   </div></div>
 </section>
 
-<!-- PORTAL -->
-<section data-tint="bg"><div class="wrap">
+
+<!-- 9b FRESH AIR -->
+<section class="scene" id="fa">
+  <div class="pin"><div class="wrap" style="gap:8px">
+    <h2 style="font-size:clamp(23px,6.4vw,30px)">Why treated fresh air <b>matters for cooling.</b></h2>
+    <div class="tog" role="group" aria-label="Show"><button data-s="0">FAHU neglected</button><button data-s="1">Weak exhaust</button><button data-s="2">Target</button></div>
+    <div class="steps"><span class="count" id="faCount">01 / 03</span><span class="bars" id="faBars"></span></div>
+    <div class="fa" id="faBox">
+      <svg viewBox="0 0 340 200" role="img" aria-label="Kitchen cross-section showing exhaust air, fresh air from the FAHU and outside air pulled in through the door">
+        <rect x="16" y="62" width="300" height="126" fill="none" stroke="var(--ink)" stroke-width="2"/>
+        <rect x="316" y="120" width="8" height="68" fill="var(--surface)"/>
+        <text x="300" y="114" text-anchor="end" font-family="DM Mono, monospace" font-size="8.5" fill="var(--muted)">DOOR</text>
+        <line x1="8" y1="188" x2="332" y2="188" stroke="var(--ink)" stroke-width="2"/>
+        <!-- hood, duct, fan -->
+        <rect x="70" y="62" width="30" height="0" />
+        <path d="M44 104 H126 L134 118 H36 Z" fill="#C9CED1" stroke="#9AA3A8"/>
+        <rect x="74" y="20" width="22" height="84" fill="#DDE1E3" stroke="#9AA3A8"/>
+        <circle cx="85" cy="18" r="11" fill="#5C6970"/>
+        <rect x="40" y="150" width="96" height="38" fill="#B7BEC2"/><rect x="46" y="146" width="84" height="4" fill="#E0632B"/>
+        <text x="85" y="200" text-anchor="middle" font-family="DM Mono, monospace" font-size="8" fill="var(--muted)">KITCHEN</text>
+        <!-- FAHU -->
+        <rect x="196" y="22" width="78" height="30" rx="4" fill="#2B7DB5"/><text x="235" y="41" text-anchor="middle" font-family="DM Mono, monospace" font-size="9" fill="#fff">FAHU</text>
+        <rect x="226" y="52" width="18" height="12" fill="#A9CDE8"/>
+        <!-- flows -->
+        <path id="faEx" class="flow" d="M85 140 V108 V-4" stroke="#4E5A60" stroke-width="8"/>
+        <path id="faFr" class="flow" d="M235 66 V120 Q235 140 200 140 H150" stroke="#2B7DB5" stroke-width="8"/>
+        <path id="faIn" class="flow" d="M352 164 H260 Q220 164 190 150" stroke="#E0632B" stroke-width="8"/>
+        <g class="smk" id="faSmk" opacity="0"><circle cx="140" cy="100" r="9" fill="#8A8580"/><circle cx="130" cy="110" r="7" fill="#8A8580" style="animation-delay:1s"/><circle cx="150" cy="95" r="8" fill="#8A8580" style="animation-delay:2s"/></g>
+        <g font-family="DM Mono, monospace" font-size="8.5"><text x="100" y="12" fill="var(--muted)">EXHAUST</text><text x="280" y="80" fill="#2B7DB5">TREATED AIR</text><text x="262" y="182" fill="#E0632B" id="faInT">HOT, HUMID AIR</text></g>
+      </svg>
+    </div>
+    <div class="fat" id="faT"></div>
+    <div class="txt" id="faTxt" style="min-height:70px"></div>
+  </div></div>
+</section>
+
+<section class="alt" style="padding-top:8px"><div class="wrap">
+  <p class="lab rv">Where the saving comes from</p>
+  <h2 class="rv" style="margin-top:10px">Tap each item <b>to fix it.</b></h2>
+  <p class="lead rv" style="margin-top:10px">Same 150 m² restaurant: about 20 TR of cooling, 14 hours a day, AED 0.44 per kWh.</p>
+  <div class="fix" id="fix"></div>
+  <div class="tot rv" data-d="z"><div><strong id="totA">AED 0</strong><span>saved a year</span></div><div><strong id="totK">0</strong><span>kWh less a year</span></div><div><strong id="totW">0 kW</strong><span>less load on average</span></div></div>
+  <p class="note">Indicative example. Actual savings depend on the site, equipment and tariff, and are confirmed after a survey.</p>
+
+  <div class="case rv" data-d="z" id="case">
+    <span class="lab">Real project · Allo Beirut Hessa · 300 m²</span>
+    <h3>Too hot all summer. The fix was fresh air, not more AC.</h3>
+    <div class="air">
+      <div class="row"><span>BEFORE · HEAVILY NEGATIVE</span><div class="bars2"><div class="b2" style="width:100%;background:#7A8A90">Exhaust 14,000 CFM</div><div class="b2" style="width:54%;background:var(--red)">Fresh air 7,500 untreated</div></div></div>
+      <div class="row"><span>AFTER · SLIGHTLY NEGATIVE</span><div class="bars2"><div class="b2" style="width:100%;background:#7A8A90">Exhaust 14,000 CFM</div><div class="b2" style="width:86%;background:var(--g)">Fresh air 12,000 treated</div></div></div>
+    </div>
+    <div class="cfig">
+      <div><strong data-count="140000">140,000</strong><span>kWh saved a year (est.)</span></div>
+      <div><strong data-count="60000" data-pre="AED ">AED 60,000</strong><span>saved a year (est.)</span></div>
+      <div><strong data-count="86" data-suf=" TR">86 TR</strong><span>cooling load moved to the treated fresh air unit</span></div>
+      <div><strong>~5 years</strong><span>payback on about AED 300,000</span></div>
+    </div>
+    <p>We measured the air balance, used spare electrical capacity on the existing supply, resized the 16 split units and added a 12,000 CFM treated fresh air unit. Cooling now holds through the summer peak.</p>
+  </div>
+</div></section>
+
+<!-- 10 PORTAL -->
+<section><div class="wrap">
   <p class="lab rv">Sanco FM portal · phone and PC</p>
   <h2 class="rv" style="margin-top:10px">Every asset tracked. <b>Open to you.</b></h2>
   <p class="lead rv" style="margin-top:10px">Our teams run every contract on the Sanco FM portal. You get access too, on your phone or computer.</p>
@@ -357,23 +565,23 @@ section{padding-block:44px}
   </div>
 </div></section>
 
-<!-- PROJECTS -->
-<section data-tint="as"><div class="wrap">
+<!-- 11 PROJECTS -->
+<section class="alt"><div class="wrap">
   <p class="lab rv">Fit-out &amp; installation</p>
   <h2 class="rv" style="margin-top:10px">Recent <b>fit-out projects.</b></h2>
   <div class="plist" id="plist"></div>
   <p class="note">Design and installation by our own teams, including in-house civil works.</p>
 </div></section>
 
-<!-- CLIENTS -->
-<section class="clients" data-tint="bg" id="clients">
+<!-- 12 CLIENTS -->
+<section class="clients" id="clients">
   <div class="wrap"><p class="lab rv">Our clients</p><h2 class="rv" style="margin-top:10px">Trusted across <b>the UAE.</b></h2>
   <div class="ccount rv"><span class="big" data-count="4000" data-suf="+">4,000+</span><span class="lead" style="font-size:14px">clients served by Sanco Group. A few of them:</span></div></div>
   <div id="crows"></div>
 </section>
 
-<!-- CONTACT -->
-<section class="contact" data-tint="gs" id="contact"><div class="wrap">
+<!-- 13 CONTACT -->
+<section class="contact alt" id="contact"><div class="wrap">
   <p class="lab rv">Contact</p>
   <h2 class="rv" style="margin-top:10px">Let's keep your <b>facility running.</b></h2>
   <p class="lead rv" style="margin-top:12px">Ask for a site survey, a maintenance contract proposal or a KES inspection. You get a clear, itemised proposal.</p>
@@ -388,10 +596,13 @@ section{padding-block:44px}
 </div></section>
 </main>
 
-<nav class="dock" id="dock" aria-label="Quick contact"><div class="wrap">
-  <a class="btn pri" href="tel:+971503264583">Call</a>
-  <a class="btn sec" href="https://wa.me/971503264583">WhatsApp</a>
-  <a class="btn sec" href="mailto:fm@sancouae.com">Email</a>
+<nav class="dock" id="dock" aria-label="Scroll guide and quick contact"><div class="wrap">
+  <div class="guide" id="guide" aria-hidden="true"><span id="gTxt">Scroll down to explore</span><span class="gb"><i></i></span><span class="gn" id="gN"><svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div>
+  <div class="dbtn">
+    <a class="btn pri" href="tel:+971503264583">Call</a>
+    <a class="btn sec" href="https://wa.me/971503264583">WhatsApp</a>
+    <a class="btn sec" href="mailto:fm@sancouae.com">Email</a>
+  </div>
 </div></nav>
 
 <script>
@@ -399,113 +610,184 @@ section{padding-block:44px}
 const R=document.documentElement; R.classList.add('js');
 const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
 const css=v=>getComputedStyle(R).getPropertyValue(v).trim();
+const $=id=>document.getElementById(id);
 const IC={"phone": "M6.5 3.5h3l1.5 4-2 1.3a10 10 0 0 0 6.2 6.2l1.3-2 4 1.5v3a2 2 0 0 1-2 2A17 17 0 0 1 4.5 5.5a2 2 0 0 1 2-2z", "whatsapp": "M12 3.5a8.5 8.5 0 0 0-7.3 12.8L3.5 20.5l4.3-1.1A8.5 8.5 0 1 0 12 3.5z M9 8.6c.3-.6.8-.6 1-.2l.8 1.7c.1.3 0 .6-.3.9l-.4.4c.6 1.3 1.6 2.3 2.9 2.9l.4-.4c.3-.3.6-.4.9-.3l1.7.8c.4.2.4.7-.2 1-.9.6-2.1.6-3.3-.1a8 8 0 0 1-3.6-3.6c-.6-1.2-.6-2.4.1-3.1z", "kes-maint": "M4 14h16 L17 7H7z M12 7V3 M6 18h12 M9 21h6", "ac-amc": "M12 2.5v19 M3.8 7.25l16.4 9.5 M3.8 16.75l16.4-9.5 M9 4.5l3 2 3-2 M9 19.5l3-2 3 2", "duct": "M3 9h18v6H3z M7.5 9v6 M16.5 9v6 M10 12h4", "retrofit": "M14.7 6.3a4 4 0 0 0-5.4 5.4L3 18l3 3 6.3-6.3a4 4 0 0 0 5.4-5.4l-2.5 2.5-2.4-.6-.6-2.4z", "projects": "M3 21h18 M5 21V9l7-5 7 5v12 M9 21v-6h6v6 M9 11h6", "kes-clean": "M4 13h16 L17 6H7z M12 6V3 M7 17l1 2 M12 17v3 M17 17l-1 2", "gt-clean": "M4 9h16v11H4z M8 9V6h8v3 M8 14h8 M10 17h4", "gt-supply": "M4 9h16v11H4z M8 9V6h8v3 M12 12v6 M9 15h6", "gt-treat": "M10 3h4 M11 3v4 M13 3v4 M8 7h8l-1 13H9z M10 12h4", "jetting": "M3 7h9a4 4 0 0 1 4 4v1 M3 11h7 M16 15l-2 3 M19 14l1 3 M17.5 13.5V20", "water-tank": "M5 6h14v14H5z M5 11h14 M12 3v3 M9 15c1-1 2-1 3 0s2 1 3 0", "sewage": "M4 8h16v12H4z M4 8l2-4h12l2 4 M12 11v6 M9.5 14.5L12 17l2.5-2.5", "waste-oil": "M7 7h9l3 3v11H7z M9 4h4v3 M12 11c1.5 2 2.5 3.2 2.5 4.5a2.5 2.5 0 0 1-5 0c0-1.3 1-2.5 2.5-4.5z", "tanker": "M2 8h12v8H2z M14 11h4l3 3v2h-7 M6 19a1.8 1.8 0 1 0 0.01 0 M17 19a1.8 1.8 0 1 0 0.01 0", "garbage": "M4 7h16 M6 7l1 13h10l1-13 M9 4h6v3 M10 11v6 M14 11v6", "laundry": "M5 3h14v18H5z M5 7h14 M12 14m-4 0a4 4 0 1 0 8 0a4 4 0 1 0-8 0", "pest": "M12 8a3 3 0 0 1 3 3v5a3 3 0 0 1-6 0v-5a3 3 0 0 1 3-3z M10 5l2 3 2-3 M9 12H5 M15 12h4 M9 16H5 M15 16h4", "cctv": "M3 8h11v8H3z M14 11l6-3v8l-6-3 M7 12m-1.5 0a1.5 1.5 0 1 0 3 0a1.5 1.5 0 1 0-3 0", "ecology": "M4 6h16v12H4z M8 6v12 M12 6v12 M16 6v12", "coffee": "M5 9h11v5a5.5 5.5 0 0 1-11 0z M16 10h1.5a2 2 0 0 1 0 4H16 M8 3.5v3 M11.5 3.5v3"}
 ;
 const ico=(k,c)=>`<span class="ico" style="background:${c}"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="${IC[k]}" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>`;
 const esc=t=>t.replace(/&/g,'&amp;');
 const G='#3F8A2A',B='#2B7DB5',A='#C9822B',RED='#C8402B',GRN='#2E9A47';
-document.getElementById('svcFm').innerHTML=[['kes-maint','KES maintenance',B],['ac-amc','AC & MEP AMC',B],['duct','AC duct cleaning',B],['ecology','Fresh air & FAHU',B],['retrofit','Retrofits & energy',A],['projects','Fit-out & civil',A]].map(([k,l,c])=>`<div>${ico(k,c)}<span>${esc(l)}</span></div>`).join('');
+const clamp=(v,a=0,b=1)=>Math.max(a,Math.min(b,v));
+const fmt=n=>Math.round(n).toLocaleString('en-US');
 
-// ---------- shared pinned-scene engine ----------
-function bars(id,n,col){const el=document.getElementById(id); el.innerHTML=Array.from({length:n},()=>`<span><i></i></span>`).join(''); return [...el.children].map((s,i)=>{s.style.setProperty('--c',col(i)); return s;});}
-const p01=el=>{const r=el.getBoundingClientRect(),span=r.height-innerHeight;return Math.max(0,Math.min(1,-r.top/Math.max(1,span)));};
-function playIn(box,k,visible){box.querySelectorAll('[data-k]').forEach(v=>{const on=v.dataset.k===k; v.classList.toggle('on',on); if(v.tagName==='VIDEO'){ if(on&&visible){ if(!v.src&&v.dataset.src) v.src=v.dataset.src; v.play().catch(()=>{}); } else v.pause(); }});}
+// ---------- engine ----------
+function bars(id,n,col){const el=$(id); el.innerHTML=Array.from({length:n},()=>`<span><i></i></span>`).join(''); return [...el.children].map((s,i)=>{s.style.setProperty('--c',col(i)); return s;});}
+function fillBars(bs,f){bs.forEach((b,k)=>b.style.setProperty('--f',clamp(f-k)));}
+const p01=el=>{const r=el.getBoundingClientRect(),span=r.height-innerHeight;return clamp(-r.top/Math.max(1,span));};
+const pinned=el=>{const r=el.getBoundingClientRect();return r.top<=70&&r.bottom>=innerHeight-2;};
+function ensure(v){if(!v.src&&v.dataset.src) v.src=v.dataset.src;}
+function playSet(list,on){list.forEach(v=>{ if(on.includes(v)){ensure(v); v.play().catch(()=>{});} else v.pause(); });}
 
-// ---------- STORY ----------
-const ST=[
- {k:'fire',tag:'FIRE HAZARD',bad:1,h:'Kitchen exhaust fire hazard.',p:'The exhaust fan stops, heat stays in the duct, and grease that has built up for months catches fire.',i:['Exhaust fan switched off','Broken belt or bearing','ESP not working','Water-mist hood off','Duct not cleaned','Filters clogged']},
- {k:'kes',tag:'SANCO FM · KES',bad:0,h:'Kept running, kept safe.',p:'Monthly KES technical visits, spare belts and bearings on every van, and a written fire safety notice the same day if we find a risk.',i:['Fans, belts, bearings','ESP & water-mist checks','24/7 call-outs','Fire notice same day']},
- {k:'leak',tag:'AC PROBLEM',bad:1,h:'Water leaking from the AC — again.',p:'A blocked drain line or a failed drain pump, and the floor, the ceiling and the mood at home all take the hit.',i:['Blocked drain line','Dirty filters & coil','Drain pump failed','Low refrigerant']},
- {k:'ac',tag:'SANCO FM · AC',bad:0,h:'Planned AC maintenance.',p:'Filters, coils and drain lines cleaned and flushed on schedule, so the leak never starts. 24/7 call-outs if it does.',i:['PPM visits','Drain flushing','Coil cleaning','24/7 call-outs']},
- {k:'elec',tag:'ELECTRICAL RISK',bad:1,h:'Sparks from the DB.',p:'Loose connections, overloaded circuits and ageing breakers overheat quietly — until they don’t.',i:['Loose terminals','Overloaded circuits','Aged breakers','No thermal checks']},
- {k:'vfd',tag:'SANCO FM · ELECTRICAL',bad:0,h:'Checked, tightened, tested.',p:'Our electricians check DBs, tighten terminals, replace failing breakers and balance loads as part of your MEP contract.',i:['DB inspections','Thermal checks','Breaker replacement','Load balancing']},
- {k:'end',tag:'SANCO FACILITIES MANAGEMENT',bad:0,end:1}
-];
-const stTxt=document.getElementById('stTxt');
-stTxt.innerHTML=ST.map((s,i)=>s.end?`<div class="it" data-i="${i}"><div class="brand-end"><img src="media/sanco-fm.png" alt="Sanco Facilities Management"><h3 style="font-size:clamp(28px,8vw,40px)">Kitchens, cooling and MEP — <span style="color:var(--g)">kept running.</span></h3><p>F&amp;B specialists · 24/7 · all over the UAE</p><a class="btn pri" href="https://wa.me/971503264583">WhatsApp us</a></div></div>`:
- `<div class="it ${s.bad?'bad':'good'}" data-i="${i}"><span class="k" style="color:${s.bad?'var(--red)':'var(--g)'}">${s.bad?'THE PROBLEM':'HOW WE FIX IT'}</span><h3>${esc(s.h)}</h3><p>${esc(s.p)}</p><ul>${s.i.map(x=>`<li>${esc(x)}</li>`).join('')}</ul></div>`).join('');
-const stBars=bars('stBars',ST.length,i=>ST[i].bad?RED:GRN);
-const story=document.getElementById('story'), stVid=document.getElementById('stVid'), stWash=document.getElementById('stWash'), stTag=document.getElementById('stTag');
-story.style.height=`calc(${ST.length} * 75svh + 100svh)`;
-let stCur=-1, stIn=false;
-function stSet(p){
-  const f=p*ST.length, i=Math.min(ST.length-1,Math.floor(f));
-  stBars.forEach((b,k)=>b.style.setProperty('--f',k<i?1:k===i?Math.min(1,f-i):0));
-  if(i===stCur) return; stCur=i; const s=ST[i];
-  document.getElementById('stCount').textContent=String(i+1).padStart(2,'0')+' / '+String(ST.length).padStart(2,'0');
-  stTxt.querySelectorAll('.it').forEach(e=>e.classList.toggle('on',+e.dataset.i===i));
-  stTag.textContent=s.tag; stTag.style.background=s.bad?'var(--red)':'var(--g)';
-  stWash.style.background=s.bad?'linear-gradient(180deg,rgba(200,64,43,.0) 55%,rgba(200,64,43,.28))':'linear-gradient(180deg,rgba(46,154,71,0) 60%,rgba(46,154,71,.18))';
-  document.body.style.setProperty('--tint',s.bad?'var(--rs)':(s.end?'var(--bg)':'var(--gs)'));
-  document.getElementById('stMore').style.opacity=i===ST.length-1?0:1;
-  playIn(stVid,s.k,stIn);
+// ---------- 2 group split ----------
+const grp=$('grp'), gBars=bars('gBars',2,i=>i?GRN:'#7A8A90');
+grp.style.height='calc(2 * 70svh + 100svh)';
+const gEnv=$('gEnv'), gFm=$('gFm'), gl=[$('gl1'),$('gl2')];
+function gSet(p){
+  const s=clamp(p/0.5), e=1-Math.pow(1-s,3), f=clamp((p-0.55)/0.3);
+  fillBars(gBars,p*2);
+  $('gCount').textContent=(p<0.5?'01':'02')+' / 02';
+  gEnv.style.transform=`translate(${(1-e)*52}%, ${(1-e)*-60}px) scale(${0.7+0.3*e})`;
+  gFm.style.transform=`translate(${(1-e)*-52}%, ${(1-e)*-60}px) scale(${0.7+0.3*e})`;
+  gEnv.style.opacity=f>0?1-0.58*f:e; gFm.style.opacity=e;
+  gl.forEach(l=>{l.style.strokeDasharray='1';l.style.strokeDashoffset=1-e;});
+  gFm.classList.toggle('focus',f>0.5); $('gYou').style.opacity=f;
 }
 
-// ---------- FM services ----------
-const FM=[
- {k:'kes',c:B,t:'KES maintenance & upgrades',d:'The technical side of your kitchen exhaust: fans, motors, bearings, belts, VFDs and ESP repairs — so the exhaust never stops during service.',i:['Bearings & shafts','Belts & pulleys','Motors & VFDs','ESP repairs']},
- {k:'ac',c:B,t:'AC & MEP maintenance',d:'Planned maintenance and 24/7 reactive works for split, ducted, VRF and chilled water systems, plus electrical, plumbing and pumps.',i:['PPM visits','24/7 call-outs','Electrical','Plumbing & pumps']},
- {k:'duct',c:B,t:'AC duct cleaning',d:'Dust and mould in supply ducts are blown into the room every time the AC runs. Rotary brushes, HEPA negative air and sanitising.',i:['Every 6 months for F&B','Yearly for homes','Before & after photos']},
- {k:'fahu',c:B,t:'Fresh air & FAHU care',d:'The fresh air unit must replace what the kitchen exhaust takes out — treated and dry. We change filters on schedule and keep the balance right.',i:['Bag filters monthly','Carbon filters 6-monthly','Belts yearly']},
- {k:'vfd',c:A,t:'Retrofits & energy upgrades',d:'Repair or replace — with the figures. VFDs on exhaust fans, working actuators and right-sized units that pay back in running cost.',i:['VFDs on fans','Actuators & valves','Repair or replace']},
- {k:'fit',c:A,t:'Design, fit-out & civil works',d:'From cooling load and hood selection to approvals, installation and handover — with our own civil team for foundations, openings and making good.',i:['Load calculations','Ducting & hoods','In-house civil works']}
+// ---------- 4 all services ----------
+const DV=[
+ {t:'Kitchen ventilation',c:G,k:'kes-maint',s:[['KES maintenance & upgrades','Fans, motors, belts, bearings, VFDs'],['Hood & exhaust systems','Supply, installation and modification'],['KES & ESP diagnostics','Faults traced and repaired']]},
+ {t:'HVAC & air distribution',c:B,k:'ac-amc',s:[['AC maintenance & 24/7 repairs','Split, ducted, VRF and chilled water'],['HVAC installation','Supply, install and commission'],['AC duct cleaning','Rotary brush, HEPA negative air'],['Ducting works','Supply, return, fresh air and exhaust'],['AHU & FAHU','Filters, coils, belts and controls']]},
+ {t:'MEP & building services',c:'#5C6BC0',k:'retrofit',s:[['MEP annual maintenance','Planned visits for the whole building'],['Electrical & plumbing works','DBs, lighting, pipes and fixtures'],['Pump systems','Transfer, booster and drainage pumps']]},
+ {t:'Water storage & civil',c:'#2A9D9F',k:'water-tank',s:[['GRP tanks','Rectification and replacement'],['Builder’s works for MEP','Openings, plinths and making good']]},
+ {t:'Engineering & projects',c:A,k:'projects',s:[['Retrofits & energy upgrades','VFDs, actuators, right-sized units'],['Design & turnkey fit-out','Load calculations to handover'],['Repair or replace reports','The figures, so you can decide']]}
 ];
-const fmTxt=document.getElementById('fmTxt');
-fmTxt.innerHTML=FM.map((s,i)=>`<div class="it" data-i="${i}"><span class="k" style="color:${s.c}">LEVEL ${String(i+1).padStart(2,'0')}</span><h3>${esc(s.t)}</h3><p>${esc(s.d)}</p><ul>${s.i.map(x=>`<li>${esc(x)}</li>`).join('')}</ul></div>`).join('');
+$('divs').innerHTML=DV.map((d,i)=>`<div class="dv rv" data-d="${i%2?'r':'l'}"><header>${ico(d.k,d.c)}<div><small>DIVISION 0${i+1} · ${d.s.length} SERVICES</small><h3>${esc(d.t)}</h3></div></header><ol>${d.s.map((x,j)=>`<li style="transition-delay:${.15+j*.08}s">${esc(x[0])}<span>${esc(x[1])}</span></li>`).join('')}</ol></div>`).join('');
+
+// ---------- 5 six levels ----------
+const FM=[
+ {k:'kes',c:B,t:'KES maintenance & upgrades',d:'The technical side of your kitchen exhaust: fans, motors, bearings, belts, VFDs and ESP repairs, so the exhaust never stops during service.'},
+ {k:'acwall',c:B,t:'AC & MEP maintenance',d:'Planned maintenance and 24/7 repairs for split, ducted, VRF and chilled water systems, plus electrical, plumbing and pumps.'},
+ {k:'duct',c:B,t:'AC duct cleaning',d:'Dust and mould in supply ducts blow into the room every time the AC runs. We clean with rotary brushes and HEPA negative air: every 6 months for F&B, yearly for homes.'},
+ {k:'fahu',c:B,t:'Fresh air & FAHU care',d:'The fresh air unit must replace what the kitchen exhaust takes out, treated and dry. Filters changed on schedule and the air balance kept right.'},
+ {k:'vfd',c:A,t:'Retrofits & energy upgrades',d:'Repair or replace, with the figures. VFDs on exhaust fans, working actuators and right-sized units that pay back in running cost.'},
+ {k:'fit',c:A,t:'Design, fit-out & civil works',d:'From cooling load and hood selection to approvals, installation and handover, with our own civil team for blockwork, openings and making good.'}
+];
+$('fmTxt').innerHTML=FM.map((s,i)=>`<div class="it" data-i="${i}"><span class="k" style="color:${s.c}">LEVEL ${String(i+1).padStart(2,'0')}</span><h3>${esc(s.t)}</h3><p>${esc(s.d)}</p></div>`).join('');
 const fmBars=bars('fmBars',FM.length,i=>FM[i].c);
 function slab(cx,y,w,h,t){const P=a=>a.map(q=>q.join(',')).join(' ');return {top:P([[cx,y-h],[cx+w,y],[cx,y+h],[cx-w,y]]),l:P([[cx-w,y],[cx,y+h],[cx,y+h+t],[cx-w,y+t]]),r:P([[cx,y+h],[cx+w,y],[cx+w,y+t],[cx,y+h+t]])};}
-function drawStack(){const g=document.getElementById('fmStack');let s='';
-  FM.forEach((it,i)=>{const y=184-i*32,q=slab(58,y,46,18,9);
-    s+=`<g class="s" data-i="${i}"><polygon class="l" points="${q.l}"/><polygon class="r" points="${q.r}"/><polygon class="t" points="${q.top}"/><text x="58" y="${y+4}" text-anchor="middle" font-size="10">L${String(i+1).padStart(2,'0')}</text></g>`;});
-  g.innerHTML=s;}
-drawStack();
+(function(){let s='';FM.forEach((it,i)=>{const y=184-i*32,q=slab(58,y,46,18,9);
+  s+=`<g class="s" data-i="${i}"><polygon class="l" points="${q.l}"/><polygon class="r" points="${q.r}"/><polygon class="t" points="${q.top}"/><text x="58" y="${y+4}" text-anchor="middle" font-size="10">L${String(i+1).padStart(2,'0')}</text></g>`;}); $('fmStack').innerHTML=s;})();
 function paintStack(a){const ink=css('--ink'),sf=css('--surface'),ln=css('--line');
   document.querySelectorAll('#fmStack .s').forEach(g=>{const i=+g.dataset.i,c=FM[i].c,on=i===a,done=i<a;
-    const top=on?c:(done?`color-mix(in srgb, ${c} 45%, ${sf})`:`color-mix(in srgb, ${c} 14%, ${sf})`);
-    g.querySelector('.t').setAttribute('fill',top); g.querySelector('.l').setAttribute('fill',`color-mix(in srgb, ${c} ${on?60:22}%, ${sf})`); g.querySelector('.r').setAttribute('fill',`color-mix(in srgb, ${c} ${on?80:35}%, #000)`);
+    g.querySelector('.t').setAttribute('fill',on?c:(done?`color-mix(in srgb, ${c} 45%, ${sf})`:`color-mix(in srgb, ${c} 14%, ${sf})`));
+    g.querySelector('.l').setAttribute('fill',`color-mix(in srgb, ${c} ${on?60:22}%, ${sf})`); g.querySelector('.r').setAttribute('fill',`color-mix(in srgb, ${c} ${on?80:35}%, #000)`);
     g.querySelectorAll('polygon').forEach(p=>{p.setAttribute('stroke',on?ink:ln);p.setAttribute('stroke-width',on?1.4:.8);});
     g.querySelector('text').setAttribute('fill',on?'#fff':css('--muted'));});}
-const fm=document.getElementById('fm'), fmVid=document.getElementById('fmVid');
+const fm=$('fm'), fmVid=$('fmVid'), fmVs=[...fmVid.querySelectorAll('video')];
 fm.style.height=`calc(${FM.length} * 70svh + 100svh)`;
 let fmCur=-1, fmIn=false;
-function fmSet(p){const f=p*FM.length,i=Math.min(FM.length-1,Math.floor(f));
-  fmBars.forEach((b,k)=>b.style.setProperty('--f',k<i?1:k===i?Math.min(1,f-i):0));
-  if(i===fmCur) return; fmCur=i;
-  document.getElementById('fmCount').textContent=String(i+1).padStart(2,'0')+' / 06';
-  fmTxt.querySelectorAll('.it').forEach(e=>e.classList.toggle('on',+e.dataset.i===i));
-  const tag=document.getElementById('fmTag'); tag.textContent='LEVEL '+String(i+1).padStart(2,'0'); tag.style.background=FM[i].c;
-  paintStack(i); document.getElementById('fmMore').style.opacity=i===FM.length-1?0:1;
-  playIn(fmVid,FM[i].k,fmIn);}
+function fmSet(p){const f=p*FM.length,i=Math.min(FM.length-1,Math.floor(f)); fillBars(fmBars,f);
+  if(i!==fmCur){fmCur=i;
+    $('fmCount').textContent=String(i+1).padStart(2,'0')+' / 06';
+    $('fmTxt').querySelectorAll('.it').forEach(e=>e.classList.toggle('on',+e.dataset.i===i));
+    const tag=$('fmTag'); tag.textContent='LEVEL '+String(i+1).padStart(2,'0'); tag.style.background=FM[i].c;
+    paintStack(i); fmVs.forEach(v=>v.classList.toggle('on',v.dataset.k===FM[i].k));}
+  playSet(fmVs,fmIn?fmVs.filter(v=>v.dataset.k===FM[i].k):[]);
+  return {i,n:FM.length};}
 
-// ---------- energy (auto by scroll) ----------
-const enBars=bars('enBars',2,i=>i?GRN:RED), energy=document.getElementById('energy'), ebox=document.getElementById('ebox');
-energy.style.height='calc(2 * 70svh + 100svh)';
-let enCur=-1;
-function enState(w){ if(w===enCur) return; enCur=w;
-  document.getElementById('eB').setAttribute('aria-pressed',!w); document.getElementById('eA').setAttribute('aria-pressed',!!w); ebox.dataset.s=w;
-  document.getElementById('enCount').textContent=(w?'02':'01')+' / 02';
-  document.getElementById('ekwh').textContent=w?'≈ 93,000 kWh':'≈ 121,000 kWh';
-  const eb=document.getElementById('ebar'); eb.style.width=w?'77%':'100%'; eb.style.background=w?'var(--g)':'var(--red)'; eb.textContent=w?'AED 41,000':'AED 53,000';
-  const s=document.getElementById('eSave'); s.textContent=w?'AED 12k':'+30%'; s.style.color=w?'var(--g)':'var(--red)';
-  document.getElementById('eSaveT').textContent=w?'saved every year':'more power than needed';
-  document.getElementById('eKw').textContent=w?'≈ 28k':'≈ 28k'; document.getElementById('eKwT').textContent=w?'kWh less electricity a year':'kWh wasted every year';
-  document.getElementById('enMore').style.opacity=w?0:1;}
-let enManual=null;
-document.getElementById('eB').onclick=()=>{enManual=0;enState(0)}; document.getElementById('eA').onclick=()=>{enManual=1;enState(1)};
-function enSet(p){enBars.forEach((b,k)=>b.style.setProperty('--f',Math.max(0,Math.min(1,p*2-k)))); enState(p>=0.5?1:0);}
+// ---------- 6 problem / fix wipe ----------
+const CH=[
+ {b:['Exhaust fan stops. Grease catches fire.','A snapped belt or seized bearing stops the fan. Heat is trapped in the hood and duct, and months of grease become fuel.'],
+  a:['Fans kept running. Risks on record.','Monthly KES technical visits, spare belts and bearings on every van, water-mist and ESP checks, and a written fire safety notice the same day if we find a risk.']},
+ {b:['Water dripping from the AC. Again.','A blocked drain line or a dirty coil, and the leak lands on the sofa, the floor and the evening.'],
+  a:['Planned AC maintenance.','Filters, coils and drain lines cleaned and flushed on schedule, so the leak never starts. 24/7 call-outs if anything does.']},
+ {b:['Sparks from the distribution board.','Loose terminals, overloaded circuits and ageing breakers overheat quietly, until they don’t.'],
+  a:['Checked, tightened, tested.','Our electricians test DBs, tighten terminals, replace failing breakers and balance loads under your MEP contract.']}
+];
+$('stTxt').innerHTML=CH.map((c,i)=>`<div class="it" data-i="${i}b"><span class="k" style="color:var(--red)">THE PROBLEM</span><h3>${esc(c.b[0])}</h3><p>${esc(c.b[1])}</p></div><div class="it" data-i="${i}a"><span class="k" style="color:var(--g)">HOW SANCO FM FIXES IT</span><h3>${esc(c.a[0])}</h3><p>${esc(c.a[1])}</p></div>`).join('');
+const story=$('story'), wVid=$('wVid'), pairs=[...wVid.querySelectorAll('.pair')], stBars=bars('stBars',3,()=>GRN);
+story.style.height='calc(3 * 95svh + 100svh)';
+let stCur=-1, stIn=false, manual=null, manualP=0, lastShown='';
+function stSet(p){const f=p*3,c=Math.min(2,Math.floor(f)),loc=f-c; fillBars(stBars,f);
+  if(c!==stCur){stCur=c; manual=null; $('stCount').textContent='0'+(c+1)+' / 03'; pairs.forEach((x,k)=>x.classList.toggle('on',k===c));}
+  if(manual!==null&&Math.abs(p-manualP)>0.02) manual=null;
+  const x=manual!==null?manual:clamp((loc-0.2)/0.55);
+  wVid.style.setProperty('--x',(1-x).toFixed(3));
+  $('tB').style.opacity=x<0.85?1:0; $('tA').style.opacity=x>0.15?1:0;
+  const want=c+(x>=0.5?'a':'b'); if(want!==lastShown){lastShown=want; $('stTxt').querySelectorAll('.it').forEach(e=>e.classList.toggle('on',e.dataset.i===want));}
+  playSet([...wVid.querySelectorAll('video')],stIn?[...pairs[c].querySelectorAll('video')]:[]);
+  return {i:c,n:3,done:c===2&&x>=1};}
+let drag=false;
+wVid.addEventListener('pointerdown',e=>{drag=true; wVid.setPointerCapture?.(e.pointerId); move(e);});
+wVid.addEventListener('pointermove',e=>{if(drag) move(e);});
+['pointerup','pointercancel'].forEach(t=>wVid.addEventListener(t,()=>drag=false));
+function move(e){const r=wVid.getBoundingClientRect(); manual=clamp(1-(e.clientX-r.left)/r.width); manualP=p01(story); stSet(manualP);}
 
-// visibility for videos
-function vis(box,set){new IntersectionObserver(es=>es.forEach(e=>{set(e.isIntersecting); const v=box.querySelector('video.on'); if(v){ if(e.isIntersecting){ if(!v.src)v.src=v.dataset.src; v.play().catch(()=>{});} else v.pause(); }}),{threshold:.2}).observe(box);}
-vis(stVid,x=>stIn=x); vis(fmVid,x=>fmIn=x);
+// ---------- 7 fire: cleaned vs working ----------
+const KX=[['Hood, duct, ESP and fan cleaned',1,1],['Water mist serviced and tested',0,1],['ESP power pack tested',0,1],['Fan belts, bearings, motor',0,1],['Fire risks reported in writing',0,1]];
+const kxV=['Clean on the day, but nobody checks that the water mist and ESP still work. If they fail, sparks and grease go straight into the clean duct.','Sanco is accountable for both: Sanco Environmental cleans, Sanco FM keeps the water mist, ESP and fans working.'];
+const kx=$('kx'), kxBox=$('kxBox'); kx.style.height='calc(2 * 70svh + 100svh)';
+let kxCur=-1, kxManual=null, kxP=0;
+function kxState(s){ if(s===kxCur) return; kxCur=s; kxBox.dataset.s=s;
+  $('kB').setAttribute('aria-pressed',!s); $('kA').setAttribute('aria-pressed',!!s);
+  $('kxChk').innerHTML=KX.map(r=>{const ok=r[s+1];return `<div><span>${esc(r[0])}</span><em class="${ok?'y':'n'}">${ok?'✓ Done':'✗ Not checked'}</em></div>`}).join('');
+  const v=$('kxV'); v.textContent=kxV[s]; v.style.setProperty('--c',s?'var(--g)':'var(--red)');
+  const h=$('kxH'); h.textContent=s?'working. We do both.':'working.'; h.style.color=s?'var(--g)':'var(--red)';}
+$('kB').onclick=()=>{kxManual=0;kxP=p01(kx);kxState(0)}; $('kA').onclick=()=>{kxManual=1;kxP=p01(kx);kxState(1)};
+function kxSet(p){ if(kxManual!==null&&Math.abs(p-kxP)>0.08) kxManual=null; kxState(kxManual!==null?kxManual:(p>=0.5?1:0)); return {i:p>=0.5?1:0,n:2};}
+kxState(0);
+
+// ---------- 9 energy graph ----------
+const MF=[.55,.6,.7,.85,1,1.1,1.2,1.2,1.05,.9,.7,.58], MS=MF.reduce((a,b)=>a+b), WITH=MF.map(x=>93000*x/MS), WO=WITH.map(v=>v*1.3), MX=14000;
+const ch=$('eChart'); const X0=28,W0=306,H0=140,bw=W0/12;
+const yv=v=>10+H0*(1-v/MX);
+let svg='';[0,4000,8000,12000].forEach(v=>svg+=`<line x1="${X0}" x2="${X0+W0}" y1="${yv(v)}" y2="${yv(v)}" stroke="var(--line)"/><text x="${X0-5}" y="${yv(v)+3}" text-anchor="end" font-family="DM Mono" font-size="8.5" fill="var(--muted)">${v/1000}k</text>`);
+'JFMAMJJASOND'.split('').forEach((m,i)=>{const x=X0+i*bw+bw*0.16,w=bw*0.68;
+  svg+=`<rect class="w" id="bw${i}" x="${x}" width="${w}" y="${yv(WO[i])}" height="${yv(WITH[i])-yv(WO[i])}" rx="2" fill="var(--red)"/><rect x="${x}" width="${w}" y="${yv(WITH[i])}" height="${10+H0-yv(WITH[i])}" rx="2" fill="var(--g)"/><text x="${x+w/2}" y="${H0+22}" text-anchor="middle" font-family="DM Mono" font-size="8.5" fill="var(--muted)">${m}</text>`;});
+ch.innerHTML=svg;
+const energy=$('energy'), enBars=bars('enBars',12,()=>GRN); energy.style.height='calc(2 * 75svh + 100svh)';
+let enManual=null, enP=0, enLast=-1;
+function enDraw(k){ // k: months fixed (0..12, fractional)
+  if(Math.abs(k-enLast)<0.001) return; enLast=k; let saved=0,kwh=0;
+  for(let i=0;i<12;i++){const fr=clamp(k-i), top=WO[i]-(WO[i]-WITH[i])*fr; saved+=(WO[i]-WITH[i])*fr; kwh+=top;
+    const r=$('bw'+i); r.setAttribute('y',yv(top)); r.setAttribute('height',Math.max(0,yv(WITH[i])-yv(top)));}
+  fillBars(enBars,k);
+  $('eK').textContent=fmt(Math.round(kwh/1000)*1000);
+  $('eA').textContent='AED '+fmt(Math.round(kwh*0.44/1000)*1000);
+  $('eS').textContent='AED '+fmt(Math.round(saved*0.44/100)*100);
+  $('eK').style.color=k>=12?'var(--g)':''; $('eA').style.color=k>=12?'var(--g)':'';
+  const w=k>=6?1:0; $('eBtn0').setAttribute('aria-pressed',!w); $('eBtn1').setAttribute('aria-pressed',!!w);
+  $('enCount').textContent=k<=0?'Without AMC':k>=12?'With Sanco AMC':'Month '+Math.min(12,Math.ceil(k))+' / 12';}
+$('eBtn0').onclick=()=>{enManual=0;enP=p01(energy);enDraw(0)}; $('eBtn1').onclick=()=>{enManual=12;enP=p01(energy);enDraw(12)};
+function enSet(p){ if(enManual!==null&&Math.abs(p-enP)>0.06) enManual=null; enDraw(enManual!==null?enManual:clamp((p-0.08)/0.8)*12); return {i:Math.floor(p*12),n:12,done:p>0.9};}
+enDraw(0);
+
+
+// ---------- fresh air & cooling ----------
+const FA=[
+ {ex:8,fr:3,in:8,smk:0,c:'var(--red)',k:'PROBLEM',h:'FAHU not maintained: too little fresh air.',p:'Hot, humid outside air is pulled in through every door and gap, so the AC can’t keep up and power use goes up.',t:[['FRESH AIR','Too little'],['KITCHEN','Too negative'],['COOLING','Can’t hold set point']]},
+ {ex:3,fr:6,in:0,smk:1,c:'var(--a)',k:'PROBLEM',h:'Not enough exhaust.',p:'Smoke, heat and odour spill into the dining area, and grease settles in the hood and duct.',t:[['EXHAUST','Too weak'],['DINING','Smoke & odour'],['DUCT','Grease settles']]},
+ {ex:8,fr:7,in:1.5,smk:0,c:'var(--g)',k:'THE TARGET',h:'Slightly negative, with treated fresh air.',p:'The FAHU puts back 80–90% of the exhausted air, treated and dry. Smoke stays in the kitchen and the AC holds temperature.',t:[['FRESH AIR','80–90% replaced'],['KITCHEN','Slightly negative'],['COOLING','Holds temperature']]}
+];
+$('faTxt').innerHTML=FA.map((s,i)=>`<div class="it" data-i="${i}"><p style="font-size:14.5px;color:var(--ink)"><b style="color:${s.c}">${esc(s.h)}</b> ${esc(s.p)}</p></div>`).join('');
+const fa=$('fa'), faBars=bars('faBars',3,i=>[RED,A,GRN][i]); fa.style.height='calc(3 * 65svh + 100svh)';
+const faBtns=[...fa.querySelectorAll('.tog button')];
+let faCur=-1, faManual=null, faP=0;
+function faState(i){ if(i===faCur) return; faCur=i; const s=FA[i];
+  $('faEx').style.strokeWidth=s.ex; $('faFr').style.strokeWidth=s.fr; $('faIn').style.strokeWidth=s.in; $('faIn').style.opacity=s.in?1:0; $('faInT').style.opacity=s.in>2?1:0; $('faSmk').style.opacity=s.smk;
+  $('faT').innerHTML=s.t.map(([a,b])=>`<div style="--c:${s.c}"><span>${a}</span><strong>${esc(b)}</strong></div>`).join('');
+  $('faTxt').querySelectorAll('.it').forEach(e=>e.classList.toggle('on',+e.dataset.i===i));
+  faBtns.forEach((b,k)=>b.setAttribute('aria-pressed',k===i)); $('faCount').textContent='0'+(i+1)+' / 03';}
+faBtns.forEach(b=>b.onclick=()=>{faManual=+b.dataset.s; faP=p01(fa); faState(faManual);});
+function faSet(p){ fillBars(faBars,p*3); if(faManual!==null&&Math.abs(p-faP)>0.06) faManual=null; const i=Math.min(2,Math.floor(p*3)); faState(faManual!==null?faManual:i); return {i,n:3};}
+faState(0);
+
+// tap-to-fix breakdown (profile midpoints scaled to the 28,000 kWh gap; 14 h × 365 = 5,110 h)
+const FX=[['Filters and coils cleaned','Units reach set point sooner',11100],['Fresh air unit (FAHU) maintained','No hot, humid air pulled into the kitchen',6700],['Actuators working, units switch off','No FCUs running 24/7 at full flow',6700],['Worn parts and refrigerant fixed','Full capacity, shorter run times',3500]];
+const tick='<svg viewBox="0 0 24 24"><path d="M5 12l5 5 9-10" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+$('fix').innerHTML=FX.map((f,i)=>`<button class="rv" data-d="${i%2?'r':'l'}" aria-pressed="false" data-i="${i}"><span class="bx">${tick}</span><span>${esc(f[0])}<small>${esc(f[1])}</small></span><b></b></button>`).join('');
+document.querySelectorAll('#fix button').forEach(b=>{ b.querySelector('b').textContent='AED '+fmt(Math.round(FX[+b.dataset.i][2]*0.44/100)*100);
+  b.onclick=()=>{b.setAttribute('aria-pressed',b.getAttribute('aria-pressed')!=='true'); tot();};});
+function tot(){let k=0; document.querySelectorAll('#fix button[aria-pressed="true"]').forEach(b=>k+=FX[+b.dataset.i][2]);
+  $('totA').textContent='AED '+fmt(Math.round(k*0.44/100)*100); $('totK').textContent=fmt(k); $('totW').textContent=(k/5110).toFixed(1)+' kW';}
 
 // ---------- projects ----------
-const PJ=[['Rawabi Al Sham, Al Barsha','Full MEP fit-out, 500 m² restaurant',['ac-amc','retrofit','projects','kes-maint']],['Allo Beirut, Al Hessa','Treated fresh air unit and kitchen air balance',['ac-amc','kes-maint']],['Cummins head office, JAFZA','35 ducted and decorative split units, ducting and civil',['ac-amc','duct','projects']],['Labour accommodation, DMC','CHW FCUs and ecology units with ducting',['ac-amc','kes-maint']],['Night to Night supermarket, Mirdif','20 CHW FCUs with toilet and pantry exhaust',['ac-amc','duct']],['Rawabi Al Sham butchery, Mirdif','CHW AHU, CHW FAHU, DX unit and DX FAHU',['ac-amc']],['Central kitchen, Al Quoz','DX units with power upgrade',['ac-amc','retrofit']],['%Arabica roastery, AD Hub','Exhaust fan, ecology units and duct changes',['kes-maint','duct']],['Rivas restaurant, Jumeirah','Water-mist hood, ecology unit, exhaust fan, civil',['kes-maint','projects']],['Kuku Pao, Nad Al Sheba','Ecology unit with ESP, exhaust and fresh-air fans',['kes-maint']]];
+const PJ=[['Rawabi Al Sham, Al Barsha','Full MEP fit-out, 500 m² restaurant',['ac-amc','retrofit','projects','kes-maint']],['Allo Beirut Hessa','Treated fresh air unit and kitchen air balance',['ac-amc','kes-maint']],['Cummins head office, JAFZA','35 ducted and decorative split units, ducting and civil',['ac-amc','duct','projects']],['Labour accommodation, DMC','CHW FCUs and ecology units with ducting',['ac-amc','kes-maint']],['Night to Night supermarket, Mirdif','20 CHW FCUs with toilet and pantry exhaust',['ac-amc','duct']],['Rawabi Al Sham butchery, Mirdif','CHW AHU, CHW FAHU, DX unit and DX FAHU',['ac-amc']],['Central kitchen, Al Quoz','DX units with power upgrade',['ac-amc','retrofit']],['%Arabica roastery, AD Hub','Exhaust fan, ecology units and duct changes',['kes-maint','duct']],['Rivas restaurant, Jumeirah','Water-mist hood, ecology unit, exhaust fan, civil',['kes-maint','projects']],['Kuku Pao, Nad Al Sheba','Ecology unit with ESP, exhaust and fresh-air fans',['kes-maint']]];
 const PC={'ac-amc':B,'duct':B,'kes-maint':G,'retrofit':A,'projects':A};
-document.getElementById('plist').innerHTML=PJ.map((p,i)=>`<div class="rv" data-d="${i%2?'r':'l'}"><span><h3>${esc(p[0])}</h3><small>${esc(p[1])}</small></span><span class="ics">${p[2].map(k=>ico(k,PC[k])).join('')}</span></div>`).join('');
+$('plist').innerHTML=PJ.map((p,i)=>`<div class="rv" data-d="${i%2?'r':'l'}"><span><h3>${esc(p[0])}</h3><small>${esc(p[1])}</small></span><span class="ics">${p[2].map(k=>`<span class="ico ol"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="${IC[k]}" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></span>`).join('')}</span></div>`).join('');
 
-// ---------- clients: many rows, opposite directions ----------
+// ---------- clients ----------
 const CL={"Restaurants, cafés & F&B": [["Tresaj", "logos/tresaj.png"], ["Mezzanine", "logos/mezzanine.png"], ["Ibn Albahr", "logos/ibn-albahr.png"], ["Bombay Bungalow", "logos/bombay-bungalow.png"], ["Za'Za", "logos/za-za.png"], ["Hurricane's Grill", "logos/hurricane-s-grill.png"], ["Sarabeth's", "logos/sarabeth-s.png"], ["Shawarma Jeddo", "logos/shawarma-jeddo.png"], ["Chapati Rashid", "logos/chapati-rashid.png"], ["Off the Hook", "logos/off-the-hook.png"], ["Rollo Bollo", "logos/rollo-bollo.png"], ["Potato Corner", "logos/potato-corner.png"], ["Trouvaille", "logos/trouvaille.png"], ["Abu Ali", "logos/abu-ali.png"], ["Grani Marmo Classic", "logos/grani-marmo-classic.png"], ["Zutto Suki", "logos/zutto-suki.png"], ["Arabica Coffee House", "logos/arabica-coffee-house.png"], ["Pili Pili", "logos/pili-pili.png"], ["Fynd", "logos/fynd.png"], ["JJ Chicken", "logos/jj-chicken.png"], ["Yann Couvreur", "logos/yann-couvreur.png"], ["Ichikura", "logos/ichikura.png"], ["Rebel Foods", "logos/rebel-foods.png"], ["Artisan Bakers", "logos/artisan-bakers.png"], ["Feels", "logos/feels.png"], ["KitchenPark", "logos/kitchenpark.png"], ["Joud Coffee", "logos/joud-coffee.png"], ["Sirene", "logos/sirene.png"], ["Origami Sushi", "logos/origami-sushi.png"], ["Express Kitchens", "logos/express-kitchens.png"], ["Gaia", "logos/gaia.png"], ["INA", "logos/ina.png"], ["Roasters", "logos/roasters.png"], ["Mama'esh", "logos/mama-esh.png"], ["Kaak Al Manara", "logos/kaak-al-manara.png"], ["Pitfire", "logos/pitfire.png"], ["Nando's", "logos/nando-s.png"], ["Eathos", "logos/eathos.png"], ["Cafe de Paris", "logos/cafe-de-paris.png"], ["Da Michele", "logos/da-michele.png"], ["Al Sultan", "logos/al-sultan.png"], ["Calo", "logos/calo.png"], ["Bulldozer Group", "logos/bulldozer-group.png"], ["Scalini", "logos/scalini.png"], ["%Arabica", "logos/arabica.png"], ["The Coffee Club", "logos/the-coffee-club.png"], ["Chocomelt", "logos/chocomelt.png"], ["The Lighthouse", "logos/the-lighthouse.png"], ["Malgudi", "logos/malgudi.png"], ["Matter Mind", "logos/matter-mind.png"], ["Boon Coffee", "logos/boon-coffee.png"], ["Rawabi Al Sham", "logos/rawabi-al-sham.png"], ["Saddle", "logos/saddle.png"], ["Vietnamese Foodies", "logos/vietnamese-foodies.png"], ["Allo Beirut", "logos/allo-beirut.png"]], "Hotels & leisure": [["Marriott Bonvoy", "logos/marriott-bonvoy.png"], ["Rove Hotels", "logos/rove-hotels.png"], ["Wyndham", "logos/wyndham.png"], ["Four Points by Sheraton", "logos/four-points-by-sheraton.png"], ["Swissôtel", "logos/swiss-tel.png"], ["Millennium Hotels", "logos/millennium-hotels.png"], ["Montreal Barsha Hotel", "logos/montreal-barsha-hotel.png"], ["Dorchester Collection", "logos/dorchester-collection.png"], ["Ajman Hotel", "logos/ajman-hotel.png"], ["Mehzala", "logos/mehzala.png"], ["Leo & Loona", "logos/leo-loona.png"]], "Developers, malls & retail": [["Emaar", "logos/emaar.png"], ["Nakheel", "logos/nakheel.png"], ["Dubai Holding", "logos/dubai-holding.png"], ["Omniyat", "logos/omniyat.png"], ["Binghatti", "logos/binghatti.png"], ["Al Habtoor", "logos/al-habtoor.png"], ["Al Ghurair Centre", "logos/al-ghurair-centre.png"], ["J3 Mall", "logos/j3-mall.png"], ["Géant", "logos/g-ant.png"], ["Aswaaq", "logos/aswaaq.png"]], "Offices, healthcare & corporate": [["Zulekha Hospital", "logos/zulekha-hospital.png"], ["Iranian Hospital", "logos/iranian-hospital.png"], ["MedCare", "logos/medcare.png"], ["Emirates", "logos/emirates.png"], ["Emirates Engineering", "logos/emirates-engineering.png"], ["AGMC", "logos/agmc.png"], ["Mair", "logos/mair.png"], ["Gargash", "logos/gargash.png"], ["MeRex Investment", "logos/merex-investment.png"], ["Merittik", "logos/merittik.png"], ["GMG", "logos/gmg.png"], ["Al Gurg Group", "logos/al-gurg-group.png"]], "Facilities management partners": [["Idama", "logos/idama.png"], ["Ejadah", "logos/ejadah.png"], ["Imdaad", "logos/imdaad.png"], ["Farnek", "logos/farnek.png"], ["Enova", "logos/enova.png"], ["Emrill", "logos/emrill.png"], ["Isnaad", "logos/isnaad.png"], ["Kemos FM", "logos/kemos-fm.png"], ["BKA Facilities Management", "logos/bka-facilities-management.png"], ["Al Ghurair FM", "logos/al-ghurair-fm.png"], ["Al Bonian FM", "logos/al-bonian-fm.png"], ["Clarity Community Mgmt.", "logos/clarity-community-mgmt.png"], ["Khidmah", "logos/khidmah.png"], ["ServeU", "logos/serveu.png"], ["Dulsco Group", "logos/dulsco-group.png"], ["Iskaan", "logos/iskaan.png"], ["We Shape Kitchens", "logos/we-shape-kitchens.png"], ["Hydro Technologies", "logos/hydro-technologies.png"], ["Mepteq", "logos/mepteq.png"], ["Karmastaji Group", "logos/karmastaji-group.png"], ["Saleh Constructions", "logos/saleh-constructions.png"], ["Righteous Group", "logos/righteous-group.png"]]};
-const crows=document.getElementById('crows'); let ri=0;
+const crows=$('crows'); let ri=0;
 for(const [cat,list] of Object.entries(CL)){
   const perRow=list.length>30?Math.ceil(list.length/3):list.length>16?Math.ceil(list.length/2):list.length;
   crows.insertAdjacentHTML('beforeend',`<div class="cat"><span class="lab">${esc(cat)}</span><span class="lab">${list.length}</span></div>`);
@@ -515,7 +797,7 @@ for(const [cat,list] of Object.entries(CL)){
     crows.insertAdjacentHTML('beforeend',`<div class="ctrack" data-rep="${rep}" data-dir="${ri%2?1:-1}" data-sp="${0.8+((ri*37)%5)/10}">${items.repeat(rep)}</div>`); ri++;
   }
 }
-const tracks=[...document.querySelectorAll('.ctrack')]; let drift=0; const clients=document.getElementById('clients');
+const tracks=[...document.querySelectorAll('.ctrack')]; let drift=0; const clients=$('clients');
 
 // ---------- reveal both ways ----------
 const dirs=['l','r','d','l','r','u'];
@@ -523,28 +805,35 @@ document.querySelectorAll('.rv').forEach((e,i)=>{ if(!e.dataset.d) e.dataset.d=d
 function countUp(el){const to=+el.dataset.count,pre=el.dataset.pre||'',suf=el.dataset.suf||''; if(reduce)return; const t0=performance.now();
   (function f(t){const k=Math.min(1,(t-t0)/1300),e=1-Math.pow(1-k,3); el.textContent=pre+Math.round(to*e).toLocaleString('en-US')+suf; if(k<1)requestAnimationFrame(f);})(t0);}
 const io=new IntersectionObserver(es=>es.forEach(e=>{const t=e.target;
-  if(e.isIntersecting){ if(t.classList.contains('out')){ t.classList.remove('out'); t.querySelectorAll?.('[data-count]').forEach(countUp); if(t.dataset.count)countUp(t);} }
+  if(e.isIntersecting){ if(t.classList.contains('out')){ t.classList.remove('out'); t.querySelectorAll('[data-count]').forEach(countUp); if(t.dataset.count)countUp(t);} }
   else t.classList.add('out'); }),{threshold:0,rootMargin:'-6% 0px -10% 0px'});
 document.querySelectorAll('.rv').forEach(e=>io.observe(e));
-// first screen visible immediately
-requestAnimationFrame(()=>document.querySelectorAll('.rv').forEach(e=>{const r=e.getBoundingClientRect(); if(r.top<innerHeight*0.9&&r.bottom>0) e.classList.remove('out');}));
-const tio=new IntersectionObserver(es=>es.forEach(e=>{ if(e.isIntersecting && e.target.id!=='story') document.body.style.setProperty('--tint','var(--'+e.target.dataset.tint+')'); }),{rootMargin:'-45% 0px -50% 0px'});
-document.querySelectorAll('[data-tint]').forEach(s=>tio.observe(s));
+requestAnimationFrame(()=>document.querySelectorAll('.rv').forEach(e=>{const r=e.getBoundingClientRect(); if(r.top<innerHeight*0.9&&r.bottom>0){e.classList.remove('out'); e.querySelectorAll('[data-count]').forEach(countUp);}}));
 
-// fire diagram: grease grows as it scrolls into view
-const fog=document.getElementById('fog'),fogT=document.getElementById('fogT'),flm=document.getElementById('flm'),fireSec=fog.closest('section');
+// video visibility
+new IntersectionObserver(es=>es.forEach(e=>{ fmIn=e.isIntersecting; onScroll(); }),{threshold:.2}).observe(fmVid);
+new IntersectionObserver(es=>es.forEach(e=>{ stIn=e.isIntersecting; onScroll(); }),{threshold:.2}).observe(wVid);
 
-// ---------- scroll loop ----------
-const rail=document.getElementById('railFill'),dock=document.getElementById('dock'),hint=document.getElementById('hint');
-let tick=false;
-function onScroll(){tick=false;
+// ---------- scroll loop + guide ----------
+const fog=$('fog'),fogT=$('fogT'),flm=$('flm'),fireSec=fog.closest('section');
+const rail=$('railFill'),guide=$('guide'),gTxt=$('gTxt'),gN=$('gN');
+const arrow=gN.innerHTML;
+const SC=[[grp,'Keep scrolling',p=>({i:p<0.5?0:1,n:2})],[fm,'Keep scrolling: next level',null],[story,'Keep scrolling to see the fix',null],[kx,'Keep scrolling to compare',null],[energy,'Keep scrolling: the bill drops',null],[fa,'Keep scrolling: see the target',null]];
+let tickF=false;
+function onScroll(){tickF=false;
   const max=document.documentElement.scrollHeight-innerHeight; rail.parentElement.style.setProperty('--p',(scrollY/Math.max(1,max)).toFixed(4));
-  stSet(p01(story)); fmSet(p01(fm)); enSet(p01(energy));
-  const r=fireSec.getBoundingClientRect(); const fp=Math.max(0,Math.min(1,(innerHeight-r.top)/(r.height*0.7)));
+  const pg=p01(grp); gSet(pg);
+  const r={}; r.fm=fmSet(p01(fm)); r.st=stSet(p01(story)); r.kx=kxSet(p01(kx)); r.en=enSet(p01(energy)); r.fa=faSet(p01(fa));
+  const fr=fireSec.getBoundingClientRect(); const fp=clamp((innerHeight-fr.top)/(fr.height*0.7));
   const h=4+fp*40; fog.setAttribute('y',108-h); fog.setAttribute('height',h); fogT.textContent='FOG LAYER · '+Math.round(2+fp*28)+' mm'; flm.setAttribute('opacity',fp>0.75?(fp-0.75)*4:0);
-  dock.classList.toggle('show',scrollY>innerHeight*0.4); hint.classList.toggle('hide',scrollY>60);
+  // guide
+  let msg=null, prog=0, n='';
+  if(scrollY<80){msg='Scroll down to explore'; prog=0;}
+  else{ for(const [el,t] of SC){ if(pinned(el)){ const p=p01(el); if(p<0.97){msg=t; prog=p; const st=el===grp?{i:p<0.5?0:1,n:2}:el===fm?r.fm:el===story?r.st:el===kx?r.kx:el===fa?r.fa:r.en; n=(st.i+1)+'/'+st.n;} else {msg='Done. Keep going'; prog=1;} break; } } }
+  guide.classList.toggle('off',!msg); guide.classList.toggle('done',msg==='Done. Keep going');
+  if(msg){ gTxt.textContent=msg; guide.style.setProperty('--g',prog); gN.innerHTML=(n?n+' ':'')+arrow; }
 }
-addEventListener('scroll',()=>{if(!tick){tick=true;requestAnimationFrame(onScroll);}},{passive:true});
+addEventListener('scroll',()=>{if(!tickF){tickF=true;requestAnimationFrame(onScroll);}},{passive:true});
 addEventListener('resize',onScroll); onScroll();
 function marquee(){const r=clients.getBoundingClientRect();
   if(r.bottom>0&&r.top<innerHeight){ if(!reduce) drift+=0.3; const sp=(innerHeight-r.top)*0.45;
