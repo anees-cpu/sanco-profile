@@ -108,17 +108,19 @@ function build(){
 <div style="font-family:${F};font-size:12.5px;color:${INK};margin-top:2px">${m?link('tel:'+tel(m),esc(m))+' · ':''}${e?link('mailto:'+esc(e),esc(e))+' · ':''}${link('https://www.sancouae.com','sancouae.com')}</div>
 </td></tr></table>`;
   }
-  const h247=`<table ${T} style="border-collapse:collapse"><tr><td width="20" style="vertical-align:middle;padding:0 4px 0 0"><a href="tel:+971528641667" style="text-decoration:none"><img src="${A('icons/phone.png')}" width="16" height="16" alt="Call" style="display:block;border:0"></a></td><td width="20" style="vertical-align:middle;padding:0 6px 0 0"><a href="https://wa.me/971528641667" style="text-decoration:none"><img src="${A('icons/whatsapp.png')}" width="16" height="16" alt="WhatsApp" style="display:block;border:0"></a></td><td style="vertical-align:middle;font-family:${F};font-size:12.5px;color:${INK};white-space:nowrap">${link('tel:+971528641667','+971 52 864 1667')}</td></tr></table>`;
-  const K=k=>`<td style="font-family:${M};font-size:9.5px;font-weight:500;letter-spacing:1px;color:${G};padding:2px 8px 2px 0;white-space:nowrap;vertical-align:middle">${k}</td>`;
-  const V=v=>`<td style="font-family:${F};font-size:12.5px;color:${INK};padding:2px 16px 2px 0;white-space:nowrap;vertical-align:middle">${v}</td>`;
+  const icn=(href,src,alt)=>`<a href="${href}" style="text-decoration:none"><img src="${A(src)}" width="16" height="16" alt="${alt}" align="absmiddle" style="border:0;vertical-align:middle"></a>`;
+  const h247=`${icn('tel:+971528641667','icons/phone.png','Call')}&nbsp;${icn('https://wa.me/971528641667','icons/whatsapp.png','WhatsApp')}&nbsp;&nbsp;${link('tel:+971528641667','+971 52 864 1667')}`;
+  const KW=[58,48], VW=[178,190];
+  const K=(k,j)=>`<td width="${KW[j]}" style="width:${KW[j]}px;font-family:${M};font-size:9.5px;font-weight:500;letter-spacing:1px;color:${G};padding:3px 6px 3px 0;white-space:nowrap;vertical-align:middle">${k}</td>`;
+  const V=(v,j,span)=>`<td${span?' colspan="3"':` width="${VW[j]}"`} style="${span?'':`width:${VW[j]}px;`}font-family:${F};font-size:12.5px;color:${INK};padding:3px 10px 3px 0;white-space:nowrap;vertical-align:middle">${v}</td>`;
   const cells=[];
   if(m) cells.push(['MOBILE',link('tel:'+tel(m),esc(m))]);
   cells.push(['OFFICE',link('tel:+97142637073','+971 4 263 7073')]);
-  cells.push(['24/7',h247]);
   if(e) cells.push(['EMAIL',link('mailto:'+esc(e),esc(e))]);
   cells.push(['WEB',link('https://www.sancouae.com','sancouae.com')]);
-  let ct=`<table ${T} style="border-collapse:collapse">`;
-  for(let i=0;i<cells.length;i+=2){ct+='<tr>'+cells.slice(i,i+2).map(([k,v])=>K(k)+V(v)).join('')+'</tr>';}
+  cells.push(['24/7',h247]);
+  let ct=`<table ${T} width="474" style="border-collapse:collapse;width:474px">`;
+  for(let i=0;i<cells.length;i+=2){const pr=cells.slice(i,i+2);ct+='<tr>'+pr.map(([k,v],j)=>K(k,j)+V(v,j,pr.length===1)).join('')+'</tr>';}
   ct+='</table>';
   //const flow=items=>items.map(([src,l])=>`<span style="white-space:nowrap">${ic(src,'',14)}&nbsp;${l}</span>`).join('&nbsp;&nbsp; ');
   //const band=(logo,w,h,alt,items)=>`<tr><td width="96" style="padding:7px 10px 7px 0;vertical-align:middle"><img src="${A(logo)}" width="${w}" height="${h}" alt="${alt}" style="display:block;border:0"></td><td style="padding:7px 0;vertical-align:middle;font-family:${F};font-size:10.5px;line-height:1.9;color:${INK}">${flow(items)}</td></tr>`;
